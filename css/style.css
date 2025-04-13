@@ -145,13 +145,6 @@ header {
 
 /* ITEMS */
 
-.item-title {
-    font-weight: 600;
-    font-size: 24px;
-    color: #341f0d;
-    margin-top: 40px;
-}
-
 .items {
     margin-top: 25px;
     display: flex;
@@ -162,15 +155,21 @@ header {
 
 .item {
     flex: 1 1 calc(25% - 20px);
-    min-width: 200px;
+    min-width: 250px;
     max-width: 334px;
+    
 }
 
-.item-name {
-    font-weight: 500;
-    font-size: 16px;
-    color: #000;
-    margin-top: 10px;
+.item-title {
+    font-weight: 600;
+    font-size: 24px;
+    color: #341f0d;
+    margin-top: 40px;
+}
+
+.item:hover {
+    transition: .4s;
+    transform: translateY(-12px) scale(1.05);
 }
 
 .item-img {
@@ -178,6 +177,20 @@ header {
     width: 100%;
     height: auto;
     aspect-ratio: 334/210;
+    object-fit: cover;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.item-img:hover {
+    transition: .4s;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3);
+}
+
+.item-name {
+    font-weight: 500;
+    font-size: 16px;
+    color: #000;
 }
 
 /* FOOTER */
