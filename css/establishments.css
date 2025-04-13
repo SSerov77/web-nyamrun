@@ -1,5 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+    /* Основные цвета */
+    --color-primary: #D75F32;
+    --color-secondary: #341f0d;
+    --color-background: #FBF2E6;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+
+    /* Текст */
+    --color-text: #341f0d;
+    --color-text-light: #FFFFFF;
+    --color-text-dark: #000000;
+
+    /* Кнопки и интерактивные элементы */
+    --color-button-bg: var(--color-primary);
+    --color-button-text: var(--color-white);
+    --color-button-hover: #c04b1f;
+
+    /* Карточки */
+    --color-card-bg: var(--color-white);
+    --color-card-shadow: rgba(0, 0, 0, 0.1);
+    --color-card-shadow-hover: rgba(0, 0, 0, 0.3);
+
+    /* Фильтры */
+    --color-filter-bg: var(--color-primary);
+    --color-filter-text: var(--color-white);
+    --color-filter-option-bg: var(--color-white);
+}
+
 * {
     font-family: "Roboto", sans-serif;
     margin: 0;
@@ -12,8 +41,10 @@ a {
 }
 
 body {
-    background-color: #FBF2E6;
+    background-color: var(--color-background);
 }
+
+/* HEADER */
 
 header {
     width: 100%;
@@ -48,20 +79,20 @@ header {
 }
 
 .navbar a {
-    color: #341f0d;
+    color: var(--color-text);
 }
 
 .navbar a:hover {
     transition: .3s;
-    color: #D75F32;
+    color: var(--color-primary);
 }
 
 .login {
     width: clamp(200px, 26vw, 381px);
     height: 58px;
-    border: 1px solid black;
+    border: 1px solid var(--color-black);
     border-radius: 100px;
-    color: #341f0d;
+    color: var(--color-text);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,18 +100,20 @@ header {
 
 .login:hover {
     transition: .3s;
-    color: #D75F32;
-    border-color: #D75F32;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 /* MAIN CONTENT */
+
 .container {
     max-width: 1440px;
     margin: 0 auto;
     padding: 20px;
 }
 
-/* Фильтры */
+/* FILTERS */
+
 .filters {
     display: flex;
     flex-wrap: wrap;
@@ -92,7 +125,7 @@ header {
 .filter-group {
     flex: 1;
     min-width: 200px;
-    background-color: #D75F32;
+    background-color: var(--color-filter-bg);
     padding: 20px;
     border-radius: 10px;
 }
@@ -101,7 +134,7 @@ header {
     margin-bottom: 15px;
     font-weight: 600;
     font-size: 18px;
-    color: white;
+    color: var(--color-filter-text);
 }
 
 .filter-options {
@@ -114,30 +147,18 @@ header {
     display: flex;
     align-items: center;
     cursor: pointer;
-    background: #FFFFFF;
+    background: var(--color-filter-option-bg);
     padding: 8px 15px;
     border-radius: 20px;
     transition: all 0.3s;
 }
 
-
 .filter-options input {
     margin-right: 8px;
 }
 
-/* Категории */
-.category {
-    margin-bottom: 50px;
-}
+/* ITEMS */
 
-.category h2 {
-    font-weight: 600;
-    font-size: 24px;
-    color: #341f0d;
-    margin-bottom: 25px;
-}
-
-/* Карточки заведений (стили из предыдущего проекта) */
 .items {
     display: flex;
     flex-wrap: wrap;
@@ -148,13 +169,12 @@ header {
     flex: 1 1 calc(25% - 20px);
     min-width: 250px;
     max-width: 334px;
-    
 }
 
 .item-title {
     font-weight: 600;
     font-size: 24px;
-    color: #341f0d;
+    color: var(--color-text);
     margin-top: 40px;
 }
 
@@ -175,21 +195,22 @@ header {
 
 .item-img:hover {
     transition: .4s;
-    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 16px 24px var(--color-card-shadow-hover);
 }
 
 .item-name {
     font-weight: 500;
     font-size: 16px;
-    color: #000;
+    color: var(--color-text-dark);
 }
 
-/* FOOTER (из предыдущего проекта) */
+/* FOOTER */
+
 .footer {
     width: 100%;
     height: 100px;
     margin-top: 50px;
-    background-color: #FFFFFF;
+    background-color: var(--color-white);
     display: flex;
     justify-content: center;
     align-items: center;

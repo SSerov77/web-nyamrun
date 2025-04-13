@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>НямРан - Каталог заведений</title>
     <link rel="stylesheet" href="css/establishments.css">
 </head>
+
 <body>
     <header>
         <div class="header-content">
@@ -31,7 +33,7 @@
                     <label><input type="checkbox" name="type" checked> Кафе</label>
                 </div>
             </div>
-            
+
             <div class="filter-group">
                 <h3>Кухня</h3>
                 <div class="filter-options">
@@ -43,8 +45,8 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Кофейни -->
+
+        <!-- Заведения -->
         <section class="category">
             <div class="items">
                 <a href="#" class="item">
@@ -63,7 +65,6 @@
                     <img src="imgs/atlas-cofee.png" alt="ATLAS COFFEE" class="item-img">
                     <p class="item-name">ATLAS COFFEE</p>
                 </a>
-            <div class="items">
                 <a href="#" class="item">
                     <img src="imgs/coffe-like.png" alt="COFFEE LIKE" class="item-img">
                     <p class="item-name">COFFEE LIKE</p>
@@ -80,7 +81,6 @@
                     <img src="imgs/atlas-cofee.png" alt="ATLAS COFFEE" class="item-img">
                     <p class="item-name">ATLAS COFFEE</p>
                 </a>
-            <div class="items">
                 <a href="#" class="item">
                     <img src="imgs/coffe-like.png" alt="COFFEE LIKE" class="item-img">
                     <p class="item-name">COFFEE LIKE</p>
@@ -112,17 +112,18 @@
             </div>
         </div>
     </footer>
-    
+
     <script>
         // Простая фильтрация (будет заменена на Django-реализацию)
         document.querySelectorAll('.filters input').forEach(input => {
-            input.addEventListener('change', function() {
+            input.addEventListener('change', function () {
                 // Здесь будет логика фильтрации
                 console.log('Фильтр изменен:', this.name, this.checked);
-                
+
                 // В реальном проекте здесь будет AJAX-запрос или фильтрация через Django
             });
         });
     </script>
 </body>
+
 </html>
