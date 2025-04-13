@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заказа</title>
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <img src="imgs/logo-img.svg" alt="logotype" class="logo">
+            </a>
+            <div class="navbar">
+                <a href="">О нас</a>
+                <a href="">Заведения</a>
+                <a href="">Партнерство</a>
+            </div>
+            <a href="#" class="login">Войти / Зарегистироваться</a>
+        </div>
+    </header>
+    <main class="order-page">
+        <div class="order-container">
+            <div class="order-form">
+                <h2>Условия заказа</h2>
+
+                <label for="address">
+                    <img src="imgs/home-icon.svg" alt="" class="icon">
+                    Адрес заведения
+                </label>
+                <select id="address">
+                    <option>улица Чапаева, 2</option>
+                    <option>улица Пушкина, 10</option>
+                </select>
+
+                <label for="time">
+                    <img src="imgs/clock-icon.svg" alt="" class="icon">
+                    Время приготовления
+                </label>
+                <input type="time" id="time" value="10:00">
+
+                <label for="comment">Комментарий к заказу</label>
+                <input type="text" id="comment" placeholder="Комментарий к заказу">
+
+                <div class="order-footer">
+                    <button class="checkout">Оплатить</button>
+                    <div class="total-price">700Р</div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h2>Ваш заказ</h2>
+                <ul class="order-items">
+                    <li>
+                        <img src="imgs/coffee.png" alt="Раф малин-кокос">
+                        <div class="item-info">
+                            <span>Раф малин-кокос</span>
+                            <span>x1</span>
+                            <span class="item-price">200Р</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="imgs/coffee.png" alt="Раф малин-кокос">
+                        <div class="item-info">
+                            <span>Раф малин-кокос</span>
+                            <span>x1</span>
+                            <span class="item-price">200Р</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
