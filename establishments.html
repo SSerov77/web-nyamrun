@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НямРан - Каталог заведений</title>
+    <link rel="stylesheet" href="css/establishments.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">
+                <img src="imgs/logo-img.svg" alt="Перекусь" class="logo">
+            </a>
+            <div class="navbar">
+                <a href="#">О нас</a>
+                <a href="#">Заведения</a>
+                <a href="#">Партнерство</a>
+            </div>
+            <a href="#" class="login">Войти / Зарегистироваться</a>
+        </div>
+    </header>
+    <main class="container">
+        <!-- Фильтры -->
+        <div class="filters">
+            <div class="filter-group">
+                <h3>Тип заведения</h3>
+                <div class="filter-options">
+                    <label><input type="checkbox" name="type" checked> Кофейни</label>
+                    <label><input type="checkbox" name="type" checked> Пекарни</label>
+                    <label><input type="checkbox" name="type" checked> Кафе</label>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <h3>Кухня</h3>
+                <div class="filter-options">
+                    <label><input type="checkbox" name="cuisine" checked> Кофе</label>
+                    <label><input type="checkbox" name="cuisine" checked> Выпечка</label>
+                    <label><input type="checkbox" name="cuisine" checked> Бургеры</label>
+                    <label><input type="checkbox" name="cuisine" checked> Пицца</label>
+                    <label><input type="checkbox" name="cuisine" checked> Суши</label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Кофейни -->
+        <section class="category">
+            <div class="items">
+                <a href="#" class="item">
+                    <img src="imgs/coffe-like.png" alt="COFFEE LIKE" class="item-img">
+                    <p class="item-name">COFFEE LIKE</p>
+                </a>
+                <a href="#" class="item">
+                    <img src="imgs/surf-coffee.png" alt="SURF COFFEE" class="item-img">
+                    <p class="item-name">SURF COFFEE</p>
+                </a>
+                <a href="#" class="item">
+                    <img src="imgs/sturbacks.png" alt="STARBUCKS Coffee" class="item-img">
+                    <p class="item-name">STARBUCKS Coffee</p>
+                </a>
+                <a href="#" class="item">
+                    <img src="imgs/atlas-cofee.png" alt="ATLAS COFFEE" class="item-img">
+                    <p class="item-name">ATLAS COFFEE</p>
+                </a>
+            <div class="items">
+                <a href="#" class="item">
+                    <img src="imgs/coffe-like.png" alt="COFFEE LIKE" class="item-img">
+                    <p class="item-name">COFFEE LIKE</p>
+                </a>
+                <a href="#" class="item">
+                    <img src="imgs/surf-coffee.png" alt="SURF COFFEE" class="item-img">
+                    <p class="item-name">SURF COFFEE</p>
+                </a>
+                <a href="#" class="item">
+                    <img src="imgs/sturbacks.png" alt="STARBUCKS Coffee" class="item-img">
+                    <p class="item-name">STARBUCKS Coffee</p>
+                </a>
+                <a href="#" class="item">
+                    <img src="imgs/atlas-cofee.png" alt="ATLAS COFFEE" class="item-img">
+                    <p class="item-name">ATLAS COFFEE</p>
+                </a>
+            <div class="items">
+                <a href="#" class="item">
+                    <img src="imgs/coffe-like.png" alt="COFFEE LIKE" class="item-img">
+                    <p class="item-name">COFFEE LIKE</p>
+                </a>
+                <a href="#" class="item">
+                    <img src="imgs/surf-coffee.png" alt="SURF COFFEE" class="item-img">
+                    <p class="item-name">SURF COFFEE</p>
+                </a>
+                <a href="#" class="item">
+                    <img src="imgs/sturbacks.png" alt="STARBUCKS Coffee" class="item-img">
+                    <p class="item-name">STARBUCKS Coffee</p>
+                </a>
+                <a href="#" class="item">
+                    <img src="imgs/atlas-cofee.png" alt="ATLAS COFFEE" class="item-img">
+                    <p class="item-name">ATLAS COFFEE</p>
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="logo">
+                <img src="imgs/logo-img.svg" alt="Перекусь" class="logo">
+            </a>
+            <div class="navbar">
+                <a href="">О нас</a>
+                <a href="">Заведения</a>
+                <a href="">Партнерство</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Простая фильтрация (будет заменена на Django-реализацию)
+        document.querySelectorAll('.filters input').forEach(input => {
+            input.addEventListener('change', function() {
+                // Здесь будет логика фильтрации
+                console.log('Фильтр изменен:', this.name, this.checked);
+                
+                // В реальном проекте здесь будет AJAX-запрос или фильтрация через Django
+            });
+        });
+    </script>
+</body>
+</html>

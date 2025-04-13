@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: #FBF2E6;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-content {
+    width: 100%;
+    max-width: 1440px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 0 20px;
+}
+
+.logo {
+    width: clamp(120px, 10vw, 175px);
+    height: auto;
+}
+
+.navbar {
+    display: flex;
+    width: 100%;
+    max-width: 445px;
+    justify-content: space-between;
+}
+
+.navbar a {
+    color: #341f0d;
+}
+
+.navbar a:hover {
+    transition: .3s;
+    color: #D75F32;
+}
+
+.login {
+    width: clamp(200px, 26vw, 381px);
+    height: 58px;
+    border: 1px solid black;
+    border-radius: 100px;
+    color: #341f0d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login:hover {
+    transition: .3s;
+    color: #D75F32;
+    border-color: #D75F32;
+}
+
+/* MAIN CONTENT */
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Фильтры */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+    background-color: #D75F32;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.filter-group h3 {
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-options label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: #FFFFFF;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+
+.filter-options input {
+    margin-right: 8px;
+}
+
+/* Категории */
+.category {
+    margin-bottom: 50px;
+}
+
+.category h2 {
+    font-weight: 600;
+    font-size: 24px;
+    color: #341f0d;
+    margin-bottom: 25px;
+}
+
+/* Карточки заведений (стили из предыдущего проекта) */
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.item {
+    flex: 1 1 calc(25% - 20px);
+    min-width: 250px;
+    max-width: 334px;
+    
+}
+
+.item-title {
+    font-weight: 600;
+    font-size: 24px;
+    color: #341f0d;
+    margin-top: 40px;
+}
+
+.item:hover {
+    transition: .4s;
+    transform: translateY(-12px) scale(1.05);
+}
+
+.item-img {
+    border-radius: 24px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 334/210;
+    object-fit: cover;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.item-img:hover {
+    transition: .4s;
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.3);
+}
+
+.item-name {
+    font-weight: 500;
+    font-size: 16px;
+    color: #000;
+}
+
+/* FOOTER (из предыдущего проекта) */
+.footer {
+    width: 100%;
+    height: 100px;
+    margin-top: 50px;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
