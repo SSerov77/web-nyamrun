@@ -179,7 +179,7 @@ header {
 }
 
 .item:hover {
-    transition: .4s;
+    transition: .1s;
     transform: translateY(-12px) scale(1.05);
 }
 
