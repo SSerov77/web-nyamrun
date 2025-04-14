@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}НямРан - Ваш заказ уже ждет вас!{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="main-content">
+    <section class="main-section">
+        <div class="left-block">
+            <h1 class="main-title">
+                НямРан —<br>
+                Ваш заказ уже ждет вас
+            </h1>
+            <h2 class="main-subtitle">Вкусно. Быстро. Без очередей.</h2>
+            <a href="#" class="main-btn">Оформить предзаказ</a>
+        </div>
+        <img src="{% static 'imgs/main-img.png' %}" alt="main-images" class="main-img">
+    </section>
+
+    <!-- КОФЕЙНИ -->
+    <section class="category">
+        <h2 class="item-title">Кофейни</h2>
+        <div class="items">
+            <a href="#" class="item"><img src="{% static 'imgs/coffe-like.png' %}" alt="Coffee Like" class="item-img"><p class="item-name">Coffee Like</p></a>
+            <a href="#" class="item"><img src="{% static 'imgs/surf-coffee.png' %}" alt="Surf Coffee" class="item-img"><p class="item-name">Surf Coffee</p></a>
+            <a href="#" class="item"><img src="{% static 'imgs/sturbacks.png' %}" alt="Sturbacks" class="item-img"><p class="item-name">Sturbacks</p></a>
+            <a href="#" class="item"><img src="{% static 'imgs/atlas-cofee.png' %}" alt="Atlas Coffe" class="item-img"><p class="item-name">Atlas Coffe</p></a>
+        </div>
+    </section>
+
+    <!-- ПЕКАРНИ -->
+    <section class="category">
+        <h2 class="item-title">Пекарни</h2>
+        <div class="items">
+            <a href="#" class="item"><img src="{% static 'imgs/coffe-like.png' %}" alt="Coffee Like" class="item-img"><p class="item-name">Coffee Like</p></a>
+            <a href="#" class="item"><img src="{% static 'imgs/surf-coffee.png' %}" alt="Surf Coffee" class="item-img"><p class="item-name">Surf Coffee</p></a>
+            <a href="#" class="item"><img src="{% static 'imgs/sturbacks.png' %}" alt="Sturbacks" class="item-img"><p class="item-name">Sturbacks</p></a>
+            <a href="#" class="item"><img src="{% static 'imgs/atlas-cofee.png' %}" alt="Atlas Coffe" class="item-img"><p class="item-name">Atlas Coffe</p></a>
+        </div>
+    </section>
+
+    <!-- КАФЕ -->
+    <section class="category">
+        <h2 class="item-title">Кафе</h2>
+        <div class="items">
+            <a href="#" class="item"><img src="{% static 'imgs/coffe-like.png' %}" alt="Coffee Like" class="item-img"><p class="item-name">Coffee Like</p></a>
+            <a href="#" class="item"><img src="{% static 'imgs/surf-coffee.png' %}" alt="Surf Coffee" class="item-img"><p class="item-name">Surf Coffee</p></a>
+            <a href="#" class="item"><img src="{% static 'imgs/sturbacks.png' %}" alt="Sturbacks" class="item-img"><p class="item-name">Sturbacks</p></a>
+            <a href="#" class="item"><img src="{% static 'imgs/atlas-cofee.png' %}" alt="Atlas Coffe" class="item-img"><p class="item-name">Atlas Coffe</p></a>
+        </div>
+    </section>
+</div>
+{% endblock %}
