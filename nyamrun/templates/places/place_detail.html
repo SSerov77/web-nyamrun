@@ -1,153 +1,78 @@
-<!DOCTYPE html>
-<html lang="ru">
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ place.name }}{% endblock %}
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Coffee Like</title>
-  <link rel="stylesheet" href="css/place_detail.css" />
-</head>
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/place_detail.css' %}">
+{% endblock %}
 
-<body>
-  <header>
-    <div class="header-content">
-      <a href="#" class="logo">
-        <img src="imgs/logo-img.svg" alt="Перекусь" class="logo">
-      </a>
-      <ul class="navbar">
-        <li><a href="#">О нас</a></li>
-        <li><a href="#">Заведения</a></li>
-        <li><a href="#">Партнерство</a></li>
-      </ul>
-      <a href="#" class="login">Войти / Зарегистироваться</a>
-    </div>
-  </header>
-  <main class="main">
-    <div class="main-content restaurant-page">
-      <aside class="menu-sidebar">
-        <div class="back-link">
-          <img src="imgs/return-arrow.svg" alt="return-arrow">
-          <a href="#">Все заведения</a>
-        </div>
-        <nav class="menu-categories">
-          <p>Меню</p>
-          <ul>
-            <a href="#">Латте</a>
-            <a href="#">Капучино</a>
-            <a href="#">Раф</a>
-            <a href="#">Американо</a>
-            <a href="#">Эспрессо</a>
-          </ul>
-        </nav>
-      </aside>
-      <section class="restaurant-main">
-        <img src="imgs/coffee-like-large.png" alt="COFFEE LIKE" class="restaurant-banner-img">
-        <div class="menu-section">
-          <h2>Латте</h2>
-          <div class="menu-items">
-            <div class="menu-item">
-              <img src="imgs/coffee.png" alt="Латте" class="menu-item-img" />
-              <p class="menu-item-price">200₽</p>
-              <p class="menu-item-name">Раф молочно-какао</p>
-              <button>+ Добавить</button>
-            </div>
-            <div class="menu-item">
-              <img src="imgs/coffee.png" alt="Латте" class="menu-item-img" />
-              <p class="menu-item-price">200₽</p>
-              <p class="menu-item-name">Раф молочно-какао</p>
-              <button>+ Добавить</button>
-            </div>
-            <div class="menu-item">
-              <img src="imgs/coffee.png" alt="Латте" class="menu-item-img" />
-              <p class="menu-item-price">200₽</p>
-              <p class="menu-item-name">Раф молочно-какао</p>
-              <button>+ Добавить</button>
-            </div>
-            <div class="menu-item">
-              <img src="imgs/coffee.png" alt="Латте" class="menu-item-img" />
-              <p class="menu-item-price">200₽</p>
-              <p class="menu-item-name">Раф молочно-какао</p>
-              <button>+ Добавить</button>
-            </div>
-            <!-- Другие карточки -->
-          </div>
-        </div>
-        <div class="menu-section">
-          <h2>Капучино</h2>
-          <div class="menu-items">
-            <!-- Карточки -->
-          </div>
-        </div>
-        <div class="menu-section">
-          <h2>Раф</h2>
-          <div class="menu-items">
-            <!-- Карточки -->
-          </div>
-        </div>
-      </section>
-      <aside class="cart">
-        <div class="cart-header">
-          <div class="cart-title">
-            <h3>Корзина</h3>
-            <button class="clear-cart">Очистить</button>
-          </div>
-          <div class="cart-items">
-            <div class="cart-item">
-              <div class="cart-item-info">
-                <p>Раф малина-кокос</p>
-                <p>x1</p>
-              </div>
-              <p style="font-size: 16px; font-weight: 500;">200₽</p>
-            </div>
-            <div class="cart-item">
-              <div class="cart-item-info">
-                <p>Раф малина-кокос</p>
-                <p>x1</p>
-              </div>
-              <p style="font-size: 16px; font-weight: 500;">200₽</p>
-            </div>
-            <div class="cart-item">
-              <div class="cart-item-info">
-                <p>Раф малина-кокос</p>
-                <p>x1</p>
-              </div>
-              <p style="font-size: 16px; font-weight: 500;">200₽</p>
-            </div>
-            <div class="cart-item">
-              <div class="cart-item-info">
-                <p>Раф малина-кокос</p>
-                <p>x1</p>
-              </div>
-              <p style="font-size: 16px; font-weight: 500;">200₽</p>
-            </div>
-            <div class="cart-item">
-              <div class="cart-item-info">
-                <p>Раф малина-кокос</p>
-                <p>x1</p>
-              </div>
-              <p style="font-size: 16px; font-weight: 500;">200₽</p>
-            </div>
-          </div>
-        </div>
-        <div class="cart-total">
-          <span><strong>Итого:</strong> 700₽</span>
-          <button class="checkout">Оформить</button>
-        </div>
-      </aside>
-    </div>
-  </main>
-  <footer class="footer">
-    <div class="footer-content">
-        <a href="#" class="logo">
-            <img src="imgs/logo-img.svg" alt="Перекусь" class="logo">
-        </a>
-        <div class="navbar">
-            <a href="">О нас</a>
-            <a href="">Заведения</a>
-            <a href="">Партнерство</a>
-        </div>
-    </div>
-</footer>
-</body>
+{% block content %}
+<main class="main">
+  <div class="main-content restaurant-page">
 
-</html>
+    <!-- Sidebar -->
+    <aside class="menu-sidebar">
+      <div class="back-link">
+        <img src="{% static 'imgs/return-arrow.svg' %}" alt="return-arrow">
+        <a href="{% url 'place_list' %}">Все заведения</a>
+      </div>
+      <nav class="menu-categories">
+        <p>Меню</p>
+        <ul>
+          {% for cat_data in categories %}
+            <a href="#{{ cat_data.category.name|slugify }}">{{ cat_data.category.name }}</a>
+          {% endfor %}
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main restaurant section -->
+    <section class="restaurant-main">
+        <div class="restaurant-banner-container">
+          <img src="{{ place.image.url }}" alt="{{ place.name }}" class="restaurant-banner-img">
+        </div>
+
+      {% for cat_data in categories %}
+        <div class="menu-section" id="{{ cat_data.category.name|slugify }}">
+          <h2>{{ cat_data.category.name }}</h2>
+          <div class="menu-items">
+            {% for item in cat_data.items %}
+            <div class="menu-item">
+              <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-item-img" />
+              <p class="menu-item-price">{{ item.price }}₽</p>
+              <p class="menu-item-name">{{ item.name }}</p>
+              <button>+ Добавить</button>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+
+    <!-- Cart -->
+    <aside class="cart">
+      <div class="cart-header">
+        <div class="cart-title">
+          <h3>Корзина</h3>
+          <button class="clear-cart">Очистить</button>
+        </div>
+        <div class="cart-items">
+          <!-- Заглушка для статической корзины -->
+          <div class="cart-item">
+            <div class="cart-item-info">
+              <p>Раф малина-кокос</p>
+              <p>x1</p>
+            </div>
+            <p class="cart-item-price">200₽</p>
+          </div>
+        </div>
+      </div>
+      <div class="cart-total">
+        <span><strong>Итого:</strong> 200₽</span>
+        <button class="checkout">Оформить</button>
+      </div>
+    </aside>
+
+  </div>
+</main>
+{% endblock %}

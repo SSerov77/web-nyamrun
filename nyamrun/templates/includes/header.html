@@ -1,12 +1,12 @@
 {% load static %}
 <header class="header">
     <div class="header-content">
-        <a href="#" class="logo">
+        <a href="{% url 'home' %}" class="logo">
             <img src="{% static 'imgs/logo-img.svg' %}" alt="logotype" class="logo">
         </a>
         <div class="navbar">
             <a href="#">О нас</a>
-            <a href="#">Заведения</a>
+            <a href="{% url 'place_list' %}">Заведения</a>
             <a href="#">Партнерство</a>
         </div>
         <a href="#" class="login">Войти / Зарегистрироваться</a>

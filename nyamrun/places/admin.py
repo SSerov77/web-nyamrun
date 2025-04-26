@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Place, Address, Category, Product, ProductOption
+from places.models import Place, Address, Category, Product, ProductOption
+from places.forms import PlaceAdminForm
 
 
 class AddressInline(admin.TabularInline):
@@ -12,6 +13,7 @@ class AddressInline(admin.TabularInline):
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
+    form = PlaceAdminForm
     list_display = ('name', 'type', 'get_categories')
     list_filter = ('type', 'categories')
     search_fields = ('name',)

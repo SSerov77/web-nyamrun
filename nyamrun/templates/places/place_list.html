@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Заведения{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/place_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="container">
+    <!-- Фильтры -->
+    <div class="filters">
+        <div class="filter-group">
+            <h3>Тип заведения</h3>
+            <div class="filter-options">
+                <label><input type="checkbox" name="type" checked> Кофейни</label>
+                <label><input type="checkbox" name="type" checked> Пекарни</label>
+                <label><input type="checkbox" name="type" checked> Кафе</label>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <h3>Кухня</h3>
+            <div class="filter-options">
+                {% for category in categories %}
+                    <label><input type="checkbox" name="cuisine" checked> {{ category.name }}</label>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Заведения -->
+    <section class="category">
+        <div class="items">
+            {% for place in places %}
+                <a href="{% url 'place_detail' place.pk %}" class="item">
+                    <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
+                    <p class="item-name">{{ place.name }}</p>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

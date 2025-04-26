@@ -17,7 +17,7 @@ class Place(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
     image = models.ImageField(
         upload_to='place_images/',
-        verbose_name='Изображение'
+        verbose_name='Изображение',
     )
     categories = models.ManyToManyField(
         'Category',
