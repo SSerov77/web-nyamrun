@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html lang="ru">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Оформление заказа</title>
-    <link rel="stylesheet" href="css/cart.css">
-</head>
+{% block title %}Корзина товаров{% endblock %}
 
-<body>
-    <header class="header">
-        <div class="header-content">
-            <a href="#" class="logo">
-                <img src="imgs/logo-img.svg" alt="logotype" class="logo">
-            </a>
-            <div class="navbar">
-                <a href="">О нас</a>
-                <a href="">Заведения</a>
-                <a href="">Партнерство</a>
-            </div>
-            <a href="#" class="login">Войти / Зарегистироваться</a>
-        </div>
-    </header>
+{% block extra_head %}<link rel="stylesheet" href="{% static 'css/cart.css' %}">{% endblock %}
+
+{% block content %}
     <main class="order-page">
         <div class="order-container">
             <div class="order-form">
@@ -73,18 +58,4 @@
             </div>
         </div>
     </main>
-    <footer class="footer">
-        <div class="footer-content">
-            <a href="#" class="logo">
-                <img src="imgs/logo-img.svg" alt="Перекусь" class="logo">
-            </a>
-            <div class="navbar">
-                <a href="">О нас</a>
-                <a href="">Заведения</a>
-                <a href="">Партнерство</a>
-            </div>
-        </div>
-    </footer>
-</body>
-
-</html>
+{% endblock %}
