@@ -172,6 +172,7 @@ header {
     font-weight: 400;
     border: 1px solid var(--color-white);
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .back-link a {
@@ -226,6 +227,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
 }
 
 .restaurant-banner-img {
