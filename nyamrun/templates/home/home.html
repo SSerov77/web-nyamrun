@@ -16,7 +16,7 @@
                 Ваш заказ уже ждет вас
             </h1>
             <h2 class="main-subtitle">Вкусно. Быстро. Без очередей.</h2>
-            <a href="#" class="main-btn">Оформить предзаказ</a>
+            <a href="{% url 'place_list' %}" class="main-btn">Оформить предзаказ</a>
         </div>
         <img src="{% static 'imgs/main-img.png' %}" alt="main-images" class="main-img">
     </section>
@@ -25,10 +25,14 @@
     <section class="category">
         <h2 class="item-title">Кофейни</h2>
         <div class="items">
-            <a href="#" class="item"><img src="{% static 'imgs/coffe-like.png' %}" alt="Coffee Like" class="item-img"><p class="item-name">Coffee Like</p></a>
-            <a href="#" class="item"><img src="{% static 'imgs/surf-coffee.png' %}" alt="Surf Coffee" class="item-img"><p class="item-name">Surf Coffee</p></a>
-            <a href="#" class="item"><img src="{% static 'imgs/sturbacks.png' %}" alt="Sturbacks" class="item-img"><p class="item-name">Sturbacks</p></a>
-            <a href="#" class="item"><img src="{% static 'imgs/atlas-cofee.png' %}" alt="Atlas Coffe" class="item-img"><p class="item-name">Atlas Coffe</p></a>
+            {% for place in coffee_shops %}
+                <a href="{% url 'place_detail' place.pk%}" class="item">
+                    <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
+                    <p class="item-name">{{ place.name }}</p>
+                </a>
+            {% empty  %}
+                На данный момент заведений в данной категории нет
+            {% endfor %}
         </div>
     </section>
 
@@ -36,10 +40,14 @@
     <section class="category">
         <h2 class="item-title">Пекарни</h2>
         <div class="items">
-            <a href="#" class="item"><img src="{% static 'imgs/coffe-like.png' %}" alt="Coffee Like" class="item-img"><p class="item-name">Coffee Like</p></a>
-            <a href="#" class="item"><img src="{% static 'imgs/surf-coffee.png' %}" alt="Surf Coffee" class="item-img"><p class="item-name">Surf Coffee</p></a>
-            <a href="#" class="item"><img src="{% static 'imgs/sturbacks.png' %}" alt="Sturbacks" class="item-img"><p class="item-name">Sturbacks</p></a>
-            <a href="#" class="item"><img src="{% static 'imgs/atlas-cofee.png' %}" alt="Atlas Coffe" class="item-img"><p class="item-name">Atlas Coffe</p></a>
+            {% for place in bakeries %}
+                <a href="{% url 'place_detail' place.pk%}" class="item">
+                    <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
+                    <p class="item-name">{{ place.name }}</p>
+                </a>
+            {% empty  %}
+                На данный момент заведений в данной категории нет
+            {% endfor %}
         </div>
     </section>
 
@@ -47,10 +55,14 @@
     <section class="category">
         <h2 class="item-title">Кафе</h2>
         <div class="items">
-            <a href="#" class="item"><img src="{% static 'imgs/coffe-like.png' %}" alt="Coffee Like" class="item-img"><p class="item-name">Coffee Like</p></a>
-            <a href="#" class="item"><img src="{% static 'imgs/surf-coffee.png' %}" alt="Surf Coffee" class="item-img"><p class="item-name">Surf Coffee</p></a>
-            <a href="#" class="item"><img src="{% static 'imgs/sturbacks.png' %}" alt="Sturbacks" class="item-img"><p class="item-name">Sturbacks</p></a>
-            <a href="#" class="item"><img src="{% static 'imgs/atlas-cofee.png' %}" alt="Atlas Coffe" class="item-img"><p class="item-name">Atlas Coffe</p></a>
+            {% for place in cafes %}
+                <a href="{% url 'place_detail' place.pk%}" class="item">
+                    <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
+                    <p class="item-name">{{ place.name }}</p>
+                </a>
+            {% empty  %}
+                На данный момент заведений в данной категории нет
+            {% endfor %}
         </div>
     </section>
 </div>
