@@ -1,11 +1,33 @@
 from django.shortcuts import render, get_object_or_404
-from places.models import Place, Product
+
+from places.models import Place, Product, Category
 
 
 def place_list(request):
     places = Place.objects.all()
-    return render(request, 'places/place_list.html', {'places': places})
+    selected_types = request.GET.getlist('type')
+    selected_cuisines = request.GET.getlist('cuisine')
 
+    if selected_types:
+        places = places.filter(type__in=selected_types)
+
+    if selected_cuisines:
+        try:
+            category_ids = list(map(int, selected_cuisines))
+            places = places.filter(categories__id__in=category_ids).distinct()
+        except ValueError:
+            pass
+
+    categories = Category.objects.all()
+
+    context = {
+        'places': places,
+        'categories': categories,
+        'selected_types': selected_types,
+        'selected_cuisines': selected_cuisines,
+    }
+
+    return render(request, 'places/place_list.html', context)
 
 
 def place_detail(request, pk):

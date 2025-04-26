@@ -5,30 +5,52 @@
 
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/place_list.css' %}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('filter-form');
+            const checkboxes = form.querySelectorAll('input[type=checkbox]');
+    
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    form.submit();
+                });
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
 <main class="container">
     <!-- Фильтры -->
-    <div class="filters">
-        <div class="filter-group">
-            <h3>Тип заведения</h3>
-            <div class="filter-options">
-                <label><input type="checkbox" name="type" checked> Кофейни</label>
-                <label><input type="checkbox" name="type" checked> Пекарни</label>
-                <label><input type="checkbox" name="type" checked> Кафе</label>
+    <form method="get" id="filter-form">
+        <div class="filters">
+            <div class="filter-group">
+                <h3>Тип заведения</h3>
+                <div class="filter-options">
+                    <label>
+                        <input type="checkbox" name="type" value="coffee_shop" {% if 'coffee_shop' in selected_types %}checked{% endif %}> Кофейни
+                    </label>
+                    <label>
+                        <input type="checkbox" name="type" value="bakery" {% if 'bakery' in selected_types %}checked{% endif %}> Пекарни
+                    </label>
+                    <label>
+                        <input type="checkbox" name="type" value="cafe" {% if 'cafe' in selected_types %}checked{% endif %}> Кафе
+                    </label>
+                </div>
+            </div>
+    
+            <div class="filter-group">
+                <h3>Кухня</h3>
+                <div class="filter-options">
+                    {% for category in categories %}
+                        <label>
+                            <input type="checkbox" name="cuisine" value="{{ category.id }}" {% if category.id|stringformat:"s" in selected_cuisines %}checked{% endif %}> {{ category.name }}
+                        </label>
+                    {% endfor %}
+                </div>
             </div>
         </div>
-
-        <div class="filter-group">
-            <h3>Кухня</h3>
-            <div class="filter-options">
-                {% for category in categories %}
-                    <label><input type="checkbox" name="cuisine" checked> {{ category.name }}</label>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+    </form>
 
     <!-- Заведения -->
     <section class="category">

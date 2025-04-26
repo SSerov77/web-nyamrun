@@ -1,6 +1,7 @@
 from django import forms
-from .models import Place
+from places.models import Place
 from PIL import Image
+
 
 class PlaceAdminForm(forms.ModelForm):
     class Meta:
