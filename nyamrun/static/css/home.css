@@ -1,22 +1,7 @@
-/* MAIN */
 :root {
     --color-home-btn-bg: var(--color-primary);
     --color-home-btn-text: var(--color-white);
-    --color-home-btn-hover: #c04b1f;
-}
-
-/* MAIN */
-.main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.main-content {
-    width: 100%;
-    max-width: 1440px;
-    margin-top: 50px;
-    padding: 0 20px;
+    --color-home-btn-hover: var(--color-primary-hover);
 }
 
 .main-section {
@@ -57,10 +42,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, font-weight 0.3s;
 }
 
 .main-btn:hover {
-    transition: .3s;
     background-color: var(--color-white);
     color: var(--color-home-btn-bg);
     font-weight: 600;
@@ -72,7 +58,8 @@
     max-height: 544px;
 }
 
-/* ITEMS */
+/* КАРТОЧКА ЗАВЕДЕНИЯ */
+
 .items {
     margin-top: 25px;
     display: flex;
@@ -84,17 +71,11 @@
     flex: 1 1 calc(25% - 20px);
     min-width: 250px;
     max-width: 334px;
-}
-
-.item-title {
-    font-weight: 600;
-    font-size: 24px;
-    color: var(--color-text);
-    margin-top: 40px;
+    cursor: pointer;
+    transition: transform 0.1s;
 }
 
 .item:hover {
-    transition: .1s;
     transform: translateY(-12px) scale(1.05);
 }
 
@@ -106,11 +87,18 @@
     object-fit: cover;
     overflow: hidden;
     margin-bottom: 10px;
+    transition: box-shadow 0.4s;
 }
 
 .item-img:hover {
-    transition: .4s;
     box-shadow: 0 16px 24px var(--color-card-shadow-hover);
+}
+
+.item-title {
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--color-text);
+    margin-top: 40px;
 }
 
 .item-name {

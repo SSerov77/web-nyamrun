@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
 :root {
     /* Основные цвета */
     --color-primary: #D75F32;
+    --color-primary-hover: #c04b1f;
+
     --color-secondary: #341f0d;
     --color-background: #FBF2E6;
     --color-white: #FFFFFF;
@@ -18,7 +18,7 @@
     /* Кнопки и интерактивные элементы */
     --color-button-bg: var(--color-primary);
     --color-button-text: var(--color-white);
-    --color-button-hover: #c04b1f;
+    --color-button-hover: var(--color-primary-hover);
 
     /* Карточки */
     --color-card-bg: var(--color-white);
@@ -31,6 +31,8 @@
     --color-filter-option-bg: var(--color-white);
 }
 
+/* Общие утилиты */
+
 * {
     font-family: "Roboto", sans-serif;
     margin: 0;
@@ -41,10 +43,21 @@
 
 a {
     text-decoration: none;
+    color: var(--color-text);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--color-primary);
+}
+
+ul {
+    list-style: none;
 }
 
 body {
     background-color: var(--color-background);
+    color: var(--color-text);
 }
 
 /* HEADER */
@@ -81,15 +94,6 @@ header {
     justify-content: space-between;
 }
 
-.navbar a {
-    color: var(--color-text);
-}
-
-.navbar a:hover {
-    transition: .3s;
-    color: var(--color-primary);
-}
-
 .login {
     width: clamp(100px, 26vw, 300px);
     height: 58px;
@@ -99,12 +103,28 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: color 0.3s, border-color 0.3s;
 }
 
 .login:hover {
-    transition: .3s;
     color: var(--color-primary);
     border-color: var(--color-primary);
+}
+
+/* MIAN */
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 1440px;
+    margin-top: 50px;
+    padding: 0 20px;
 }
 
 /* FOOTER */

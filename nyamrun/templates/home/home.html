@@ -8,32 +8,34 @@
 
 
 {% block content %}
-<div class="main-content">
-    <section class="main-section">
-        <div class="left-block">
-            <h1 class="main-title">
-                НямРан —<br>
-                Ваш заказ уже ждет вас
-            </h1>
-            <h2 class="main-subtitle">Вкусно. Быстро. Без очередей.</h2>
-            <a href="{% url 'place_list' %}" class="main-btn">Оформить предзаказ</a>
-        </div>
-        <img src="{% static 'imgs/main-img.png' %}" alt="main-images" class="main-img">
-    </section>
+<main class="main">
+    <div class="main-content">
+        <section class="main-section">
+            <div class="left-block">
+                <h1 class="main-title">
+                    НямРан —<br>
+                    Ваш заказ уже ждет вас
+                </h1>
+                <h2 class="main-subtitle">Вкусно. Быстро. Без очередей.</h2>
+                <a href="{% url 'place_list' %}" class="main-btn">Оформить предзаказ</a>
+            </div>
+            <img src="{% static 'imgs/main-img.png' %}" alt="main-images" class="main-img">
+        </section>
 
-    <section class="category">
-        <h2 class="item-title">Кофейни</h2>
-        {% include 'places/partials/place_list_items.html' with places=coffee_shops %}
-    </section>
-    
-    <section class="category">
-        <h2 class="item-title">Пекарни</h2>
-        {% include 'places/partials/place_list_items.html' with places=bakeries %}
-    </section>
-    
-    <section class="category">
-        <h2 class="item-title">Кафе</h2>
-        {% include 'places/partials/place_list_items.html' with places=cafes %}
-    </section>
-</div>
+        <section class="category">
+            <h2 class="item-title">Кофейни</h2>
+            {% include 'places/partials/place_list_items.html' with places=coffee_shops %}
+        </section>
+        
+        <section class="category">
+            <h2 class="item-title">Пекарни</h2>
+            {% include 'places/partials/place_list_items.html' with places=bakeries %}
+        </section>
+        
+        <section class="category">
+            <h2 class="item-title">Кафе</h2>
+            {% include 'places/partials/place_list_items.html' with places=cafes %}
+        </section>
+    </div>
+</main>
 {% endblock %}
