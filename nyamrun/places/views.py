@@ -2,8 +2,9 @@ from django.urls import reverse
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
-from places.models import Place, Product, Category
+from places.models import Place
 from cart.models import Cart
+from catalog.models import Product, Category
 
 
 def place_list(request):

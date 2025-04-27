@@ -1,6 +1,8 @@
-from django import forms
-from places.models import Place
 from PIL import Image
+
+from django import forms
+
+from places.models import Place
 
 
 class PlaceAdminForm(forms.ModelForm):

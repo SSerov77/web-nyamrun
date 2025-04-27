@@ -1,11 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-# from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 
 from cart.models import Cart, CartItem
-from places.models import Product, ProductOption
+from catalog.models import Product, ProductOption
 
 
 def cart_detail(request):

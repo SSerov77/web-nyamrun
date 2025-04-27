@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-from places.models import Product, ProductOption
+from catalog.models import Product, ProductOption
 
 
 class Cart(models.Model):
