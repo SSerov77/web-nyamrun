@@ -31,12 +31,12 @@
     --color-filter-option-bg: var(--color-white);
 }
 
-
 * {
     font-family: "Roboto", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 a {

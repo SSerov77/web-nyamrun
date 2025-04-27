@@ -1,0 +1,10 @@
+<div class="items">
+    {% for place in places %}
+        <a href="{% url 'place_detail' place.pk %}" class="item">
+            <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
+            <p class="item-name">{{ place.name }}</p>
+        </a>
+    {% empty %}
+        <p>Заведения не найдены</p>
+    {% endfor %}
+</div>

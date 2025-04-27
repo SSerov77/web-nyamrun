@@ -3,26 +3,12 @@
 
 {% block title %}Заведения{% endblock %}
 
-{% block extra_head %}
-    <link rel="stylesheet" href="{% static 'css/place_list.css' %}">
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('filter-form');
-            const checkboxes = form.querySelectorAll('input[type=checkbox]');
-    
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', () => {
-                    form.submit();
-                });
-            });
-        });
-    </script>
-{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'css/place_list.css' %}">{% endblock %}
 
 {% block content %}
 <main class="container">
     <!-- Фильтры -->
-    <form method="get" id="filter-form">
+    <form method="get" id="filter-form" action="{% url 'place_list' %}">
         <div class="filters">
             <div class="filter-group">
                 <h3>Тип заведения</h3>
@@ -38,7 +24,7 @@
                     </label>
                 </div>
             </div>
-    
+
             <div class="filter-group">
                 <h3>Кухня</h3>
                 <div class="filter-options">
@@ -53,15 +39,48 @@
     </form>
 
     <!-- Заведения -->
-    <section class="category">
-        <div class="items">
-            {% for place in places %}
-                <a href="{% url 'place_detail' place.pk %}" class="item">
-                    <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
-                    <p class="item-name">{{ place.name }}</p>
-                </a>
-            {% endfor %}
-        </div>
+    <section class="category" id="places-container">
+        {% include 'places/partials/place_list_items.html' %}
     </section>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('filter-form');
+        const checkboxes = form.querySelectorAll('input[type=checkbox]');
+        const container = document.getElementById('places-container');
+    
+        function getSelectedValues(name) {
+            return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
+        }
+    
+        async function updatePlaces() {
+            const params = new URLSearchParams();
+    
+            // Добавим все выбранные типы и кухни к параметрам
+            getSelectedValues('type').forEach(val => params.append('type', val));
+            getSelectedValues('cuisine').forEach(val => params.append('cuisine', val));
+    
+            try {
+                const response = await fetch(`${form.action}?${params.toString()}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                if (!response.ok) throw new Error('Ошибка загрузки данных');
+    
+                const html = await response.text();
+                container.innerHTML = html;
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    
+        checkboxes.forEach(chk => {
+            chk.addEventListener('change', () => {
+                updatePlaces();
+            });
+        });
+    });
+</script>
 {% endblock %}

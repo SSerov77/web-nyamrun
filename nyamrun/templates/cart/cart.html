@@ -3,59 +3,68 @@
 
 {% block title %}Корзина товаров{% endblock %}
 
-{% block extra_head %}<link rel="stylesheet" href="{% static 'css/cart.css' %}">{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
 
 {% block content %}
-    <main class="order-page">
-        <div class="order-container">
-            <div class="order-form">
-                <h2>Условия заказа</h2>
+<main class="order-page">
+    <div class="order-container">
+        <div class="order-form">
+            <h2>Условия заказа</h2>
 
-                <label for="address">
-                    <img src="imgs/home-icon.svg" alt="" class="icon">
-                    Адрес заведения
-                </label>
-                <select id="address">
-                    <option>улица Чапаева, 2</option>
-                    <option>улица Пушкина, 10</option>
-                </select>
+            <label for="address">
+                <img src="{% static 'imgs/home-icon.svg' %}" alt="" class="icon">
+                Адрес заведения
+            </label>
+            <select id="address" name="address">
+                <option value="">Выберите адрес...</option>
+                <!-- Можно динамически подставлять адреса -->
+            </select>
 
-                <label for="time">
-                    <img src="imgs/clock-icon.svg" alt="" class="icon">
-                    Время приготовления
-                </label>
-                <input type="time" id="time" value="10:00">
+            <label for="time">
+                <img src="{% static 'imgs/clock-icon.svg' %}" alt="" class="icon">
+                Время приготовления
+            </label>
+            <input type="time" id="time" name="time" min="08:00" max="22:00" step="900" value="10:00">
 
-                <label for="comment">Комментарий к заказу</label>
-                <input type="text" id="comment" placeholder="Комментарий к заказу">
+            <label for="comment">Комментарий к заказу</label>
+            <textarea id="comment" name="comment" placeholder="Комментарий к заказу"></textarea>
 
-                <div class="order-footer">
-                    <button class="checkout">Оплатить</button>
-                    <div class="total-price">700Р</div>
-                </div>
-            </div>
-
-            <div class="order-summary">
-                <h2>Ваш заказ</h2>
-                <ul class="order-items">
-                    <li>
-                        <img src="imgs/coffee.png" alt="Раф малин-кокос">
-                        <div class="item-info">
-                            <span>Раф малин-кокос</span>
-                            <span>x1</span>
-                            <span class="item-price">200Р</span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="imgs/coffee.png" alt="Раф малин-кокос">
-                        <div class="item-info">
-                            <span>Раф малин-кокос</span>
-                            <span>x1</span>
-                            <span class="item-price">200Р</span>
-                        </div>
-                    </li>
-                </ul>
+            <div class="order-footer">
+                <button class="checkout">Оплатить</button>
+                <div class="total-price">{{ cart.get_total_price }}₽</div>
             </div>
         </div>
-    </main>
+
+        <div class="order-summary">
+            <h2>Ваш заказ</h2>
+            <ul class="order-items">
+                {% if items %}
+                    {% for item in items %}
+                    <li>
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                        <div class="item-info">
+                            <span>{{ item.product.name }}</span>
+                            {% if item.options.all %}
+                            <small>
+                                (Опции: 
+                                {% for option in item.options.all %}
+                                    {{ option.name }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                                )
+                            </small>
+                            {% endif %}
+                            <span>x{{ item.quantity }}</span>
+                            <span class="item-price">{{ item.get_total_price }}₽</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <li>Корзина пуста</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</main>
 {% endblock %}
