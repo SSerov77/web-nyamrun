@@ -114,6 +114,10 @@ header {
 
 /* MIAN */
 
+main {
+    min-height: 75vh;
+}
+
 .main {
     display: flex;
     flex-direction: column;
