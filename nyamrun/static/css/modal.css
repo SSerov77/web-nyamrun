@@ -1,0 +1,162 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-window {
+    background: white;
+    max-width: 900px;
+    width: 90vw;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    gap: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-left img {
+    max-width: 250px;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
+.modal-right {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-right h2 {
+    margin: 0 0 15px 0;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.price-qty {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.quantity {
+    display: flex;
+    background: #f0f0f0;
+    border-radius: 6px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.qty-btn {
+    border: none;
+    background: #ddd;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover {
+    background: #ccc;
+}
+
+input[type="number"] {
+    border: none;
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    padding: 6px 0;
+    background: #f0f0f0;
+    -moz-appearance: textfield;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.add-btn {
+    border-radius: 10px;
+    width: 156px;
+    height: 51px;
+    background-color: #D85E32;
+    border: none;
+    color: black;
+    font-weight: 400;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #9c4119;
+}
+
+.options h4 {
+    margin: 0 0 25px 0;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    user-select: none;
+}
+
+.modal-description {
+    padding: 15px 30px 30px;
+    font-size: 12px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.modal-description p {
+    margin: 2px 0;
+}

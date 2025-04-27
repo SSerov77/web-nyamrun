@@ -21,49 +21,19 @@
         <img src="{% static 'imgs/main-img.png' %}" alt="main-images" class="main-img">
     </section>
 
-    <!-- КОФЕЙНИ -->
     <section class="category">
         <h2 class="item-title">Кофейни</h2>
-        <div class="items">
-            {% for place in coffee_shops %}
-                <a href="{% url 'place_detail' place.pk%}" class="item">
-                    <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
-                    <p class="item-name">{{ place.name }}</p>
-                </a>
-            {% empty  %}
-                На данный момент заведений в данной категории нет
-            {% endfor %}
-        </div>
+        {% include 'places/partials/place_list_items.html' with places=coffee_shops %}
     </section>
-
-    <!-- ПЕКАРНИ -->
+    
     <section class="category">
         <h2 class="item-title">Пекарни</h2>
-        <div class="items">
-            {% for place in bakeries %}
-                <a href="{% url 'place_detail' place.pk%}" class="item">
-                    <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
-                    <p class="item-name">{{ place.name }}</p>
-                </a>
-            {% empty  %}
-                На данный момент заведений в данной категории нет
-            {% endfor %}
-        </div>
+        {% include 'places/partials/place_list_items.html' with places=bakeries %}
     </section>
-
-    <!-- КАФЕ -->
+    
     <section class="category">
         <h2 class="item-title">Кафе</h2>
-        <div class="items">
-            {% for place in cafes %}
-                <a href="{% url 'place_detail' place.pk%}" class="item">
-                    <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
-                    <p class="item-name">{{ place.name }}</p>
-                </a>
-            {% empty  %}
-                На данный момент заведений в данной категории нет
-            {% endfor %}
-        </div>
+        {% include 'places/partials/place_list_items.html' with places=cafes %}
     </section>
 </div>
 {% endblock %}

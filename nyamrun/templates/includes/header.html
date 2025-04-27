@@ -4,11 +4,7 @@
         <a href="{% url 'home' %}" class="logo">
             <img src="{% static 'imgs/logo-img.svg' %}" alt="logotype" class="logo">
         </a>
-        <div class="navbar">
-            <a href="#">О нас</a>
-            <a href="{% url 'place_list' %}">Заведения</a>
-            <a href="#">Партнерство</a>
-        </div>
+        {% include 'includes/navbar.html' %}
         <a href="#" class="login">Войти / Зарегистрироваться</a>
     </div>
 </header>
