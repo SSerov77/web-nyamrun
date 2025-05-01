@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import OrderForm
 from .models import Order, OrderItem
+from .helper import get_time_choices
 
 
 @login_required
@@ -9,9 +10,10 @@ def order_create(request):
     cart = request.user.cart
     items = cart.items.select_related('product').prefetch_related('options')
     place = cart.place
+    time_choices = get_time_choices(place=place)
 
     if request.method == "POST":
-        form = OrderForm(request.POST, place=place)
+        form = OrderForm(request.POST, place=place, time_choices=time_choices)
         if form.is_valid():
             address = form.cleaned_data['address']
             ready_time = form.cleaned_data['time']
@@ -33,7 +35,7 @@ def order_create(request):
             cart.items.all().delete()
             return redirect('home')
     else:
-        form = OrderForm(place=place)
+        form = OrderForm(place=place, time_choices=time_choices)
 
     return render(request, 'orders/order_create.html', {
         'form': form,

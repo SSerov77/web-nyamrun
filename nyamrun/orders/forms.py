@@ -3,19 +3,29 @@ from places.models import Address
 
 
 class OrderForm(forms.Form):
-    address = forms.ModelChoiceField(queryset=Address.objects.none(), label="Адрес заведения")
-    time = forms.TimeField(
-        label="Время приготовления",
-        widget=forms.TimeInput(attrs={
-            'type': 'time', 'min': '08:00', 'max': '22:00', 'step': '900'
-        })
+    address = forms.ModelChoiceField(
+        queryset=Address.objects.none(),
+        label="Адрес заведения"
     )
-    comment = forms.CharField(widget=forms.Textarea, required=False, label="Комментарий")
+    time = forms.ChoiceField(
+        label="Время приготовления", choices=[])  # меняем TimeField на ChoiceField
+    comment = forms.CharField(
+        widget=forms.Textarea,
+        required=False,
+        label="Комментарий"
+    )
 
     def __init__(self, *args, **kwargs):
         place = kwargs.pop('place', None)
+        time_choices = kwargs.pop('time_choices', None)  # получаем из view
         super().__init__(*args, **kwargs)
         if place:
             self.fields['address'].queryset = place.addresses.all()
         else:
             self.fields['address'].queryset = Address.objects.all()[:0]
+
+        if time_choices:
+            self.fields['time'].choices = time_choices
+        else:
+            from .views import get_time_choices
+            self.fields['time'].choices = get_time_choices()
