@@ -3,7 +3,6 @@ from django.contrib import admin
 from places.models import Place, Address
 from places.forms import PlaceAdminForm
 
-
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
     form = PlaceAdminForm
@@ -13,18 +12,21 @@ class PlaceAdmin(admin.ModelAdmin):
         'image',
         'working_hours',
         'categories',
-        'products',
         'addresses',
     )
     list_display = ('name', 'type', 'get_categories',)
     list_filter = ('type', 'categories')
     search_fields = ('name',)
-    filter_horizontal = ('categories', 'addresses', 'products')
+    filter_horizontal = ('categories', 'addresses')
 
     def get_categories(self, obj):
         return ", ".join(cat.name for cat in obj.categories.all())
     get_categories.short_description = "Категории"
 
+    # Если очень нужно видеть продукты заведения, можно добавить метод:
+    def products_count(self, obj):
+        return obj.products.count()
+    products_count.short_description = "Число товаров"
 
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):

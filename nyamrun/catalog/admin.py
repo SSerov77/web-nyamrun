@@ -12,21 +12,17 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'get_places', 'category', 'price')
+    list_display = ('name', 'place', 'category', 'price')
     search_fields = ('name', 'place__name', 'category__name')
     list_filter = ('place', 'category')
     filter_horizontal = ('options',)
     list_per_page = 10
 
-    def get_places(self, obj):
-        return ", ".join([place.name for place in obj.place_set.all()])
-    get_places.short_description = 'Заведения'
-
 
 @admin.register(ProductOption)
 class ProductOptionAdmin(admin.ModelAdmin):
     list_display = ('name', 'additional_price', 'get_products')
-    search_fields = ('name', 'product__name')
+    search_fields = ('name', 'products__name')
     list_per_page = 10
 
     def get_products(self, obj):

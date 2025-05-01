@@ -37,11 +37,16 @@ class ProductOption(models.Model):
 
 
 class Product(models.Model):
+    place = models.ForeignKey(
+        'places.Place',
+        on_delete=models.CASCADE,
+        related_name='products',
+        verbose_name='Заведение'
+    )
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
+        null=True, blank=True,
         related_name='products',
         verbose_name='Категория'
     )
@@ -70,7 +75,7 @@ class Product(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return f'{self.name} ({self.place.name})'
 
     class Meta:
         verbose_name = 'Товар'

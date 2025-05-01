@@ -61,11 +61,6 @@ class Place(models.Model):
         max_length=255,
         verbose_name='Время работы'
     )
-    products = models.ManyToManyField(
-        'catalog.Product',
-        verbose_name='Товары', 
-        blank=True
-    )
     addresses = models.ManyToManyField(
         Address,
         blank=True,
