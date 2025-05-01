@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from catalog.models import Product, ProductOption
+from places.models import Place
 
 
 class Cart(models.Model):
@@ -12,6 +13,7 @@ class Cart(models.Model):
         related_name='cart'
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    place = models.ForeignKey(Place, null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = 'Корзина'

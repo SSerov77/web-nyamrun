@@ -10,34 +10,8 @@
 {% block content %}
 <main class="order-page">
     <div class="order-container">
-        <div class="order-form">
-            <h2>Условия заказа</h2>
-
-            <label for="address">
-                <img src="{% static 'imgs/home-icon.svg' %}" alt="" class="icon">
-                Адрес заведения
-            </label>
-            <select id="address" name="address">
-                <option value="">Выберите адрес...</option>
-                <!-- Можно динамически подставлять адреса -->
-            </select>
-
-            <label for="time">
-                <img src="{% static 'imgs/clock-icon.svg' %}" alt="" class="icon">
-                Время приготовления
-            </label>
-            <input type="time" id="time" name="time" min="08:00" max="22:00" step="900" value="10:00">
-
-            <label for="comment">Комментарий к заказу</label>
-            <textarea id="comment" name="comment" placeholder="Комментарий к заказу"></textarea>
-
-            <div class="order-footer">
-                <button class="checkout">Оплатить</button>
-                <div class="total-price">{{ cart.get_total_price }}₽</div>
-            </div>
-        </div>
-
-        <div class="order-summary">
+        <!-- тут нет формы, просто вывод корзины -->
+        <div class="order-summary" style="width:100%">
             <h2>Ваш заказ</h2>
             <ul class="order-items">
                 {% if items %}
@@ -64,6 +38,10 @@
                     <li>Корзина пуста</li>
                 {% endif %}
             </ul>
+            <div class="total-price"><b>Итого:</b> {{ cart.get_total_price }}₽</div>
+            {% if items %}
+                <a href="{% url 'orders:order_create' %}" class="btn btn-primary" style="margin-top:20px">Оформить заказ</a>
+            {% endif %}
         </div>
     </div>
 </main>

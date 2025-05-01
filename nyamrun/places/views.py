@@ -32,8 +32,7 @@ def place_list(request):
     }
 
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        # Возвращаем только часть с отфильтрованными заведениями
-        return render(request, 'places/partials/place_list_items.html', context)
+        return render(request, 'places/place_list_items.html', context)
     else:
         return render(request, 'places/place_list.html', context)
 

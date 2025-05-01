@@ -38,33 +38,34 @@
           <h2 id="{{ cat_data.category.slug }}">{{ cat_data.category.name }}</h2>
           <div class="menu-items">
             {% for item in cat_data.items %}
-            <div class="menu-item">
-              <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-item-img" />
-              <p class="menu-item-price">{{ item.price }}₽</p>
-              <p class="menu-item-name">{{ item.name }}</p>
-
-              <!-- Кнопка открытия модального окна -->
-              <button
-                class="open-modal-btn add-btn"
-                data-id="{{ item.id }}"
-                data-modal-url="{% url 'product_modal_data' item.id %}"
-                data-name="{{ item.name|escapejs }}"
-                data-price="{{ item.price }}"
-                data-image-url="{{ item.image.url }}"
-                data-description="{{ item.description|default:''|linebreaksbr|escapejs }}"
-              >
-                + Добавить
-              </button>
-            </div>
+              <div class="menu-item">
+                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-item-img" />
+                <p class="menu-item-price">{{ item.price }}₽</p>
+                <p class="menu-item-name">{{ item.name }}</p>
+                <button
+                  class="open-modal-btn add-btn"
+                  data-id="{{ item.id }}"
+                  data-modal-url="{% url 'product_modal_data' item.id %}"
+                  data-name="{{ item.name|escapejs }}"
+                  data-price="{{ item.price }}"
+                  data-image-url="{{ item.image.url }}"
+                  data-description="{{ item.description|default:''|linebreaksbr|escapejs }}"
+                >
+                  + Добавить
+                </button>
+              </div>
+            {% empty %}
+              <p class="no-items-message">В данной категории пока что нет товаров.</p>
             {% endfor %}
           </div>
         </div>
       {% endfor %}
+
     </section>
 
     <!-- Cart -->
     <aside class="cart" id="cart-sidebar">
-      {% include 'places/partials/cart_sidebar.html' with cart=cart %}
+      {% include 'cart/cart_sidebar.html' with cart=cart %}
     </aside>
   </div>
 

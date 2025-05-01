@@ -31,5 +31,5 @@
   </div>
   <div class="cart-total">
     <span><strong>Итого:</strong> {{ cart.get_total_price }}₽</span>
-    <a href="{% url 'cart_detail' %}" class="checkout">Оформить</a>
+    <a href="{% url 'order_create' %}" class="checkout">Оформить</a>
   </div>
