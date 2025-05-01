@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: sh -c "cd a4 && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8080"
+    volumes:
+      - .:/app  # Монтируем текущую папку в контейнер
+    ports:
+      - "8080:8080"  # Пробрасываем порт 8000
