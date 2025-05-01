@@ -1,7 +1,12 @@
 from django.urls import path
-from .views import order_create
+from orders.views import (
+    order_create,
+    order_payment,
+    order_success,
+)
 
 urlpatterns = [
     path('create/', order_create, name='order_create'),
-    # path('success/<int:pk>/', order_success, name='order_success'), # сам реализуй, как захочешь
+    path('payment/', order_payment, name='order_payment'),
+    path('success/', order_success, name='order_success'),
 ]

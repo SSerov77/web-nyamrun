@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="order-success">
+    <h2>Спасибо за заказ!</h2>
+    <p>Ваш заказ №{{ order.id }} успешно оплачен.</p>
+    <p>
+      Мы начали обработку вашего заказа.<br>
+      Если будут вопросы — мы с вами свяжемся.
+    </p>
+    <a href="{% url 'home' %}" class="btn btn-primary">Вернуться на главную</a>
+  </div>
+{% endblock %}

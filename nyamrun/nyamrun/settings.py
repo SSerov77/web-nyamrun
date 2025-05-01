@@ -1,4 +1,8 @@
 from pathlib import Path
+from dotenv import load_dotenv
+from os import getenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -81,15 +85,17 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Static files
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Static files
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']  # для папки с общей статикой
 STATIC_ROOT = BASE_DIR / 'staticfiles'    # для collectstatic в production
 
 # Media files
-
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# YOOKASSA
+YOOKASSA_SHOP_ID = getenv('YOOKASSA_SHOP_ID', 'YOUR_YOOKASSA_SHOP_ID')
+YOOKASSA_SECRET_KEY = getenv('YOOKASSA_SECRET_KEY', 'YOUR_YOOKASSA_SECRET_KEY')

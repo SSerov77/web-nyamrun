@@ -8,7 +8,7 @@ class OrderForm(forms.Form):
         label="Адрес заведения"
     )
     time = forms.ChoiceField(
-        label="Время приготовления", choices=[])  # меняем TimeField на ChoiceField
+        label="Время приготовления", choices=[])
     comment = forms.CharField(
         widget=forms.Textarea,
         required=False,
@@ -17,7 +17,7 @@ class OrderForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         place = kwargs.pop('place', None)
-        time_choices = kwargs.pop('time_choices', None)  # получаем из view
+        time_choices = kwargs.pop('time_choices', None)
         super().__init__(*args, **kwargs)
         if place:
             self.fields['address'].queryset = place.addresses.all()

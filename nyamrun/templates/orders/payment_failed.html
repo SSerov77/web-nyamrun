@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="payment-failed">
+    <h2>Оплата не прошла</h2>
+    <p>К сожалению, оплата не была завершена или произошла ошибка.</p>
+    <p>Пожалуйста, попробуйте оплатить снова или выберите другой способ оплаты.</p>
+    <a href="{% url 'order_create' %}" class="btn btn-warning">Повторить оформление заказа</a>
+    <a href="{% url 'home' %}" class="btn btn-secondary">На главную</a>
+  </div>
+{% endblock %}

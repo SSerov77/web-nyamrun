@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+
 from catalog.models import Product, ProductOption
 from places.models import Place, Address
 
@@ -47,6 +48,12 @@ class Order(models.Model):
         max_digits=10,
         decimal_places=2,
         verbose_name='Итоговая цена'
+    )
+    payment_id = models.CharField(
+        max_length=128,
+        blank=True,
+        null=True,
+        verbose_name='Номер чека'
     )
 
     def __str__(self):
