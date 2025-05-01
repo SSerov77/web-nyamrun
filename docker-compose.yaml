@@ -1,15 +1,12 @@
-version: '3.8'
-
 services:
   web:
     build: .
-    command: sh -c "cd nyamrun && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8080"
+    # Без depends_on: nginx!
+    command: ...
     volumes:
       - .:/app
     expose:
       - "8080"
-    depends_on:
-      - nginx
 
   nginx:
     image: nginx:1.25
@@ -18,4 +15,4 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - web
+      - web 
