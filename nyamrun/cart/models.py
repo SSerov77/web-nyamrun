@@ -13,22 +13,27 @@ class Cart(models.Model):
         related_name='cart'
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    place = models.ForeignKey(Place, null=True, blank=True, on_delete=models.SET_NULL)
-
-    class Meta:
-        verbose_name = 'Корзина'
-        verbose_name_plural = 'Корзины'
+    place = models.ForeignKey(
+        Place,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
 
     def __str__(self):
-        return f'Корзина пользователя {self.user.username}'
+        return f'Корзина {self.user.username}'
 
     def get_total_price(self):
         return sum(item.get_total_price() for item in self.items.all())
 
+    class Meta:
+        verbose_name = 'Корзина пользователя'
+        verbose_name_plural = 'Корзины пользователей'
+
 
 class CartItem(models.Model):
     cart = models.ForeignKey(
-        Cart, 
+        Cart,
         on_delete=models.CASCADE,
         related_name='items',
         verbose_name='Корзина'
@@ -38,17 +43,15 @@ class CartItem(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Товар'
     )
-    quantity = models.PositiveIntegerField(default=1, verbose_name='Количество')
+    quantity = models.PositiveIntegerField(
+        default=1,
+        verbose_name='Количество'
+    )
     options = models.ManyToManyField(
         ProductOption,
         blank=True,
         verbose_name='Опции'
     )
-
-    class Meta:
-        verbose_name = 'Элемент корзины'
-        verbose_name_plural = 'Элементы корзины'
-        # Убираем unique_together и UniqueConstraint, т.к. они не учитывают опции
 
     def __str__(self):
         opts = ", ".join(opt.name for opt in self.options.all())
@@ -64,3 +67,7 @@ class CartItem(models.Model):
 
     def get_total_price(self):
         return self.get_price() * self.quantity
+
+    class Meta:
+        verbose_name = 'Элемент корзины пользователя'
+        verbose_name_plural = 'Элементы корзины пользователей'

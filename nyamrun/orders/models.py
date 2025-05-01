@@ -15,7 +15,8 @@ class Order(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='orders'
+        related_name='orders',
+        verbose_name='Пользователь'
     )
     place = models.ForeignKey(
         Place,
@@ -37,20 +38,43 @@ class Order(models.Model):
         default=OrderStatus.CREATED,
         verbose_name="Статус"
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата создания'
+    )
     ready_time = models.TimeField(verbose_name="Время приготовления")
-    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    total_price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name='Итоговая цена'
+    )
 
     def __str__(self):
-        return f'Order #{self.pk} for {self.user}'
+        return f'Заказ #{self.pk}'
+    
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
 
 
 class OrderItem(models.Model):
     order = models.ForeignKey(
-        Order, related_name='items', on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
-    options = models.ManyToManyField(ProductOption, blank=True)
+        Order,
+        related_name='items',
+        on_delete=models.CASCADE,
+        verbose_name='Заказ'
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        verbose_name='Товар'
+    )
+    quantity = models.PositiveIntegerField(verbose_name='Количество')
+    options = models.ManyToManyField(
+        ProductOption,
+        blank=True,
+        verbose_name='Опции'
+    )
 
     def get_price(self):
         base = self.product.price
@@ -59,3 +83,7 @@ class OrderItem(models.Model):
 
     def get_total_price(self):
         return self.get_price() * self.quantity
+    
+    class Meta:
+        verbose_name = 'Элементы заказа'
+        verbose_name_plural = 'Элементы заказов'
