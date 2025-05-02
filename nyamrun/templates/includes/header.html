@@ -5,6 +5,15 @@
             <img src="{% static 'imgs/logo-img.svg' %}" alt="logotype" class="logo">
         </a>
         {% include 'includes/navbar.html' %}
-        <a href="#" class="login">Войти / Зарегистрироваться</a>
+        {% if user.is_authenticated %}
+            <div class="user-profile">
+                {% comment %} <a href="{% url 'profile' %}"> {% endcomment %}
+                <img src="{% static 'imgs/user-logo.svg' %}" alt="user-logo" class="user-logo">
+                {% comment %} </a> {% endcomment %}
+                <span class="username">Привет, {{ user.name }}!</span>
+            </div>
+        {% else %}
+            <a href="{% url 'login' %}" class="login">Войти / Зарегистрироваться</a>
+        {% endif %}
     </div>
 </header>

@@ -112,6 +112,34 @@ header {
     border-color: var(--color-primary);
 }
 
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-logo {
+    width: 40px;
+    color: white;
+}
+
+.username {
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.logout {
+    color: #4a90e2;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.logout:hover {
+    color: #3a7bc8;
+    text-decoration: underline;
+}
+
 /* MIAN */
 
 main {

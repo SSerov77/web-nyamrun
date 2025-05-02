@@ -13,6 +13,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -99,3 +100,10 @@ MEDIA_ROOT = BASE_DIR / "media"
 # YOOKASSA
 YOOKASSA_SHOP_ID = getenv('YOOKASSA_SHOP_ID', 'YOUR_YOOKASSA_SHOP_ID')
 YOOKASSA_SECRET_KEY = getenv('YOOKASSA_SECRET_KEY', 'YOUR_YOOKASSA_SECRET_KEY')
+
+# Custom User Model
+AUTH_USER_MODEL = 'users.CustomUser'
+
+# Login/Logout redirect
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
