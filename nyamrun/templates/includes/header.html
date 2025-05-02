@@ -6,12 +6,12 @@
         </a>
         {% include 'includes/navbar.html' %}
         {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}">
             <div class="user-profile">
-                {% comment %} <a href="{% url 'profile' %}"> {% endcomment %}
                 <img src="{% static 'imgs/user-logo.svg' %}" alt="user-logo" class="user-logo">
-                {% comment %} </a> {% endcomment %}
                 <span class="username">Привет, {{ user.name }}!</span>
             </div>
+        </a>
         {% else %}
             <a href="{% url 'login' %}" class="login">Войти / Зарегистрироваться</a>
         {% endif %}

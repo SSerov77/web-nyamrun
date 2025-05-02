@@ -1,0 +1,272 @@
+/* Основные стили */
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-header h1 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.profile-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+/* Блок с информацией */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card, .actions-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.info-card h2, .actions-card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: #444;
+    font-weight: 500;
+}
+
+.info-group {
+    margin-bottom: 15px;
+}
+
+.info-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.info-group p {
+    font-size: 1.1rem;
+    color: #333;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Стили для кнопок действий */
+.actions-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    text-decoration: none !important;
+    text-align: left;
+}
+
+.action-btn i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+/* Конкретные стили для кнопок */
+.change-password {
+    background-color: #f0f7ff;
+    color: #1a73e8;
+}
+
+.change-password:hover {
+    background-color: #e1f0ff;
+    text-decoration: none !important;
+}
+
+/* Стили для формы выхода */
+.logout-form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.logout-form button {
+    width: 100%;
+    background-color: #fff0f0;
+    color: #e81a1a;
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none !important;
+}
+
+.logout-form button:hover {
+    background-color: #ffe1e1;
+    text-decoration: none !important;
+}
+
+.logout-form button i {
+    margin-right: 10px;
+}
+
+/* История заказов */
+.orders-history {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.orders-history h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: #444;
+    font-weight: 500;
+}
+
+.order-item {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #eee;
+}
+
+.order-number {
+    font-weight: 500;
+    color: #333;
+}
+
+.order-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.order-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.order-status.completed {
+    background-color: #e6f7ee;
+    color: #00a854;
+}
+
+.order-status.processing {
+    background-color: #fff7e6;
+    color: #fa8c16;
+}
+
+.order-status.cancelled {
+    background-color: #fff1f0;
+    color: #f5222d;
+}
+
+.order-details {
+    padding: 15px;
+}
+
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+.product-name {
+    flex: 2;
+}
+
+.product-quantity {
+    flex: 1;
+    text-align: center;
+}
+
+.product-price {
+    flex: 1;
+    text-align: right;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-weight: 500;
+}
+
+.total-price {
+    color: #1a73e8;
+    font-size: 1.1rem;
+}
+
+.empty-orders {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.empty-orders p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.shop-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1a73e8;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.shop-btn:hover {
+    background-color: #1557b0;
+    text-decoration: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}

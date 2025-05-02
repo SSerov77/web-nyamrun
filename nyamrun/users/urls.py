@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth import views
 
 import users.views
-from users.forms import CustomAuthenticationForm
+from users.forms import CustomAuthenticationForm, CustomPasswordChangeForm
 
 
 urlpatterns = [
@@ -16,9 +16,13 @@ urlpatterns = [
         name='login'
     ),
     path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('profile/', users.views.ProfileView.as_view(), name='profile'),
     path(
         'password_change/',
-        views.PasswordChangeView.as_view(template_name='users/password_change.html'),
+        views.PasswordChangeView.as_view(
+            template_name='users/password_change.html',
+            form_class=CustomPasswordChangeForm
+        ),
         name='password_change'
     ),
     path(

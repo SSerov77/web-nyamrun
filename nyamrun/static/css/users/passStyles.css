@@ -1,0 +1,29 @@
+/* Стили для контейнера поля с паролем */
+.password-field {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+/* Иконка глаза */
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #777;
+    z-index: 2;
+    background: white;
+    padding: 0 8px;
+    background-color: transparent;
+}
+
+.password-toggle:hover {
+    color: #333;
+}
+
+/* Убираем стандартные иконки в IE */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
