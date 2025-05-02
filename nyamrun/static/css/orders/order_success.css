@@ -1,0 +1,89 @@
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-success {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    height: 100%;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;  
+}
+
+.order-success h2 {
+    color: #2e7d32;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.order-success p {
+    color: #555;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.order-success .btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: var(--color-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px var(--color-card-shadow);
+}
+
+.order-success .btn:hover {
+    background: var(--color-button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--color-card-shadow-hover);
+}
+
+.order-success .btn:active {
+    transform: translateY(0);
+}
+
+/* Анимация для номера заказа */
+.order-success p:first-of-type {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Дополнительные декоративные элементы */
+.order-success::before {
+    content: "✓";
+    display: block;
+    font-size: 60px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}

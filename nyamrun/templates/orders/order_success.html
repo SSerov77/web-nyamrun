@@ -1,13 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ваш заказ успешно оформлен{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/orders/order_success.css' %}">
+{% endblock %}
 
 {% block content %}
-  <div class="order-success">
-    <h2>Спасибо за заказ!</h2>
-    <p>Ваш заказ №{{ order.id }} успешно оплачен.</p>
-    <p>
-      Мы начали обработку вашего заказа.<br>
-      Если будут вопросы — мы с вами свяжемся.
-    </p>
-    <a href="{% url 'home' %}" class="btn btn-primary">Вернуться на главную</a>
-  </div>
+<main>
+  <section style="display: flex; align-items: center; justify-content: center;">
+    <div class="order-success">
+      <h2>Спасибо за заказ!</h2>
+      <p>Ваш заказ №{{ order.id }} успешно оплачен.</p>
+      <p>
+        Мы начали обработку вашего заказа.<br>
+        Если будут вопросы — мы с вами свяжемся.
+      </p>
+      <a href="{% url 'home' %}" class="btn btn-primary">Вернуться на главную</a>
+    </div>
+  </section>
+</main>
 {% endblock %}
