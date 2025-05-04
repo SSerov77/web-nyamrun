@@ -7,7 +7,6 @@
 
 {% block content %}
 <main class="container">
-    <!-- Фильтры -->
     <form method="get" id="filter-form" action="{% url 'place_list' %}">
         <div class="filters">
             <div class="filter-group">
@@ -38,7 +37,6 @@
         </div>
     </form>
 
-    <!-- Заведения -->
     <section class="category" id="places-container">
         {% include 'places/place_list_items.html' %}
     </section>

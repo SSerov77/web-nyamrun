@@ -1,4 +1,10 @@
 /* Основные стили */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .profile-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -195,22 +201,28 @@
 
 .product-item {
     display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px dashed #eee;
+    align-items: flex-start; /* Выравнивание по верхнему краю */
+    gap: 16px; /* Отступ между элементами */
+    margin-bottom: 12px;
 }
 
-.product-item:last-child {
-    border-bottom: none;
+.product-info {
+    flex: 1; /* Занимает всё доступное пространство */
 }
 
-.product-name {
-    flex: 2;
+.product-quantity, .product-price {
+    min-width: 60px; /* Фиксированная ширина для колонок */
+    text-align: right; /* Выравнивание по правому краю */
 }
 
-.product-quantity {
-    flex: 1;
-    text-align: center;
+.product-options {
+    margin-top: 4px;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.product-option {
+    margin-left: 8px;
 }
 
 .product-price {
@@ -228,7 +240,7 @@
 }
 
 .total-price {
-    color: #1a73e8;
+    color: var(--color-text-dark);
     font-size: 1.1rem;
 }
 
@@ -246,7 +258,7 @@
 .shop-btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #1a73e8;
+    background-color: var(--color-primary);
     color: white;
     text-decoration: none;
     border-radius: 6px;
@@ -254,7 +266,7 @@
 }
 
 .shop-btn:hover {
-    background-color: #1557b0;
+    background-color: var(--color-primary-hover);
     text-decoration: none;
 }
 

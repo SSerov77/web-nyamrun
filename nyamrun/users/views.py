@@ -13,7 +13,8 @@ def signup(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Вы успешно зарегистировались, теперь войдите в аккаунт!")
+            messages.success(
+                request, "Вы успешно зарегистировались, теперь войдите в аккаунт!")
             return redirect('login')
     else:
         form = CustomUserCreationForm()
@@ -26,10 +27,13 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
+
         # Получаем последние 10 заказов пользователя
-        orders = Order.objects.filter(user=self.request.user).order_by('-created_at')[:10]
-        
+        orders = Order.objects.filter(user=self.request.user).order_by(
+            '-created_at')[:10].prefetch_related(
+                'items', 'items__options', 'items__product'
+            )
+
         context.update({
             'user': self.request.user,
             'orders': orders,
