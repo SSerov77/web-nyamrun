@@ -35,9 +35,8 @@
 }
 
 .form-group input:focus {
-    border-color: #4a90e2;
+    border-color: var(--color-primary);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
 }
 
 .form-group .errorlist {
@@ -51,7 +50,7 @@
 .submit-button {
     width: 100%;
     padding: 12px;
-    background-color: #4a90e2;
+    background-color: var(--color-button-bg);
     color: white;
     border: none;
     border-radius: 8px;
@@ -63,7 +62,7 @@
 }
 
 .submit-button:hover {
-    background-color: #3a7bc8;
+    background-color: var(--color-button-hover);
 }
 
 .link-login {

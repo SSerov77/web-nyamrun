@@ -9,7 +9,6 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 30px 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .profile-header h1 {
@@ -201,18 +200,18 @@
 
 .product-item {
     display: flex;
-    align-items: flex-start; /* Выравнивание по верхнему краю */
-    gap: 16px; /* Отступ между элементами */
+    align-items: flex-start;
+    gap: 16px;
     margin-bottom: 12px;
 }
 
 .product-info {
-    flex: 1; /* Занимает всё доступное пространство */
+    flex: 1;
 }
 
 .product-quantity, .product-price {
-    min-width: 60px; /* Фиксированная ширина для колонок */
-    text-align: right; /* Выравнивание по правому краю */
+    min-width: 60px;
+    text-align: right;
 }
 
 .product-options {
@@ -258,7 +257,7 @@
 .shop-btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: var(--color-primary);
+    background-color: var(--color-button-bg);
     color: white;
     text-decoration: none;
     border-radius: 6px;
@@ -266,7 +265,7 @@
 }
 
 .shop-btn:hover {
-    background-color: var(--color-primary-hover);
+    background-color: var(--color-button-hover);
     text-decoration: none;
 }
 
