@@ -258,7 +258,7 @@
     display: inline-block;
     padding: 10px 20px;
     background-color: var(--color-button-bg);
-    color: white;
+    color: var(--color-button-text);
     text-decoration: none;
     border-radius: 6px;
     transition: background-color 0.3s;
@@ -267,6 +267,7 @@
 .shop-btn:hover {
     background-color: var(--color-button-hover);
     text-decoration: none;
+    color: var(--color-button-text);
 }
 
 /* Адаптивность */
