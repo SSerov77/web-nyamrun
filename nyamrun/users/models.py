@@ -9,6 +9,7 @@ class CustomUser(AbstractUser):
     )
     name = models.CharField(max_length=30, verbose_name='Имя')
     email = models.EmailField(unique=True, verbose_name='Почта')
+    is_owner = models.BooleanField(default=False, verbose_name='Владелец заведения')
 
     def __str__(self):
         return self.username

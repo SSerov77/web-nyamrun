@@ -27,7 +27,7 @@ def order_create(request):
                 'address': form.cleaned_data['address'].pk,
                 'ready_time': form.cleaned_data['time'],
                 'comment': form.cleaned_data['comment'],
-                'total_price': str(cart.get_total_price()),
+                'total_price': str(cart.total_price()),
             }
 
             return redirect('order_payment')
@@ -54,7 +54,7 @@ def order_payment(request):
         return redirect('order_create')
 
     cart = user.cart
-    total_price = cart.get_total_price()
+    total_price = cart.total_price()
 
     receipt_items = []
     for item in cart.items.select_related('product').prefetch_related('options'):
@@ -121,7 +121,7 @@ def order_success(request):
             place=cart.place,
             address=Address.objects.get(pk=order_data['address']),
             comment=order_data['comment'],
-            total_price=cart.get_total_price(),
+            total_price=cart.total_price(),
             ready_time=order_data['ready_time'],
             payment_id=payment_id,
         )

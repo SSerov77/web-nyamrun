@@ -1,5 +1,6 @@
 from django import forms
 from places.models import Address
+from orders.models import Order
 
 
 class OrderForm(forms.Form):
@@ -29,3 +30,12 @@ class OrderForm(forms.Form):
         else:
             from .views import get_time_choices
             self.fields['time'].choices = get_time_choices()
+
+
+class OrderStatusForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['status']
+        widgets = {
+            'status': forms.Select(attrs={'class': 'order-status-select'}),
+        }

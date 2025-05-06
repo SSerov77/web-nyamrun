@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+:root {
+  --primary: #4361ee;
+  --primary-light: #f0f4ff;
+  --secondary: #3f37c9;
+  --text: #2b2d42;
+  --text-light: #6c757d;
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --border: #e9ecef;
+  --success: #4cc9f0;
+  --warning: #f8961e;
+  --error: #f72585;
+  --radius: 12px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.manager-dashboard {
+    max-width: 1320px;
+    margin: 2rem auto;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2.5rem 3rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+}
+
+.manager-dashboard h2 {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.manager-info {
+    background: var(--primary-light);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border-left: 5px solid var(--primary);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.manager-info-section {
+    padding: 0.5rem;
+}
+
+.manager-info h4 {
+    font-size: 1.25rem;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.manager-info h5 {
+    font-size: 1.1rem;
+    color: var(--secondary);
+    margin: 1.5rem 0 0.75rem 0;
+    font-weight: 500;
+}
+
+.manager-info div {
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+.order-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.order-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.order-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.order-id {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.order-date {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem 0;
+    font-size: 0.95rem;
+}
+
+.order-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: var(--primary-light);
+    color: var(--secondary);
+    font-weight: 500;
+    border-bottom: 2px solid var(--border);
+}
+
+.order-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.order-table tr:last-child td {
+    border-bottom: none;
+}
+
+.order-table .label {
+    color: var(--text-light);
+    font-weight: 500;
+    width: 30%;
+}
+
+.status-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.order-status-select {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    min-width: 250px;
+    transition: var(--transition);
+}
+
+.order-status-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.status-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.status-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
+}
+
+.empty-orders {
+    color: var(--text-light);
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.1rem;
+}
+
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    background: var(--bg);
+    margin-left: 1rem;
+}
+
+.status-indicator strong {
+    margin-left: 0.5rem;
+}
+
+/* Status colors */
+.status-new { background-color: rgba(67, 97, 238, 0.1); color: var(--primary); }
+.status-in_progress { background-color: rgba(248, 150, 30, 0.1); color: var(--warning); }
+.status-completed { background-color: rgba(46, 204, 113, 0.1); color: #2ecc71; }
+.status-cancelled { background-color: rgba(247, 37, 133, 0.1); color: var(--error); }
+
+@media (max-width: 1200px) {
+    .manager-dashboard {
+        padding: 2rem;
+    }
+    
+    .manager-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .manager-dashboard {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .status-form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .order-status-select {
+        width: 100%;
+    }
+    
+    .status-btn {
+        width: 100%;
+    }
+}
+</style>
+
+<div class="manager-dashboard">
+  <h2>Кабинет менеджера</h2>
+
+  {% if address %}
+    <div class="manager-info">
+      <div class="manager-info-section">
+        <h4>Адрес доставки</h4>
+        <div>{{ address }}</div>
+      </div>
+      
+      <div class="manager-info-section">
+        <h5>Привязанные заведения</h5>
+        <div>
+          {% for place in address.places.all %}
+            <div>{{ place.name }}</div>
+          {% empty %}
+            <div style="color: var(--error);">Не привязано к заведению</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <h4 style="margin: 2.5rem 0 1.5rem 0; font-weight: 500; font-size: 1.5rem;">Заказы по вашему адресу</h4>
+    
+    <ul class="order-list">
+      {% for order, form in order_forms %}
+        <li class="order-item">
+          <div class="order-header">
+            <span class="order-id">Заказ #{{ order.id }}</span>
+            <span class="order-date">{{ order.created_at|date:'d.m.Y H:i' }}</span>
+          </div>
+          
+          <table class="order-table">
+            <tr>
+              <td class="label">Клиент</td>
+              <td>{{ order.user.name }} ({{ order.user.username }})</td>
+            </tr>
+
+            <tr>
+              <td class="label">Состав заказа</td>
+              <td>
+                {% for item in order.items.all %}
+                  {{ item.product.name }} × {{ item.quantity }}<br>
+                {% endfor %}
+              </td>
+            </tr>
+            <tr>
+              <td class="label">Общая сумма</td>
+              <td>{{ order.total_price }} ₽</td>
+            </tr>
+            <tr>
+              <td class="label">Комментарий</td>
+              <td>{{ order.comment|default:"-" }}</td>
+            </tr>
+          </table>
+          
+          <form method="post" action="" class="status-form">
+            {% csrf_token %}
+            {{ form.status }}
+            <button type="submit" class="status-btn">
+              Обновить статус
+            </button>
+            <span class="status-indicator status-{{ order.status }}">
+              Статус: <strong>{{ order.get_status_display }}</strong>
+            </span>
+          </form>
+        </li>
+      {% empty %}
+        <li class="empty-orders">Нет заказов по вашему адресу</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="manager-info" style="background: #fff5f5; border-left-color: var(--error); grid-template-columns: 1fr;">
+      <div class="manager-info-section">
+        <h4 style="color: var(--error);">Внимание</h4>
+        <div style="font-size: 1.1rem;">Вы не назначены менеджером ни на один адрес</div>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

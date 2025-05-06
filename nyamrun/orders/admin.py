@@ -9,17 +9,17 @@ class OrderItemInline(admin.TabularInline):
         'product',
         'quantity',
         'get_options',
-        'get_total_price'
+        'total_price'
     )
-    readonly_fields = ('product', 'quantity', 'get_options', 'get_total_price')
+    readonly_fields = ('product', 'quantity', 'get_options', 'total_price')
 
     def get_options(self, obj):
         return ", ".join([opt.name for opt in obj.options.all()])
     get_options.short_description = "Опции"
 
-    def get_total_price(self, obj):
-        return obj.get_total_price()
-    get_total_price.short_description = "Сумма по позиции, ₽"
+    def total_price(self, obj):
+        return obj.total_price
+    total_price.short_description = "Сумма по позиции, ₽"
 
 
 @admin.register(Order)
@@ -47,7 +47,8 @@ class OrderAdmin(admin.ModelAdmin):
         'place',
         'address',
         'created_at',
-        'total_price'
+        'total_price',
+        'payment_id',
     )
 
     def view_items(self, obj):
@@ -62,7 +63,7 @@ class OrderItemAdmin(admin.ModelAdmin):
         'product',
         'quantity',
         'show_options',
-        'get_total_price'
+        'total_price',
     )
     search_fields = ('product__name',)
     list_filter = ('product__place',)
@@ -71,6 +72,6 @@ class OrderItemAdmin(admin.ModelAdmin):
         return ", ".join([opt.name for opt in obj.options.all()])
     show_options.short_description = "Опции"
 
-    def get_total_price(self, obj):
-        return obj.get_total_price()
-    get_total_price.short_description = "Итого, ₽"
+    def total_price(self, obj):
+        return obj.total_price
+    total_price.short_description = "Итого, ₽"

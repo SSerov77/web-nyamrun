@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Address(models.Model):
@@ -21,6 +22,14 @@ class Address(models.Model):
         max_length=50,
         default='Не указан', 
         verbose_name='Дом'
+    )
+    manager = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='managed_address',
+        verbose_name='Менеджер'
     )
 
     def __str__(self):
@@ -66,6 +75,13 @@ class Place(models.Model):
         blank=True,
         related_name='places',
         verbose_name='Адреса'
+    )
+    owner = models.ForeignKey(
+        'users.CustomUser',
+        on_delete=models.CASCADE,
+        related_name='places',
+        verbose_name='Владелец',
+        null=True, blank=True
     )
     
     def __str__(self):

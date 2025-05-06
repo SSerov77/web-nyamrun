@@ -30,7 +30,7 @@
 
             <div class="order-footer">
                 <button class="checkout" type="submit">Оплатить</button>
-                <div class="total-price">{{ cart.get_total_price }}₽</div>
+                <div class="total-price">{{ cart.total_price }}₽</div>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
                         </small>
                         {% endif %}
                         <span>x{{ item.quantity }}</span>
-                        <span class="item-price">{{ item.get_total_price }}₽</span>
+                        <span class="item-price">{{ item.total_price }}₽</span>
                     </div>
                 </li>
                 {% endfor %}

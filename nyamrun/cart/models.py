@@ -21,7 +21,7 @@ class Cart(models.Model):
     )
 
     def __str__(self):
-        return f'Корзина {self.user.username}'
+        return f'Корзина пользователя ID {self.user_id}'
 
     def get_total_price(self):
         return sum(item.get_total_price() for item in self.items.all())
@@ -54,10 +54,7 @@ class CartItem(models.Model):
     )
 
     def __str__(self):
-        opts = ", ".join(opt.name for opt in self.options.all())
-        if opts:
-            return f'{self.product.name} ({opts}) x {self.quantity}'
-        return f'{self.product.name} x {self.quantity}'
+        return f'Товар {self.product_id} x {self.quantity}'
 
     def get_options_price(self):
         return sum(option.additional_price for option in self.options.all())

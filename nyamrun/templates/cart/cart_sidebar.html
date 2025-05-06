@@ -1,35 +1,35 @@
 <div class="cart-header">
-    <div class="cart-title">
-      <h3>Корзина</h3>
-      <button class="clear-cart">Очистить</button>
-    </div>
-  
-    <div class="cart-items">
-      {% if cart.items.all %}
-        {% for item in cart.items.all %}
-          <div class="cart-item">
-            <div class="cart-item-info">
-              <strong><p>{{ item.product.name }}</p></strong>
-              {% if item.options.all %}
-              <small>
-                (Опции:
-                {% for option in item.options.all %}
-                  {{ option.name }}{% if not forloop.last %}, {% endif %}
-                {% endfor %}
-                )
-              </small>
-              {% endif %}
-              <strong><p>x{{ item.quantity }}</p></strong>
-            </div>
-            <p class="cart-item-price">{{ item.get_total_price }}₽</p>
+  <div class="cart-title">
+    <h3>Корзина</h3>
+    <button class="clear-cart">Очистить</button>
+  </div>
+
+  <div class="cart-items">
+    {% if cart.items.all %}
+      {% for item in cart.items.all %}
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <strong><p>{{ item.product.name }}</p></strong>
+            {% if item.options.all %}
+            <small>
+              (Опции:
+              {% for option in item.options.all %}
+                {{ option.name }}{% if not forloop.last %}, {% endif %}
+              {% endfor %}
+              )
+            </small>
+            {% endif %}
+            <strong><p>x{{ item.quantity }}</p></strong>
           </div>
-        {% endfor %}
-      {% else %}
-        <p>Корзина пуста</p>
-      {% endif %}
-    </div>
+          <p class="cart-item-price">{{ item.get_total_price }}₽</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Корзина пуста</p>
+    {% endif %}
   </div>
-  <div class="cart-total">
-    <span><strong>Итого:</strong> {{ cart.get_total_price }}₽</span>
-    <a href="{% url 'order_create' %}" class="checkout">Оформить</a>
-  </div>
+</div>
+<div class="cart-total">
+  <span><strong>Итого:</strong> {{ cart.get_total_price }}₽</span>
+  <a href="{% url 'order_create' %}" class="checkout">Оформить</a>
+</div>

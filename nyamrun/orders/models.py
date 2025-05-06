@@ -83,13 +83,15 @@ class OrderItem(models.Model):
         verbose_name='Опции'
     )
 
-    def get_price(self):
+    @property
+    def price(self):
         base = self.product.price
         opts = sum(opt.additional_price for opt in self.options.all())
         return base + opts
 
-    def get_total_price(self):
-        return self.get_price() * self.quantity
+    @property
+    def total_price(self):
+        return self.price * self.quantity
     
     class Meta:
         verbose_name = 'Элементы заказа'

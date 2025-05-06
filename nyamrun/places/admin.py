@@ -13,10 +13,11 @@ class PlaceAdmin(admin.ModelAdmin):
         'working_hours',
         'categories',
         'addresses',
+        'owner',
     )
-    list_display = ('name', 'type', 'get_categories',)
+    list_display = ('name', 'type', 'get_categories','owner')
     list_filter = ('type', 'categories')
-    search_fields = ('name',)
+    search_fields = ('name', 'owner__username', 'owner__email')
     filter_horizontal = ('categories', 'addresses')
 
     def get_categories(self, obj):
@@ -30,10 +31,11 @@ class PlaceAdmin(admin.ModelAdmin):
 
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
-    list_display = ('get_places', 'country', 'city', 'street', 'house_number')
+    list_display = ('get_places', 'country', 'city', 'street', 'house_number', 'manager')
     search_fields = ('city', 'street', 'house_number')
     list_filter = ('country', 'city')
     list_per_page = 10
+    raw_id_fields = ('manager',)
 
     def get_places(self, obj):
         return ", ".join([place.name for place in obj.places.all()])
