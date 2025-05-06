@@ -9,11 +9,11 @@
         <a href="{% url 'profile' %}">
             <div class="user-profile">
                 <img src="{% static 'imgs/user-logo.svg' %}" alt="user-logo" class="user-logo">
-                <span class="username">Привет, {{ user.name }}!</span>
+                <span class="username">{{ user.name }}</span>
             </div>
         </a>
         {% else %}
-            <a href="{% url 'login' %}" class="login">Войти / Зарегистрироваться</a>
+            <a href="{% url 'login' %}" class="login">Войти</a>
         {% endif %}
     </div>
 </header>
