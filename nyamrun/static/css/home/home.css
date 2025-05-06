@@ -88,13 +88,13 @@
 
 .item-title {
     font-weight: 600;
-    font-size: 24px;
+    font-size: 30px;
     color: var(--color-text);
     margin-top: 40px;
 }
 
 .item-name {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 24px;
     color: var(--color-text-dark);
 }
