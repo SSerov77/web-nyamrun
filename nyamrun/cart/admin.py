@@ -25,14 +25,15 @@ class CartItemInline(admin.TabularInline):
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'place', 'created_at', 'total_price')
+    list_display = ('id', 'user', 'place', 'created_at', 'display_total_price')
     search_fields = ('user__username', 'user__email')
     list_filter = ('place',)
     inlines = [CartItemInline]
+    readonly_fields = ('user', 'place',)
 
-    def total_price(self, obj):
+    def display_total_price(self, obj):
         return obj.get_total_price()
-    total_price.short_description = 'Итого'
+    display_total_price.short_description = 'Итого'
 
 
 @admin.register(CartItem)
