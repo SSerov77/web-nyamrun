@@ -1,3 +1,11 @@
+li {
+    color: #e74c3c;
+    font-size: .85rem;
+    margin-top: .5rem;
+    list-style: none;
+    padding-bottom: 10px;
+}
+
 .main {
     display: flex;
     justify-content: center;
@@ -39,14 +47,6 @@
     outline: none;
 }
 
-.form-group .errorlist {
-    color: #e74c3c;
-    font-size: 0.85rem;
-    margin-top: 0.5rem;
-    list-style: none;
-    padding-left: 0;
-}
-
 .submit-button {
     width: 100%;
     padding: 12px;
@@ -57,7 +57,7 @@
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: .3s;
 }
 
 .submit-button:hover {
@@ -71,7 +71,7 @@
     color: #4a90e2;
     text-decoration: none;
     font-size: 0.95rem;
-    transition: color 0.3s;
+    transition: .3s;
 }
 
 .link-signup:hover {
@@ -85,5 +85,5 @@
     padding: 12px;
     border-radius: 8px;
     margin-bottom: 1.5rem;
-    font-size: 0.9rem;
+    font-size: .9rem;
 }
