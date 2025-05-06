@@ -9,7 +9,7 @@
         <a href="{% url 'profile' %}">
             <div class="user-profile">
                 <img src="{% static 'imgs/user-logo.svg' %}" alt="user-logo" class="user-logo">
-                <span class="username">{{ user.name }}</span>
+                <span class="username">{{ user.username }}</span>
             </div>
         </a>
         {% else %}
