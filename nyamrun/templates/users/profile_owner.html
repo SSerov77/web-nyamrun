@@ -21,6 +21,7 @@
 }
 .owner-dashboard {
     max-width: 1320px;
+    min-height: 75vh;
     margin: 2rem auto;
     background: var(--card-bg);
     border-radius: var(--radius);
@@ -243,7 +244,6 @@
     }
 }
 </style>
-
 <div class="owner-dashboard">
     <h2>Кабинет владельца</h2>
 
@@ -293,11 +293,6 @@
                             <div class="order-client">{{ order.user.username }}</div>
                         </div>
                     </div>
-                    <div class="order-status-col">
-                        <span class="status-badge status-{{ order.status }}">
-                            {{ order.get_status_display }}
-                        </span>
-                    </div>
                     <div class="order-toggle">∨</div>
                 </div>
                 <div class="order-details">
@@ -313,7 +308,16 @@
                         <tbody>
                             {% for item in order.items.all %}
                             <tr>
-                                <td>{{ item.product.name }}</td>
+                                <td>
+                                    {{ item.product.name }}
+                                    {% if item.options.all %}
+                                        <ul style="margin: 0.35rem 0 0 1rem; font-size: 0.9rem; color: var(--text-light); list-style: none;">
+                                            {% for option in item.options.all %}
+                                                <li>{{ option.name }} (+{{ option.additional_price }}₽)</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </td>
                                 <td>×{{ item.quantity }}</td>
                                 <td>{{ item.price }} ₽</td>
                                 <td>{{ item.total_price }} ₽</td>
@@ -325,6 +329,15 @@
                         <span>Итого: {{ order.total_price }} ₽</span>
                     </div>
                 </div>
+                {% if order.comment %}
+                    <div style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-light); padding: 0 0 15px 15px;">
+                        <strong>Комментарий:</strong> {{ order.comment }}
+                    </div>
+                {% else %}
+                    <div style="margin-top: 1rem; font-size: 0.95rem; color: var(--text-light); padding: 0 0 15px 15px;">
+                        <strong>Комментарий:</strong> —
+                    </div>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
@@ -332,7 +345,7 @@
         <div class="empty-state">Нет активных заказов</div>
     {% endif %}
 </div>
-
+</main>
 <script>
 function toggleOrderDetails(header) {
     const card = header.parentElement;
