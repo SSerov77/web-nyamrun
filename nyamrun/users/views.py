@@ -65,7 +65,8 @@ class ManagerProfileView(TemplateView):
         address = getattr(self.request.user, 'managed_address', None)
         context['address'] = address
         if address:
-            orders = Order.objects.filter(address=address).order_by('-created_at')
+            places = address.places.all()
+            orders = Order.objects.filter(place__in=places).order_by('-created_at')
             order_forms = [
                 (order, OrderStatusForm(instance=order, prefix=f'order_{order.id}'))
                 for order in orders
@@ -79,7 +80,9 @@ class ManagerProfileView(TemplateView):
         address = getattr(self.request.user, 'managed_address', None)
         if not address:
             return redirect('manager_profile')
-        orders = Order.objects.filter(address=address)
+
+        places = address.places.all()
+        orders = Order.objects.filter(place__in=places)
         for order in orders:
             prefix = f'order_{order.id}'
             if f'{prefix}-status' in request.POST:
