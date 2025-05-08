@@ -25,9 +25,9 @@
     --color-card-shadow-hover: rgba(0, 0, 0, 0.3);
 
     /* Фильтры */
-    --color-filter-bg: var(--color-secondary);
+    --color-filter-bg: var(--color-white);
     --color-filter-text: var(--color-text-dark);
-    --color-filter-option-bg: var(--color-primary);
+    --color-filter-option-bg: #F5F4F2;
 }
 
 /* Шрифты */
@@ -120,7 +120,7 @@ header {
 }
 
 .header__icons {
-    width: 50px;
+    width: 40px;
     color: var(--color-button-hover);
 }
 

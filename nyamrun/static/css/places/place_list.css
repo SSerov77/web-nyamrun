@@ -26,16 +26,16 @@
 .filter-group h3 {
     margin-bottom: 15px;
     font-weight: 600;
-    font-size: 18px;
-    color: var(--color-filter-text);
+    font-size: 22px;
+    color: var(--color-text);
 }
 
 .filter-options {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
     background-color: var(--color-filter-bg);
-    border-radius: 10px;
+    border-radius: 30px;
+    height: 70px;
 }
 
 .filter-options label {
@@ -43,12 +43,8 @@
     align-items: center;
     cursor: pointer;
     padding: 8px 15px;
-    border-radius: 20px;
-    transition: all 0.3s;
-}
-
-.filter-options input {
-    margin-right: 8px;
+    border-radius: 30px;
+    transition: 0.3s;
 }
 
 .filter-pills input {
@@ -60,7 +56,6 @@
 .filter-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
     margin: 8px 0;
 }
 
@@ -74,8 +69,8 @@
 .pill span {
     display: inline-block;
     padding: 13px 20px;
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 1px solid #C0C0C0;
+    border-radius: 30px;
     color: #555;
     font-size: 14px;
     line-height: 1;
