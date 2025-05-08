@@ -1,17 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
 :root {
     /* Основные цвета */
     --color-primary: #D75F32;
     --color-primary-hover: #c04b1f;
 
-    --color-secondary: #341f0d;
-    --color-background: #FBF2E6;
+    --color-background: #F4EDDF;
+    --color-secondary: #E9DCC7;
     --color-white: #FFFFFF;
     --color-black: #000000;
 
     /* Текст */
-    --color-text: var(--color-secondary);
+    --color-text: var(--color-black);
     --color-text-light: var(--color-white);
     --color-text-dark: var(--color-black);
 
@@ -26,15 +24,23 @@
     --color-card-shadow-hover: rgba(0, 0, 0, 0.3);
 
     /* Фильтры */
-    --color-filter-bg: var(--color-primary);
-    --color-filter-text: var(--color-white);
-    --color-filter-option-bg: var(--color-white);
+    --color-filter-bg: var(--color-secondary);
+    --color-filter-text: var(--color-text-dark);
+    --color-filter-option-bg: var(--color-primary);
 }
+
+/* Шрифты */
+
+@font-face {
+    font-family: "Chocolate";
+    src: url("../fonts/ChocolateClassicalSans-Regular.ttf") format("woff2");
+    font-display: swap;
+  }
 
 /* Общие утилиты */
 
 * {
-    font-family: "Roboto", sans-serif;
+    font-family: "Chocolate", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -90,6 +96,11 @@ header {
     justify-content: space-between;
 }
 
+.navbar a:hover {
+    transition: .3s;
+    color: var(--color-primary-hover);
+}
+
 .login {
     width: clamp(100px, 26vw, 300px);
     height: 58px;
@@ -114,9 +125,13 @@ header {
     gap: 15px;
 }
 
+.user-profile:hover .username{
+    transition: .3s;
+    color: var(--color-primary-hover);
+}
+
 .user-logo {
     width: 30px;
-    color: white;
 }
 
 .username {
