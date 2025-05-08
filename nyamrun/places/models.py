@@ -40,17 +40,33 @@ class Address(models.Model):
         verbose_name_plural = 'Адреса'
 
 
-class PlaceType(models.TextChoices):
-    CAFE = 'cafe', 'Кафе'
-    BAKERY = 'bakery', 'Пекарня'
-    COFFEE_SHOP = 'coffee_shop', 'Кофейня'
+class PlaceType(models.Model):
+    name = models.CharField(
+        max_length=100,
+        verbose_name='Название типа'
+    )
+    slug = models.SlugField(
+        max_length=50,
+        unique=True,
+        verbose_name='Код типа'
+    )
+    
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Тип заведения'
+        verbose_name_plural = 'Типы заведений'
+
 
 
 class Place(models.Model):
-    type = models.CharField(
-        max_length=20,
-        choices=PlaceType.choices,
-        default=PlaceType.CAFE,
+    type = models.ForeignKey(
+        PlaceType,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         verbose_name='Тип заведения'
     )
     name = models.CharField(

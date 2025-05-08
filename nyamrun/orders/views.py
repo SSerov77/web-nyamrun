@@ -11,23 +11,30 @@ from orders.forms import OrderForm
 from orders.models import Order, OrderItem
 from orders.helper import get_time_choices
 from places.models import Address
+from cart.models import Cart
 
 
 @login_required
 def order_create(request):
-    cart = request.user.cart
+    cart, _ = Cart.objects.get_or_create(user=request.user)
     items = cart.items.select_related('product').prefetch_related('options')
     place = cart.place
     time_choices = get_time_choices(place=place)
 
     if request.method == "POST":
         form = OrderForm(request.POST, place=place, time_choices=time_choices)
+
+        if not cart.total_price():
+            total_price = "0"
+        else:
+            total_price = str(cart.total_price())
+
         if form.is_valid():
             request.session['order_data'] = {
                 'address': form.cleaned_data['address'].pk,
                 'ready_time': form.cleaned_data['time'],
                 'comment': form.cleaned_data['comment'],
-                'total_price': str(cart.total_price()),
+                'total_price': total_price,
             }
 
             return redirect('order_payment')
@@ -40,11 +47,6 @@ def order_create(request):
         'items': items,
     })
 
-
-import json
-from yookassa import Payment
-from django.urls import reverse
-from django.conf import settings
 
 @login_required
 def order_payment(request):

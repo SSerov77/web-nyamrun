@@ -14,20 +14,16 @@
         <div class="filter-group">
             <h3>Заведения</h3>
             <div class="filter-options filter-pills">
-            <label class="pill">
-                <input type="checkbox" name="type" value="coffee_shop" {% if 'coffee_shop' in selected_types %}checked{% endif %}>
-                <span>Кофейни</span>
-            </label>
-            <label class="pill">
-                <input type="checkbox" name="type" value="bakery" {% if 'bakery' in selected_types %}checked{% endif %}>
-                <span>Пекарни</span>
-            </label>
-            <label class="pill">
-                <input type="checkbox" name="type" value="cafe" {% if 'cafe' in selected_types %}checked{% endif %}>
-                <span>Кафе</span>
-            </label>
+                {% for place_type in place_types %}
+                <label class="pill">
+                    <input type="checkbox" name="type" value="{{ place_type.code }}"
+                        {% if place_type.code in selected_types %}checked{% endif %}>
+                    <span>{{ place_type.name }}</span>
+                </label>
+                {% endfor %}
             </div>
         </div>
+        
         <div class="filter-group">
             <h3>Категории товаров</h3>
             <div class="filter-options filter-pills">

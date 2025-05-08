@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
-from places.models import Place
+from places.models import Place, PlaceType
 from cart.models import Cart
 from catalog.models import Product, Category
 
@@ -13,7 +13,7 @@ def place_list(request):
     selected_cuisines = request.GET.getlist('cuisine')
 
     if selected_types:
-        places = places.filter(type__in=selected_types)
+        places = places.filter(type__code__in=selected_types)
 
     if selected_cuisines:
         try:
@@ -23,10 +23,12 @@ def place_list(request):
             pass
 
     categories = Category.objects.all()
+    place_types = PlaceType.objects.all()
 
     context = {
         'places': places,
         'categories': categories,
+        'place_types': place_types,
         'selected_types': selected_types,
         'selected_cuisines': selected_cuisines,
     }
@@ -35,6 +37,7 @@ def place_list(request):
         return render(request, 'places/place_list_items.html', context)
     else:
         return render(request, 'places/place_list.html', context)
+
 
 
 def place_detail(request, pk):
