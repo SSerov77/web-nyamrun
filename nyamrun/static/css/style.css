@@ -36,7 +36,7 @@
     font-family: "Chocolate";
     src: url("../fonts/ChocolateClassicalSans-Regular.ttf") format("woff2");
     font-display: swap;
-  }
+}
 
 /* Общие утилиты */
 
@@ -98,7 +98,6 @@ header {
 }
 
 .navbar a:hover {
-    transition: .3s;
     color: var(--color-primary-hover);
 }
 
@@ -120,36 +119,34 @@ header {
     border-color: var(--color-primary);
 }
 
+.header__icons {
+    width: 50px;
+    color: var(--color-button-hover);
+}
+
+.header__icons:hover {
+    filter: invert(43%) sepia(83%) saturate(349%) hue-rotate(343deg);
+}
+
+.user-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
 .user-profile {
     display: flex;
     align-items: center;
-    gap: 15px;
 }
 
-.user-profile:hover .username{
-    transition: .3s;
-    color: var(--color-primary-hover);
-}
-
-.user-logo {
-    width: 30px;
+.user-profile:hover {
+    filter: invert(43%) sepia(83%) saturate(349%) hue-rotate(343deg);
 }
 
 .username {
     font-weight: 500;
     color: var(--color-text);
-}
-
-.logout {
-    color: #4a90e2;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s;
-}
-
-.logout:hover {
-    color: #3a7bc8;
-    text-decoration: underline;
 }
 
 /* MIAN */
