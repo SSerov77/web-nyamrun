@@ -41,7 +41,6 @@
 .dashboard-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2.5rem;
@@ -226,7 +225,7 @@ padding-bottom: 0.5rem;
 border-bottom: 1px solid var(--border);
 }
 </style>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <div class="owner-dashboard">
   <div class="dashboard-header">
     <h2>Кабинет менеджера</h2>
@@ -234,7 +233,65 @@ border-bottom: 1px solid var(--border);
       <div class="dashboard-address">{{ address }}</div>
     {% endif %}
   </div>
+  <h3>Заказы по периодам</h3>
+  <label for="period-select">Период:</label>
+  <select id="period-select">
+    <option value="day">День</option>
+    <option value="week">Неделя</option>
+    <option value="month">Месяц</option>
+  </select>
 
+  <canvas id="ordersChart"></canvas>
+  
+  <script>
+    const ctx = document.getElementById('ordersChart').getContext('2d');
+    let chart;  // глобальная переменная для графика
+    const datasets = {
+      day: {
+        labels: ['08:00', '10:00', '12:00', '14:00', '16:00'],
+        data: [3, 6, 2, 4, 1]
+      },
+      week: {
+        labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+        data: [10, 12, 8, 15, 20, 18, 7]
+      },
+      month: {
+        labels: ['01.05', '05.05', '10.05', '15.05', '20.05', '25.05', '30.05'],
+        data: [40, 50, 45, 70, 65, 60, 80]
+      }
+    };
+  
+    function buildChart(period) {
+      const chartData = {
+        labels: datasets[period].labels,
+        datasets: [{
+          label: 'Количество заказов',
+          data: datasets[period].data,
+          backgroundColor: 'rgba(54, 162, 235, 0.6)'
+        }]
+      };
+  
+      if (chart) chart.destroy();
+  
+      chart = new Chart(ctx, {
+        type: 'bar',
+        data: chartData,
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+  
+    document.getElementById('period-select').addEventListener('change', (e) => {
+      buildChart(e.target.value);
+    });
+  
+    // Инициализация по умолчанию
+    buildChart('day');
+  </script>
   {% if address %}
     <h3>Актуальные заказы</h3>
     {% if order_forms %}
@@ -315,4 +372,54 @@ function toggleOrderDetails(header) {
   toggle.classList.toggle('active');
 }
 </script>
+<canvas id="ordersChart" height="100"></canvas>
+
+
+<script>
+  const chartData = JSON.parse('{{ chart_data|safe }}');
+  console.log(chartData);  // Добавьте это для проверки данных
+  const ctx = document.getElementById('ordersChart').getContext('2d');
+
+  let currentPeriod = 'day';
+
+  const buildChart = (period) => {
+    const data = chartData[period];
+    const labels = data.map(item => item.label);
+    const revenues = data.map(item => item.revenue);
+
+    return new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Выручка (₽)',
+          data: revenues,
+          backgroundColor: 'rgba(79, 70, 229, 0.6)',
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Выручка по периодам',
+            color: '#1f2937',
+            font: { size: 18 }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { callback: value => value + ' ₽' }
+          }
+        }
+      }
+    });
+  };
+
+  let chart = buildChart(currentPeriod);
+</script>
+
 {% endblock %}

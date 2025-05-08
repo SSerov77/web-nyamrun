@@ -47,10 +47,6 @@ a {
     transition: color 0.3s;
 }
 
-a:hover {
-    color: var(--color-primary);
-}
-
 ul {
     list-style: none;
 }
@@ -68,24 +64,18 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 30px;
 }
 
 .header-content {
-    width: calc(100% - 40px);
+    width: 100%;
     max-width: 1440px;
-    height: 100px;
+    height: 58px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-weight: 500;
     font-size: 16px;
     padding: 0 20px;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-radius: 16px;
-    margin: 20px 0;
-    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .logo {
@@ -110,9 +100,7 @@ header {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: color 0.3s, border-color 0.3s;
 }
 
 .login:hover {
@@ -124,19 +112,11 @@ header {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 8px 16px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-
-.user-profile:hover {
-    background: rgba(0, 0, 0, 0.02);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .user-logo {
     width: 30px;
-    color: var(--color-white);
+    color: white;
 }
 
 .username {
@@ -177,21 +157,145 @@ main {
 
 /* FOOTER */
 
+/* Общие стили */
 .footer {
-    width: 100%;
-    height: 100px;
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-white);
+    background-color: #000;
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 30px;
 }
 
-.footer-content {
-    width: 100%;
-    max-width: 1440px;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Верхняя часть */
+.footer__top {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer__brand {
+    flex: 1 1 250px;
+    margin-right: 40px;
+}
+
+.footer__logo {
+    display: block;
+    width: 100px;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.footer__desc {
+    max-width: 280px;
+    color: #ccc;
+}
+
+/* Навигация */
+.footer__nav {
+    display: flex;
+    flex: 2 1 400px;
+    gap: 60px;
+}
+
+.footer__column {
+    flex: 1;
+}
+
+.footer__title {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer__list li+li {
+    margin-top: 8px;
+}
+
+.footer__list a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer__list a:hover {
+    color: #fff;
+}
+
+/* Социальные и рассылка */
+.footer__social {
+    flex: 1 1 200px;
+    text-align: right;
+}
+
+.footer__icons {
+    margin-bottom: 16px;
+}
+
+.icon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin-left: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+.footer__newsletter {
+    display: inline-flex;
     align-items: center;
-    padding: 0 20px;
+    padding: 8px 20px;
+    background-color: #f4b400;
+    color: #000;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.footer__arrow {
+    margin-left: 8px;
+}
+
+/* Нижняя часть */
+.footer__bottom {
+    border-top: 1px solid #222;
+    padding: 20px 20px 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer__copy {
+    margin: 0;
+    color: #666;
+}
+
+.footer__legal {
+    display: flex;
+    align-items: center;
+}
+
+.footer__legal a {
+    color: #666;
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+.footer__legal a:hover {
+    color: #aaa;
+}
+
+.footer__sep {
+    color: #444;
 }

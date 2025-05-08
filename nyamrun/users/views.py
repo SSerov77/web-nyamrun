@@ -57,6 +57,11 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         return super().dispatch(request, *args, **kwargs)
 
 
+from django.utils.timezone import now
+from datetime import timedelta
+from django.db.models import Sum
+import json
+
 class ManagerProfileView(TemplateView):
     template_name = 'users/manager_profile.html'
 
@@ -64,30 +69,53 @@ class ManagerProfileView(TemplateView):
         context = super().get_context_data(**kwargs)
         address = getattr(self.request.user, 'managed_address', None)
         context['address'] = address
+
         if address:
             places = address.places.all()
             orders = Order.objects.filter(place__in=places).order_by('-created_at')
-            order_forms = [
+            context['order_forms'] = [
                 (order, OrderStatusForm(instance=order, prefix=f'order_{order.id}'))
                 for order in orders
             ]
-            context['order_forms'] = order_forms
+
+            # Подготовим данные для графиков
+            def generate_period_data(days_back, interval):
+                base = now()
+                result = []
+                for i in range(days_back):
+                    if interval == 'day':
+                        start = base - timedelta(days=i + 1)
+                        end = base - timedelta(days=i)
+                        label = start.strftime('%d.%m')
+                    elif interval == 'week':
+                        start = base - timedelta(weeks=i + 1)
+                        end = base - timedelta(weeks=i)
+                        label = f"Неделя {end.strftime('%W')}"
+                    elif interval == 'month':
+                        end = (base.replace(day=1) - timedelta(days=1)).replace(day=1)
+                        start = (end - timedelta(days=30 * i)).replace(day=1)
+                        label = start.strftime('%b %Y')
+                    else:
+                        continue
+
+                    total = orders.filter(created_at__gte=start, created_at__lt=end).aggregate(
+                        revenue=Sum('total_price')
+                    )['revenue'] or 0
+
+                    # Преобразуем Decimal в float перед сериализацией в JSON
+                    result.append({'label': label, 'revenue': float(total)})
+
+                return list(reversed(result))
+
+            import json
+
+            context['chart_data'] = json.dumps({
+                'day': generate_period_data(7, 'day'),
+                'week': generate_period_data(4, 'week'),
+                'month': generate_period_data(6, 'month'),
+            }, default=str)  # Это гарантирует корректную сериализацию Decimal в строки
+
         else:
             context['order_forms'] = []
+
         return context
-
-    def post(self, request, *args, **kwargs):
-        address = getattr(self.request.user, 'managed_address', None)
-        if not address:
-            return redirect('manager_profile')
-
-        places = address.places.all()
-        orders = Order.objects.filter(place__in=places)
-        for order in orders:
-            prefix = f'order_{order.id}'
-            if f'{prefix}-status' in request.POST:
-                form = OrderStatusForm(request.POST, instance=order, prefix=prefix)
-                if form.is_valid():
-                    form.save()
-                break
-        return redirect('manager_profile')
