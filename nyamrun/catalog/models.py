@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.core.validators import MinValueValidator
 
 
 class Category(models.Model):
@@ -25,7 +26,8 @@ class ProductOption(models.Model):
         max_digits=6,
         decimal_places=2,
         default=0,
-        verbose_name='Доплата'
+        verbose_name='Доплата',
+        validators=[MinValueValidator(0)]
     )
 
     def __str__(self):
@@ -61,7 +63,8 @@ class Product(models.Model):
     price = models.DecimalField(
         max_digits=8,
         decimal_places=2,
-        verbose_name='Цена'
+        verbose_name='Цена',
+        validators=[MinValueValidator(0)]
     )
     image = models.ImageField(
         upload_to='product_images/',

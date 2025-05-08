@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.core.validators import MinValueValidator
+from django.core.exceptions import ValidationError
 
 from catalog.models import Product, ProductOption
 from places.models import Place, Address
@@ -43,11 +45,16 @@ class Order(models.Model):
         auto_now_add=True,
         verbose_name='Дата создания'
     )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name='Дата обновления'
+    )
     ready_time = models.TimeField(verbose_name="Время приготовления")
     total_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name='Итоговая цена'
+        verbose_name='Итоговая цена',
+        validators=[MinValueValidator(0)]
     )
     payment_id = models.CharField(
         max_length=128,
@@ -76,23 +83,38 @@ class OrderItem(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Товар'
     )
-    quantity = models.PositiveIntegerField(verbose_name='Количество')
+    quantity = models.PositiveIntegerField(
+        verbose_name='Количество',
+        validators=[MinValueValidator(1)]
+    )
     options = models.ManyToManyField(
         ProductOption,
         blank=True,
         verbose_name='Опции'
     )
 
+    def clean(self):
+        if self.product.place != self.order.place:
+            raise ValidationError({
+                'product': 'Товар должен принадлежать выбранному заведению'
+            })
+
     @property
     def price(self):
+        """Get price for single item with options"""
         base = self.product.price
         opts = sum(opt.additional_price for opt in self.options.all())
         return base + opts
 
     @property
     def total_price(self):
+        """Get total price for all items"""
         return self.price * self.quantity
-    
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.order.update_total_price()
+
     class Meta:
         verbose_name = 'Элементы заказа'
         verbose_name_plural = 'Элементы заказов'
