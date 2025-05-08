@@ -135,3 +135,25 @@ textarea {
     background-color: var(--color-button-hover);
     color: var(--color-text-light);
 }
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 200px;
+}
+
+.empty-cart img {
+    width: 300px;
+}
+
+.empty-cart a {
+    color: var(--color-primary);
+}
+
+.empty-cart a:hover {
+    color: var(--color-primary-hover);
+}
