@@ -49,6 +49,11 @@ textarea {
     gap: 4px;
 }
 
+.comment-field {
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
 .order-form select,
 .order-form input[type="time"],
 .order-form input[type="text"] {

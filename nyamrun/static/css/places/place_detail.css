@@ -49,22 +49,17 @@
 }
 
 .menu-categories a {
-    padding-left: 17px;
-    padding-top: 9px;
+    display: flex;
+    align-items: center;
+    padding: 10px 17px;
     border-radius: 10px;
     width: 200px;
     height: 37px;
-}
-
-.menu-categories a:hover {
-    background-color: var(--color-white);
-}
-
-.menu-categories a {
     color: var(--color-text);
 }
 
 .menu-categories a:hover {
+    background-color: var(--color-white);
     color: var(--color-primary);
 }
 

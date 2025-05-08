@@ -11,7 +11,10 @@ class OrderForm(forms.Form):
     time = forms.ChoiceField(
         label="Время приготовления", choices=[])
     comment = forms.CharField(
-        widget=forms.Textarea,
+        widget=forms.Textarea(attrs={
+            'placeholder': 'Например: без лука',
+            'class': 'comment-field'
+        }),
         required=False,
         label="Комментарий"
     )
