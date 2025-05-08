@@ -7,9 +7,10 @@
     --color-secondary: #E9DCC7;
     --color-white: #FFFFFF;
     --color-black: #000000;
+    --color-brown: #381D05;
 
     /* Текст */
-    --color-text: var(--color-black);
+    --color-text: var(--color-brown);
     --color-text-light: var(--color-white);
     --color-text-dark: var(--color-black);
 

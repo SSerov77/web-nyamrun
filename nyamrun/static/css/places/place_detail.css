@@ -27,14 +27,14 @@
     cursor: pointer;
 }
 
-.back-link a {
-    color: var(--color-text-dark);
-}
-
 .back-link:hover {
     transition: .3s;
-    background-color: transparent;
     border-color: var(--color-black);
+}
+
+
+.back-link a {
+    color: var(--color-text-dark);
 }
 
 .menu-categories p {

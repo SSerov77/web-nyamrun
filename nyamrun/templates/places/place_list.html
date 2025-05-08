@@ -3,43 +3,50 @@
 
 {% block title %}Заведения{% endblock %}
 
-{% block extra_head %}<link rel="stylesheet" href="{% static 'css/places/place_list.css' %}">{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/places/place_list.css' %}">
+{% endblock %}
 
 {% block content %}
 <main class="container">
-    <form method="get" id="filter-form" action="{% url 'place_list' %}">
-        <div class="filters">
-            <div class="filter-group">
-                <h3>Тип заведения</h3>
-                <div class="filter-options">
-                    <label>
-                        <input type="checkbox" name="type" value="coffee_shop" {% if 'coffee_shop' in selected_types %}checked{% endif %}> Кофейни
-                    </label>
-                    <label>
-                        <input type="checkbox" name="type" value="bakery" {% if 'bakery' in selected_types %}checked{% endif %}> Пекарни
-                    </label>
-                    <label>
-                        <input type="checkbox" name="type" value="cafe" {% if 'cafe' in selected_types %}checked{% endif %}> Кафе
-                    </label>
-                </div>
-            </div>
-
-            <div class="filter-group">
-                <h3>Кухня</h3>
-                <div class="filter-options">
-                    {% for category in categories %}
-                        <label>
-                            <input type="checkbox" name="cuisine" value="{{ category.id }}" {% if category.id|stringformat:"s" in selected_cuisines %}checked{% endif %}> {{ category.name }}
-                        </label>
-                    {% endfor %}
-                </div>
+  <form method="get" id="filter-form" action="{% url 'place_list' %}">
+    <div class="filters">
+        <div class="filter-group">
+            <h3>Категории заведений</h3>
+            <div class="filter-options filter-pills">
+            <label class="pill">
+                <input type="checkbox" name="type" value="coffee_shop" {% if 'coffee_shop' in selected_types %}checked{% endif %}>
+                <span>Кофейни</span>
+            </label>
+            <label class="pill">
+                <input type="checkbox" name="type" value="bakery" {% if 'bakery' in selected_types %}checked{% endif %}>
+                <span>Пекарни</span>
+            </label>
+            <label class="pill">
+                <input type="checkbox" name="type" value="cafe" {% if 'cafe' in selected_types %}checked{% endif %}>
+                <span>Кафе</span>
+            </label>
             </div>
         </div>
-    </form>
+        <div class="filter-group">
+            <h3>Категории товаров</h3>
+            <div class="filter-options filter-pills">
+            {% for category in categories %}
+            <label class="pill">
+                <input type="checkbox" name="cuisine" value="{{ category.id }}" {% if category.id|stringformat:"s" in selected_cuisines %}checked{% endif %}>
+                <span>{{ category.name }}</span>
+            </label>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+  </form>
 
-    <section class="category" id="places-container">
-        {% include 'places/place_list_items.html' %}
-    </section>
+  <section class="category" id="places-container">
+    {% include 'places/place_list_items.html' %}
+  </section>
 </main>
-<script src="{% static "js/places/filters.js" %}"></script>
+
+<script src="{% static 'js/places/filters.js' %}"></script>
 {% endblock %}
