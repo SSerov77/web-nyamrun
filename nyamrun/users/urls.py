@@ -2,7 +2,10 @@ from django.urls import path
 from django.contrib.auth import views
 
 import users.views
-from users.forms import CustomAuthenticationForm, CustomPasswordChangeForm
+from users.forms import (
+    CustomAuthenticationForm,
+    CustomPasswordChangeForm,
+) 
 
 
 urlpatterns = [
@@ -18,6 +21,7 @@ urlpatterns = [
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('profile/', users.views.ProfileView.as_view(), name='profile'),
     path('manager/profile/', users.views.ManagerProfileView.as_view(), name='manager_profile'),
+    path('manager/orders/<int:order_id>/status/', users.views.ManagerOrderStatusUpdateView.as_view(), name='manager-order-update-status'),
     path(
         'password_change/',
         views.PasswordChangeView.as_view(
