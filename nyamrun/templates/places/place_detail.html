@@ -1,69 +1,77 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}{{ place.name }}{% endblock %}
+
 {% block extra_head %}
   <link rel="stylesheet" href="{% static 'css/places/place_detail.css' %}">
   <link rel="stylesheet" href="{% static 'css/modal.css' %}">
 {% endblock %}
+
 {% block content %}
-  <main class="main">
-    <div class="main-content restaurant-page">
-      <aside class="menu-sidebar">
-        <div class="back-link">
-          <img src="{% static 'imgs/icons/return-arrow.svg' %}" alt="return-arrow">
-          <a href="{% url 'place_list' %}">Все заведения</a>
-        </div>
-        <nav class="menu-categories">
-          <p>Меню</p>
-          <ul>
-            {% for cat_data in categories %}<a href="#{{ cat_data.category.slug }}">{{ cat_data.category.name }}</a>{% endfor %}
-          </ul>
-        </nav>
-      </aside>
-      <section class="restaurant-main">
-        <div class="restaurant-banner-container">
-          <img src="{{ place.image.url }}"
-               alt="{{ place.name }}"
-               class="restaurant-banner-img">
-        </div>
-        {% for cat_data in categories %}
-          <div class="menu-section">
-            <h2 id="{{ cat_data.category.slug }}">{{ cat_data.category.name }}</h2>
-            <div class="menu-items">
-              {% for item in cat_data.items %}
-                <div class="menu-item">
-                  <img src="{{ item.image.url }}"
-                       alt="{{ item.name }}"
-                       class="menu-item-img" />
-                  <p class="menu-item-price">{{ item.price }}₽</p>
-                  <p class="menu-item-name">{{ item.name }}</p>
-                  <button class="open-modal-btn add-btn"
-                          data-id="{{ item.id }}"
-                          data-modal-url="{% url 'product_modal_data' item.id %}"
-                          data-name="{{ item.name|escapejs }}"
-                          data-price="{{ item.price }}"
-                          data-image-url="{{ item.image.url }}"
-                          data-description="{{ item.description|default:''|linebreaksbr|escapejs }}">
-                    + Добавить
-                  </button>
-                </div>
-              {% empty %}
-                <p class="no-items-message">В данной категории пока что нет товаров.</p>
-              {% endfor %}
-            </div>
+<main class="main">
+  <div class="main-content restaurant-page">
+    <aside class="menu-sidebar">
+      <div class="back-link">
+        <img src="{% static 'imgs/icons/return-arrow.svg' %}" alt="return-arrow">
+        <a href="{% url 'place_list' %}">Все заведения</a>
+      </div>
+      <nav class="menu-categories">
+        <p>Меню</p>
+        <ul>
+          {% for cat_data in categories %}
+            <a href="#{{ cat_data.category.slug }}">{{ cat_data.category.name }}</a>
+          {% endfor %}
+        </ul>
+      </nav>
+    </aside>
+
+    <section class="restaurant-main">
+      <div class="restaurant-banner-container">
+        <img src="{{ place.image.url }}" alt="{{ place.name }}" class="restaurant-banner-img">
+      </div>
+
+      {% for cat_data in categories %}
+        <div class="menu-section">
+          <h2 id="{{ cat_data.category.slug }}">{{ cat_data.category.name }}</h2>
+          <div class="menu-items">
+            {% for item in cat_data.items %}
+              <div class="menu-item">
+                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="menu-item-img" />
+                <p class="menu-item-price">{{ item.price }}₽</p>
+                <p class="menu-item-name">{{ item.name }}</p>
+                <button
+                  class="open-modal-btn add-btn"
+                  data-id="{{ item.id }}"
+                  data-modal-url="{% url 'product_modal_data' item.id %}"
+                  data-name="{{ item.name|escapejs }}"
+                  data-price="{{ item.price }}"
+                  data-image-url="{{ item.image.url }}"
+                  data-description="{{ item.description|default:''|linebreaksbr|escapejs }}"
+                >
+                  + Добавить
+                </button>
+              </div>
+            {% empty %}
+              <p class="no-items-message">В данной категории пока что нет товаров.</p>
+            {% endfor %}
           </div>
-        {% endfor %}
-      </section>
-      <aside class="cart" id="cart-sidebar">
-        {% include 'cart/cart_sidebar.html' with cart=cart %}
-      </aside>
-    </div>
-    <div id="modal-container" style="display:none;"></div>
-  </main>
-  <script>
-      const CART_CLEAR_URL = "{% url 'cart_clear_ajax' %}";
-      const CSRF_TOKEN = "{{ csrf_token }}";
-  </script>
-  <script src="{% static "js/cart/clearCart.js" %}"></script>
-  <script type="module" src="{% static 'js/catalog/main.js' %}"></script>
+        </div>
+      {% endfor %}
+
+    </section>
+
+    <aside class="cart" id="cart-sidebar">
+      {% include 'cart/cart_sidebar.html' with cart=cart %}
+    </aside>
+  </div>
+
+  <div id="modal-container" style="display:none;"></div>
+</main>
+
+<script>
+  const CART_CLEAR_URL = "{% url 'cart_clear_ajax' %}";
+  const CSRF_TOKEN = "{{ csrf_token }}";
+</script>
+<script src="{% static "js/cart/clearCart.js" %}"></script>
+<script type="module" src="{% static 'js/catalog/main.js' %}"></script>
 {% endblock %}

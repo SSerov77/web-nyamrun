@@ -173,6 +173,13 @@ body {
     font-weight: 500;
 }
 
+.option-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
 /* Адаптация */
 @media (max-width: 768px) {
     .owner-dashboard {

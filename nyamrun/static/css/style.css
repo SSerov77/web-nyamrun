@@ -2,6 +2,7 @@
     /* Основные цвета */
     --color-primary: #D75F32;
     --color-primary-hover: #c04b1f;
+
     --color-background: #F4EDDF;
     --color-secondary: #E9DCC7;
     --color-white: #FFFFFF;
@@ -58,11 +59,8 @@ ul {
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background: var(--color-background);
+    background-color: var(--color-background);
     color: var(--color-text);
-    line-height: 1.5;
 }
 
 /* HEADER */
@@ -174,8 +172,8 @@ main {
 
 /* Общие стили */
 .footer {
-    background-color: var(--color-black);
-    color: var(--color-text-light);
+    background-color: #000;
+    color: #eee;
     font-family: sans-serif;
     font-size: 14px;
     line-height: 1.6;
@@ -244,7 +242,7 @@ main {
 }
 
 .footer__list a:hover {
-    color: var(--color-text-light);
+    color: #fff;
 }
 
 /* Социальные и рассылка */
@@ -272,7 +270,7 @@ main {
     align-items: center;
     padding: 8px 20px;
     background-color: var(--color-primary);
-    color: var(--color-text-light);
+    color: var(--color-white);
     text-decoration: none;
     border-radius: 20px;
     font-weight: 600;
@@ -313,113 +311,4 @@ main {
 
 .footer__sep {
     color: #444;
-}
-
-/* Типография */
-h1, h2, h3, h4, h5, h6 {
-    color: var(--text-color);
-    font-weight: 500;
-    margin: 0 0 var(--spacing-md);
-}
-
-h1 { font-size: var(--font-size-3xl); }
-h2 { font-size: var(--font-size-2xl); }
-h3 { font-size: var(--font-size-xl); }
-h4 { font-size: var(--font-size-lg); }
-
-/* Карточки */
-.card {
-    background: var(--color-card-bg);
-    border-radius: 8px;
-    box-shadow: 0 1px 3px var(--color-card-shadow);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-/* Формы */
-input, select, textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: var(--color-filter-bg);
-    color: var(--color-text);
-    font-family: "Chocolate", sans-serif;
-    font-size: 1rem;
-}
-
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 1px 2px var(--color-card-shadow);
-}
-
-/* Кнопки */
-.btn {
-    display: inline-block;
-    padding: 0.5rem 1.5rem;
-    background: var(--color-primary);
-    color: var(--color-text-light);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: background-color 0.2s;
-}
-
-.btn:hover {
-    background: var(--color-primary-hover);
-}
-
-.btn-secondary {
-    background: var(--color-secondary);
-    color: var(--color-text);
-}
-
-.btn-secondary:hover {
-    background: var(--color-brown);
-    color: var(--color-text-light);
-}
-
-/* Сообщения */
-.alert {
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-}
-
-.alert-error {
-    background: #ffe2e2;
-    color: #a70000;
-}
-
-.alert-success {
-    background: #e6ffe6;
-    color: #006600;
-}
-
-/* Таблицы */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1.5rem;
-}
-
-th, td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    color: var(--color-text);
-    font-weight: 500;
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-    .card {
-        padding: 1rem;
-    }
 }

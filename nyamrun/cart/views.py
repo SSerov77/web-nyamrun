@@ -71,3 +71,18 @@ def cart_clear_ajax(request):
         "cart/cart_sidebar.html", {"cart": cart}, request=request
     )
     return JsonResponse({"cart_html": cart_html})
+
+
+@require_POST
+def cart_remove_ajax(request, item_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "Авторизуйтесь"}, status=403)
+
+    cart = get_object_or_404(Cart, user=request.user)
+    item = get_object_or_404(CartItem, id=item_id, cart=cart)
+    item.delete()
+
+    cart_html = render_to_string(
+        "cart/cart_sidebar.html", {"cart": cart}, request=request
+    )
+    return JsonResponse({"cart_html": cart_html})
