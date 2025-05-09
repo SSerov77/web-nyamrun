@@ -10,6 +10,24 @@
 {% block content %}
 <div class="owner-dashboard">
   <h2>Личный кабинет владельца</h2>
+  <form method="get" class="dashboard-filters" style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+    <label>
+      Заведение:
+      <select name="place" onchange="this.form.submit()">
+        {% for place in places %}
+          <option value="{{ place.id }}" {% if place.id == selected_place.id %}selected{% endif %}>{{ place.name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      Период:
+      <select name="period" onchange="this.form.submit()">
+        <option value="day" {% if selected_period == 'day' %}selected{% endif %}>День</option>
+        <option value="week" {% if selected_period == 'week' %}selected{% endif %}>Неделя</option>
+        <option value="month" {% if selected_period == 'month' %}selected{% endif %}>Месяц</option>
+      </select>
+    </label>
+  </form>
   {# Блоки заведений #}
   {% for place in places %}
     <div class="place-info-block">
@@ -38,70 +56,74 @@
     </div>
   {% endfor %}
 
-  {# Текущие заказы #}
-  <h3>Актуальные заказы</h3>
-  {% if orders %}
-  <ul class="order-list">
-      {% for order in orders %}
-      <li class="order-card">
-          <div class="order-header" onclick="this.parentElement.classList.toggle('active')">
-          <div class="order-main-info">
-              <div class="order-number">#{{ order.id }}</div>
-              <div>
-              <div class="order-datetime">{{ order.created_at|date:'d.m.Y H:i' }}</div>
-              <div class="order-client">{{ order.user.username }}</div>
-              </div>
-          </div>
-          <div class="order-toggle">∨</div>
-          </div>
-          <div class="order-details">
-          <table class="order-items">
-              <thead>
-              <tr>
-                  <th>Товар</th>
-                  <th>Кол-во</th>
-                  <th>Цена</th>
-                  <th>Сумма</th>
-              </tr>
-              </thead>
-              <tbody>
-              {% for item in order.items.all %}
-                  <tr>
-                  <td>
-                      {{ item.product.name }}
-                      {% if item.options.all %}
-                      <div class="item-options">
-                          {% for option in item.options.all %}
-                          <div class="item-option">
-                              <span class="option-name">{{ option.option_group.name }}</span>
-                              <span class="option-value">{{ option.name }}</span>
-                              {% if option.price > 0 %}
-                              <span class="option-price">+{{ option.price }} ₽</span>
-                              {% endif %}
-                          </div>
-                          {% endfor %}
-                      </div>
-                      {% endif %}
-                  </td>
-                  <td>×{{ item.quantity }}</td>
-                  <td>{{ item.price }} ₽</td>
-                  <td>{{ item.total_price }} ₽</td>
-                  </tr>
-              {% endfor %}
-              </tbody>
-          </table>
-          <div class="order-total">Итого: {{ order.total_price }} ₽</div>
-          </div>
-          {% if order.comment %}
-          <div style="padding:0 1rem 1rem;color:#666;font-size:0.9rem;">
-              <strong>Комментарий:</strong> {{ order.comment }}
-          </div>
-          {% endif %}
-      </li>
-      {% endfor %}
-  </ul>
-  {% else %}
-  <div class="empty-state">Нет активных заказов</div>
-  {% endif %}
+  <h3>Общая статистика</h3>
+  <div class="charts-grid">
+    <div class="chart-card">
+      <table>
+        <tr><th>Всего заказов</th><td>{{ stats.total_orders }}</td></tr>
+        <tr><th>Общая выручка</th><td>{{ stats.total_revenue }} ₽</td></tr>
+        <tr><th>Средний чек</th><td>{{ stats.average_check|floatformat:2 }} ₽</td></tr>
+      </table>
+      <h4>Заказы по статусам</h4>
+      <table>
+        {% for status in stats.status_breakdown %}
+          <tr>
+            <td>{{ status.status }}</td>
+            <td>{{ status.count }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  
+    <div class="chart-card">
+      <h4>График заказов</h4>
+      <div class="chart-wrapper">
+        <canvas id="ordersChart"></canvas>
+      </div>
+    </div>
+  </div>
+  
+  <h3>Статистика по адресам</h3>
+  <div class="charts-grid">
+    {% for item in address_stats %}
+      <div class="chart-card">
+        <h4>{{ item.address }}</h4>
+        <table>
+          <tr><th>Заказов</th><td>{{ item.total_orders }}</td></tr>
+          <tr><th>Выручка</th><td>{{ item.total_revenue }} ₽</td></tr>
+          <tr><th>Средний чек</th><td>{{ item.average_check|floatformat:2 }} ₽</td></tr>
+        </table>
+      </div>
+    {% empty %}
+      <div class="empty-chart">Нет данных по адресам</div>
+    {% endfor %}
+  </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('ordersChart').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [{% for point in stats.orders_chart %}"{{ point.label }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+      datasets: [{
+        label: 'Количество заказов',
+        data: [{% for point in stats.orders_chart %}{{ point.value }}{% if not forloop.last %}, {% endif %}{% endfor %}],
+        borderWidth: 2,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      }
+    }
+  });
+</script>
 {% endblock %}
