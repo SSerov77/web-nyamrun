@@ -28,7 +28,12 @@
         </div>
       </div>
       <div class="order-summary">
-        <h2>Ваш заказ</h2>
+        <div class="order-summary-header">
+          <h2>Ваш заказ</h2>
+          {% if items %}
+            <button type="button" class="clear-cart">Очистить корзину</button>
+          {% endif %}
+        </div>
         {% if items %}
           {% include 'orders/_order_items.html' %}
         {% else %}
@@ -57,7 +62,9 @@
           if (data.is_empty) {
             // Create empty cart message
             const emptyCartHTML = `
-              <h2>Ваш заказ</h2>
+              <div class="order-summary-header">
+                <h2>Ваш заказ</h2>
+              </div>
               <div class="empty-cart">
                 <img src="{% static 'imgs/empty-cart.png' %}" alt="Ваша корзина пуста">
                 <p>Ваша корзина пуста!</p>
@@ -83,6 +90,28 @@
           }
         }
       }
+
+      // Очистка корзины
+      document.querySelector('.order-summary').addEventListener('click', async (e) => {
+        if (e.target.classList.contains('clear-cart')) {
+          try {
+            const response = await fetch('/cart/clear-ajax/', {
+              method: 'POST',
+              headers: {
+                'X-CSRFToken': csrfToken,
+                'X-Requested-With': 'XMLHttpRequest',
+              },
+            });
+            if (response.ok) {
+              await refreshOrderItems();
+            } else {
+              alert('Ошибка очистки корзины');
+            }
+          } catch (error) {
+            alert('Произошла ошибка при обработке запроса');
+          }
+        }
+      });
 
       document.body.addEventListener('click', async (e) => {
         if (e.target.classList.contains('item-qty-btn')) {

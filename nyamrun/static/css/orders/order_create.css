@@ -89,6 +89,33 @@ textarea {
     margin-bottom: 20px;
 }
 
+.order-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.order-summary-header h2 {
+    margin-bottom: 0;
+}
+
+.clear-cart {
+    background: none;
+    border: none;
+    color: #6b6b6b;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: .2s;
+}
+
+.clear-cart:hover {
+    color: var(--color-text-dark);
+}
+
 .order-items {
     list-style: none;
     padding: 0;
