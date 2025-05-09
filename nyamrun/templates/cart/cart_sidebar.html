@@ -1,3 +1,4 @@
+{% load static %}
 <div class="cart-header">
   <div class="cart-title">
     <h3>Корзина</h3>
@@ -27,7 +28,10 @@
         </div>
       {% endfor %}
     {% else %}
-      <p>Корзина пуста</p>
+      <div class="empty-cart">
+        <img src="{% static 'imgs/empty-cart.png' %}" alt="Ваша корзина пуста">
+        <p>Ваша корзина пуста!</p>
+      </div>
     {% endif %}
   </div>
 </div>

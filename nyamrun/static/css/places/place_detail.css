@@ -383,3 +383,35 @@
     margin: 0 0 5px 0;
     white-space: nowrap;
 }
+
+/* Стили для пустой корзины */
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.empty-cart img {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+.empty-cart p {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 5px 0;
+}
+
+.empty-cart a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.empty-cart a:hover {
+    text-decoration: underline;
+}
