@@ -1,3 +1,4 @@
+/* Модальное окно: overlay */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -8,6 +9,7 @@
     z-index: 1000;
 }
 
+/* Модальное окно: контейнер */
 .modal-window {
     background: var(--color-white);
     max-width: 900px;
@@ -21,6 +23,7 @@
     position: relative;
 }
 
+/* Кнопка закрытия */
 .modal-close {
     position: absolute;
     top: 10px;
@@ -28,8 +31,8 @@
     background: none;
     border: none;
     font-size: 28px;
-    cursor: pointer;
     color: #999;
+    cursor: pointer;
     transition: color 0.3s;
 }
 
@@ -37,6 +40,7 @@
     color: #333;
 }
 
+/* Контент модалки */
 .modal-content {
     display: flex;
     justify-content: center;
@@ -44,6 +48,10 @@
     padding: 30px;
     gap: 30px;
     border-bottom: 1px solid #ddd;
+}
+
+.modal-left {
+    flex: 0 0 250px;
 }
 
 .modal-left img {
@@ -64,6 +72,7 @@
     font-size: 28px;
 }
 
+/* Цена и количество */
 .price-qty {
     display: flex;
     align-items: center;
@@ -78,17 +87,16 @@
 
 .quantity {
     display: flex;
+    align-items: center;
     background: #f0f0f0;
     border-radius: 6px;
     overflow: hidden;
-    align-items: center;
 }
 
 .qty-btn {
     border: none;
     background: #ddd;
     padding: 6px 12px;
-    cursor: pointer;
     font-size: 20px;
     user-select: none;
     width: 34px;
@@ -96,7 +104,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .qty-btn:hover {
@@ -119,21 +128,28 @@ input::-webkit-outer-spin-button {
     margin: 0;
 }
 
+/* Кнопка добавить */
 .add-btn {
     border-radius: 10px;
     width: 156px;
     height: 51px;
     background-color: var(--color-button-bg);
-    border: none;
     color: var(--color-button-text);
     font-weight: 400;
     font-size: 14px;
+    border: none;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .add-btn:hover {
     background-color: var(--color-button-hover);
+}
+
+/* Опции */
+.options {
+    border-top: 1px solid #d4d4d4;
+    padding-top: 20px;
 }
 
 .options h4 {
@@ -151,6 +167,7 @@ input::-webkit-outer-spin-button {
     user-select: none;
 }
 
+/* Описание */
 .modal-description {
     padding: 15px 30px 30px;
     font-size: 12px;

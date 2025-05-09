@@ -31,7 +31,6 @@
 }
 
 /* Шрифты */
-
 @font-face {
     font-family: "Chocolate";
     src: url("../fonts/ChocolateClassicalSans-Regular.ttf") format("woff2");
@@ -39,7 +38,6 @@
 }
 
 /* Общие утилиты */
-
 * {
     font-family: "Chocolate", sans-serif;
     margin: 0;
@@ -64,7 +62,6 @@ body {
 }
 
 /* HEADER */
-
 header {
     width: 100%;
     height: 100px;
@@ -149,8 +146,7 @@ header {
     color: var(--color-text);
 }
 
-/* MIAN */
-
+/* MAIN */
 main {
     min-height: 75vh;
 }
@@ -169,8 +165,6 @@ main {
 }
 
 /* FOOTER */
-
-/* Общие стили */
 .footer {
     background-color: #000;
     color: #eee;
@@ -263,7 +257,6 @@ main {
     background-size: contain;
     background-repeat: no-repeat;
 }
-
 
 .footer__newsletter {
     display: inline-flex;
