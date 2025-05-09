@@ -12,14 +12,16 @@
           </div>
         {% endif %}
       </div>
-      <div class="item-quantity">
-        <div class="item-qty-bg">
-          <button type="button" class="item-qty-btn minus" data-item-id="{{ item.id }}">−</button>
-          <span class="item-qty">{{ item.quantity }}</span>
-          <button type="button" class="item-qty-btn plus" data-item-id="{{ item.id }}">+</button>
+      <div class="item-controls-row">
+        <div class="item-quantity">
+          <div class="item-qty-bg">
+            <button type="button" class="item-qty-btn minus" data-item-id="{{ item.id }}">−</button>
+            <span class="item-qty">{{ item.quantity }}</span>
+            <button type="button" class="item-qty-btn plus" data-item-id="{{ item.id }}">+</button>
+          </div>
         </div>
+        <span class="item-price" data-item-id="{{ item.id }}">{{ item.get_total_price }}₽</span>
       </div>
-      <span class="item-price" data-item-id="{{ item.id }}">{{ item.get_total_price }}₽</span>
     </li>
   {% endfor %}
 </ul> 

@@ -163,5 +163,12 @@ def order_items_partial(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
     items = cart.items.select_related("product").prefetch_related("options")
     total_price = cart.get_total_price()
-    html = render_to_string("orders/_order_items.html", {"items": items, "total_price": total_price}, request=request)
+    html = render_to_string(
+        "orders/_order_items.html",
+        {
+            "items": items,
+            "total_price": total_price
+        },
+        request=request
+    )
     return JsonResponse({"html": html, "total_price": total_price})

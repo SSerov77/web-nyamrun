@@ -15,9 +15,9 @@ textarea {
 
 .order-container {
     display: flex;
-    gap: 40px;
+    gap: 16px;
     background-color: var(--color-card-bg);
-    padding: 30px;
+    padding: 16px;
     border-radius: 24px;
     max-width: 1440px;
     width: 100%;
@@ -31,7 +31,7 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 500px;
+    max-width: 320px;
 }
 
 .order-form h2 {
@@ -77,7 +77,9 @@ textarea {
 }
 
 .order-summary {
-    width: 500px;
+    width: 560px;
+    box-sizing: border-box;
+    padding-right: 12px;
 }
 
 .order-summary h2 {
@@ -92,6 +94,7 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    box-sizing: border-box;
 }
 
 .order-items li {
@@ -100,6 +103,10 @@ textarea {
     justify-content: space-between;
     gap: 24px;
     padding: 12px 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .order-items img {
@@ -192,6 +199,9 @@ textarea {
     color: #222;
     margin-left: 12px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90px;
 }
 
 .checkout {
@@ -232,4 +242,126 @@ textarea {
 
 .empty-cart a:hover {
     color: var(--color-primary-hover);
+}
+
+.item-controls-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-width: 0;
+    max-width: 100%;
+    flex-shrink: 1;
+}
+
+@media (max-width: 1200px) {
+  .order-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    padding: 20px;
+  }
+  .order-summary {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .order-page {
+    padding: 20px 4px;
+  }
+  .order-container {
+    flex-direction: column;
+    gap: 16px;
+    padding: 10px;
+    min-width: 0;
+  }
+  .order-summary {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .order-items li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+  }
+  .order-items img {
+    width: 56px;
+    height: 56px;
+    margin-right: 0;
+    margin-bottom: 4px;
+  }
+  .item-main-info {
+    margin-right: 0;
+    min-width: 0;
+  }
+  .item-controls-row {
+    width: 100%;
+    max-width: 320px;
+    margin-left: 0;
+    margin-top: 8px;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+  .item-quantity {
+    margin-right: 0;
+    min-width: 0;
+    width: auto;
+    justify-content: flex-start;
+  }
+  .item-qty-bg {
+    min-width: 0;
+    padding: 4px 10px;
+    gap: 10px;
+    height: 32px;
+  }
+  .item-price {
+    align-self: center;
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .order-summary h2 {
+    font-size: 18px;
+  }
+  .order-items img {
+    width: 40px;
+    height: 40px;
+  }
+  .item-title {
+    font-size: 14px;
+  }
+  .item-option {
+    font-size: 11px;
+  }
+  .item-qty-btn {
+    font-size: 16px;
+    width: 24px;
+    height: 24px;
+  }
+  .item-qty {
+    font-size: 13px;
+  }
+  .item-price {
+    font-size: 14px;
+  }
+  .order-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .checkout {
+    width: 100%;
+    font-size: 14px;
+    height: 36px;
+  }
+  .total-price {
+    font-size: 16px;
+    margin-left: 0;
+    text-align: right;
+  }
 }
