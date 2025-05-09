@@ -32,7 +32,7 @@ def get_time_choices(place=None):
         return slots
     else:
         open_from = datetime.combine(day, start_t)
-        open_to = datetime.combine(day + timedelta(days=1), end_t)  # следующий день!
+        open_to = datetime.combine(day, dt_time(23, 59))
         if min_time < open_from:
             min_time = open_from
         if min_time > open_to:

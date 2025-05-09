@@ -9,12 +9,12 @@ class OrderItemInline(admin.TabularInline):
     fields = ("product", "quantity", "get_options", "total_price")
     readonly_fields = ("product", "quantity", "get_options", "total_price")
 
-    def get_options(self, obj):
+    def get_options(self, obj: OrderItem) -> str:
         return ", ".join([opt.name for opt in obj.options.all()])
 
     get_options.short_description = "Опции"
 
-    def total_price(self, obj):
+    def total_price(self, obj: OrderItem) -> float:
         return obj.total_price
 
     total_price.short_description = "Сумма по позиции, ₽"
@@ -49,10 +49,12 @@ class OrderAdmin(admin.ModelAdmin):
         "payment_id",
     )
 
-    def view_items(self, obj):
-        return " | ".join(
-            f"{item.product.name} x{item.quantity}" for item in obj.items.all()
-        )
+    def view_items(self, obj: Order) -> str:
+        items = [
+            f"{item.product.name} x{item.quantity}"
+            for item in obj.items.all()
+        ]
+        return " | ".join(items)
 
     view_items.short_description = "Позиции заказа"
 
