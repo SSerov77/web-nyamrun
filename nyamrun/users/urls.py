@@ -1,38 +1,44 @@
-from django.urls import path
 from django.contrib.auth import views
+from django.urls import path
 
 import users.views
-from users.forms import (
-    CustomAuthenticationForm,
-    CustomPasswordChangeForm,
-) 
-
+from users.forms import CustomAuthenticationForm, CustomPasswordChangeForm
 
 urlpatterns = [
-    path('signup/', users.views.signup, name='signup'),
+    path("signup/", users.views.signup, name="signup"),
     path(
-        'login/',
+        "login/",
         views.LoginView.as_view(
-            template_name='users/login.html',
-            authentication_form=CustomAuthenticationForm
+            template_name="users/login.html",
+            authentication_form=CustomAuthenticationForm,
         ),
-        name='login'
+        name="login",
     ),
-    path('logout/', views.LogoutView.as_view(), name='logout'),
-    path('profile/', users.views.ProfileView.as_view(), name='profile'),
-    path('manager/profile/', users.views.ManagerProfileView.as_view(), name='manager_profile'),
-    path('manager/orders/<int:order_id>/status/', users.views.ManagerOrderStatusUpdateView.as_view(), name='manager-order-update-status'),
+    path("logout/", views.LogoutView.as_view(), name="logout"),
+    path("profile/", users.views.ProfileView.as_view(), name="profile"),
     path(
-        'password_change/',
+        "manager/profile/",
+        users.views.ManagerProfileView.as_view(),
+        name="manager_profile",
+    ),
+    path(
+        "manager/orders/<int:order_id>/status/",
+        users.views.ManagerOrderStatusUpdateView.as_view(),
+        name="manager-order-update-status",
+    ),
+    path(
+        "password_change/",
         views.PasswordChangeView.as_view(
-            template_name='users/password_change.html',
-            form_class=CustomPasswordChangeForm
+            template_name="users/password_change.html",
+            form_class=CustomPasswordChangeForm,
         ),
-        name='password_change'
+        name="password_change",
     ),
     path(
-        'password_change/done/',
-        views.PasswordChangeDoneView.as_view(template_name='users/password_change_done.html'),
-        name='password_change_done'),
-
+        "password_change/done/",
+        views.PasswordChangeDoneView.as_view(
+            template_name="users/password_change_done.html"
+        ),
+        name="password_change_done",
+    ),
 ]

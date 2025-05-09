@@ -5,20 +5,30 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0007_product_place'),
+        ("catalog", "0007_product_place"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='product',
-            name='price',
-            field=models.DecimalField(decimal_places=2, max_digits=8, validators=[django.core.validators.MinValueValidator(0)], verbose_name='Цена'),
+            model_name="product",
+            name="price",
+            field=models.DecimalField(
+                decimal_places=2,
+                max_digits=8,
+                validators=[django.core.validators.MinValueValidator(0)],
+                verbose_name="Цена",
+            ),
         ),
         migrations.AlterField(
-            model_name='productoption',
-            name='additional_price',
-            field=models.DecimalField(decimal_places=2, default=0, max_digits=6, validators=[django.core.validators.MinValueValidator(0)], verbose_name='Доплата'),
+            model_name="productoption",
+            name="additional_price",
+            field=models.DecimalField(
+                decimal_places=2,
+                default=0,
+                max_digits=6,
+                validators=[django.core.validators.MinValueValidator(0)],
+                verbose_name="Доплата",
+            ),
         ),
     ]

@@ -5,25 +5,32 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('orders', '0004_remove_orderitem_payment_id_order_payment_id'),
+        ("orders", "0004_remove_orderitem_payment_id_order_payment_id"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='order',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, verbose_name='Дата обновления'),
+            model_name="order",
+            name="updated_at",
+            field=models.DateTimeField(auto_now=True, verbose_name="Дата обновления"),
         ),
         migrations.AlterField(
-            model_name='order',
-            name='total_price',
-            field=models.DecimalField(decimal_places=2, max_digits=10, validators=[django.core.validators.MinValueValidator(0)], verbose_name='Итоговая цена'),
+            model_name="order",
+            name="total_price",
+            field=models.DecimalField(
+                decimal_places=2,
+                max_digits=10,
+                validators=[django.core.validators.MinValueValidator(0)],
+                verbose_name="Итоговая цена",
+            ),
         ),
         migrations.AlterField(
-            model_name='orderitem',
-            name='quantity',
-            field=models.PositiveIntegerField(validators=[django.core.validators.MinValueValidator(1)], verbose_name='Количество'),
+            model_name="orderitem",
+            name="quantity",
+            field=models.PositiveIntegerField(
+                validators=[django.core.validators.MinValueValidator(1)],
+                verbose_name="Количество",
+            ),
         ),
     ]

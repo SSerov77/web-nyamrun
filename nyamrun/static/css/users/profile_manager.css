@@ -5,18 +5,15 @@ body {
 }
 
 .manager-dashboard {
-    max-width: 1100px;
-    margin: 2rem auto;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 2rem;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 h2,
 h3,
 h4 {
-    color: #222;
+    color: var(--color-text);
     font-weight: 500;
     margin-bottom: 1rem;
 }
@@ -37,55 +34,68 @@ h4 {
 
 /* Адрес */
 .address-card {
-    margin-bottom: 2rem;
-    padding: 1rem;
-    border-left: 4px solid #FF7A00;
-    background: #fff8f0;
+    background: var(--color-card-bg);
+    padding: 1.5rem;
     border-radius: 8px;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+    margin-bottom: 2rem;
+    color: var(--color-text);
 }
 
 /* Статистика */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
 .stat-box {
-    background: #fff;
+    background: var(--color-card-bg);
+    padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    padding: 1rem;
-    border-top: 3px solid #FF7A00;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
     text-align: center;
 }
 
+.stat-box h4 {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
 .stat-value {
-    font-size: 1.4rem;
+    font-size: 2rem;
     font-weight: 600;
-    color: #333;
-    margin-top: 0.5rem;
+    color: var(--color-text);
 }
 
 /* График */
 .chart-section {
+    background: var(--color-card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
     margin-bottom: 2rem;
 }
 
+.chart-section h3 {
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
 .chart-wrapper {
-    width: 100%;
-    max-width: 100%;
-    aspect-ratio: 16/9;
+    height: 300px;
     margin-top: 1rem;
 }
 
 .empty-chart {
-    background: #f2f2f2;
-    color: #777;
-    padding: 2rem;
-    border-radius: 8px;
     text-align: center;
+    color: #666;
+    padding: 2rem;
+    background: var(--color-card-bg);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
 }
 
 /* Таблица заказов */
@@ -102,8 +112,8 @@ h4 {
 
 .upcoming-table th,
 .upcoming-table td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #eee;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
     text-align: left;
 }
 
@@ -120,8 +130,7 @@ h4 {
     padding: 1rem;
     background: #ffe2e2;
     color: #a70000;
-    border-left: 4px solid #d00;
-    border-radius: 6px;
+    border-radius: 8px;
     margin-bottom: 2rem;
 }
 
@@ -129,6 +138,20 @@ h4 {
 @media (max-width: 768px) {
     .stats-grid {
         grid-template-columns: 1fr;
+    }
+
+    .manager-dashboard {
+        padding: 1rem;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    form select,
+    form button {
+        width: 100%;
     }
 }
 
@@ -147,83 +170,96 @@ h2 {
 }
 
 .order-card {
-    border-left: 4px solid #FF7A00;
-    padding: 1rem;
-    margin-bottom: 2rem;
+    background: var(--color-card-bg);
+    padding: 1.5rem;
     border-radius: 8px;
-    background: #fefefe;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+    margin-bottom: 1.5rem;
 }
 
 .order-header {
     display: flex;
     justify-content: space-between;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--color-text);
 }
 
 .order-meta {
-    font-size: 0.9rem;
+    color: #666;
     margin-bottom: 1rem;
-    color: #555;
 }
 
 .order-items {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 1rem;
-    font-size: 0.9rem;
 }
 
 .order-items th,
 .order-items td {
-    border-bottom: 1px solid #eee;
-    padding: 0.5rem;
+    padding: 1rem;
     text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-items th {
+    color: #666;
+    font-weight: 500;
 }
 
 .item-options {
-    margin-top: 0.3rem;
-    padding-left: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
     color: #666;
-    font-size: 0.85rem;
+}
+
+.item-options li {
+    margin-bottom: 0.25rem;
 }
 
 form {
-    margin-top: 0.5rem;
     display: flex;
-    align-items: center;
     gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
 }
 
 form select {
-    padding: 0.4rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: var(--color-filter-bg);
+    color: var(--color-text);
+    min-width: 200px;
 }
 
 form button {
-    background: #FF7A00;
-    color: white;
-    padding: 0.4rem 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: var(--color-text-light);
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 form button:hover {
-    background: #e06600;
+    background: var(--color-primary-hover);
 }
 
 .error-msg {
-    background: #ffe0e0;
-    color: #900;
+    background: #ffe2e2;
+    color: #a70000;
     padding: 1rem;
-    border-left: 4px solid #c00;
-    border-radius: 6px;
-    margin-bottom: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
 }
 
 .empty-state {
     text-align: center;
     padding: 2rem;
-    color: #777;
+    color: #666;
 }

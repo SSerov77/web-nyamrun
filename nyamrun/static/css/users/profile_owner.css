@@ -11,54 +11,70 @@ body {
 /* Основной контейнер */
 .owner-dashboard {
     max-width: 1200px;
-    margin: 2rem auto;
+    margin: 0 auto;
     padding: 2rem;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.dashboard-filters {
+    background: var(--color-card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.dashboard-filters select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: var(--color-filter-bg);
+    color: var(--color-text);
+    min-width: 200px;
 }
 
 /* Заголовки */
 .owner-dashboard h2 {
     font-size: 1.75rem;
     font-weight: 500;
-    color: #222;
+    color: var(--color-text);
     margin: 0 0 2rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #ddd;
 }
 
 .owner-dashboard h3 {
     font-size: 1.5rem;
     font-weight: 500;
-    color: #222;
+    color: var(--color-text);
     margin: 2.5rem 0 1.5rem;
 }
 
 .owner-dashboard h4 {
     font-size: 1.25rem;
     font-weight: 500;
-    color: #222;
+    color: var(--color-text);
     margin: 0 0 1.25rem;
 }
 
 /* Блок информации о заведении */
 .place-info-block {
     display: flex;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: 2rem;
+    background: var(--color-card-bg);
     padding: 1.5rem;
-    background: #fff;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid #FF7A00;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+    margin-bottom: 2rem;
 }
 
 .place-info-img {
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 .place-info-details {
@@ -66,81 +82,69 @@ body {
 }
 
 .place-info-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    color: #222;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1rem;
 }
 
 .place-info-cat,
 .place-info-addr,
 .place-info-type {
-    font-size: 0.9rem;
     color: #666;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
 }
 
 /* Статистика и графики */
 .charts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
 .chart-card {
-    background: #fff;
+    background: var(--color-card-bg);
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    border-top: 3px solid #FF7A00;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+}
+
+.chart-card h4 {
+    color: var(--color-text);
+    margin-bottom: 1rem;
 }
 
 .chart-card table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 1.5rem;
-    font-size: 0.9rem;
+}
+
+.chart-card th,
+.chart-card td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
 .chart-card th {
-    text-align: left;
-    padding: 0.5rem;
-    font-weight: 500;
     color: #666;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.chart-card td {
-    padding: 0.5rem;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.chart-card tr:last-child td {
-    border-bottom: none;
+    font-weight: 500;
 }
 
 .chart-wrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16/9;
-}
-
-.empty-state {
-    padding: 2rem;
-    text-align: center;
-    color: #999;
-    background: #fafafa;
-    border-radius: 8px;
+    height: 300px;
+    margin-top: 1rem;
 }
 
 .empty-chart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: #999;
-    font-size: 0.9rem;
+    text-align: center;
+    color: #666;
+    padding: 2rem;
+    background: var(--color-card-bg);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
 }
 
 /* Стили для опций товаров */
@@ -165,7 +169,7 @@ body {
 }
 
 .option-price {
-    color: #FF7A00;
+    color: var(--color-primary);
     font-weight: 500;
 }
 

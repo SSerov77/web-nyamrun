@@ -1,6 +1,5 @@
-from PIL import Image
-
 from django import forms
+from PIL import Image
 
 from places.models import Place
 
@@ -8,15 +7,13 @@ from places.models import Place
 class PlaceAdminForm(forms.ModelForm):
     class Meta:
         model = Place
-        fields = '__all__'
+        fields = "__all__"
         help_texts = {
-            'image': (
-                'Минимальный размер: 880x330 пикселей.'
-            ),
+            "image": ("Минимальный размер: 880x330 пикселей."),
         }
 
     def clean_image(self):
-        image = self.cleaned_data.get('image')
+        image = self.cleaned_data.get("image")
         if image:
             try:
                 img = Image.open(image)

@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('places', '0009_placetype_alter_place_type'),
+        ("places", "0009_placetype_alter_place_type"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='placetype',
-            name='code',
+            model_name="placetype",
+            name="code",
         ),
         migrations.AddField(
-            model_name='placetype',
-            name='slug',
-            field=models.SlugField(default=2, unique=True, verbose_name='Код типа'),
+            model_name="placetype",
+            name="slug",
+            field=models.SlugField(default=2, unique=True, verbose_name="Код типа"),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='placetype',
-            name='name',
-            field=models.CharField(max_length=100, verbose_name='Название типа'),
+            model_name="placetype",
+            name="name",
+            field=models.CharField(max_length=100, verbose_name="Название типа"),
         ),
     ]

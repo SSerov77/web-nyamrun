@@ -1,16 +1,16 @@
-from django.urls import reverse
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 
-from places.models import Place, PlaceType
 from cart.models import Cart
-from catalog.models import Product, Category
+from catalog.models import Category, Product
+from places.models import Place, PlaceType
 
 
 def place_list(request):
     places = Place.objects.all()
-    selected_types = request.GET.getlist('type')
-    selected_cuisines = request.GET.getlist('cuisine')
+    selected_types = request.GET.getlist("type")
+    selected_cuisines = request.GET.getlist("cuisine")
 
     if selected_types:
         places = places.filter(type__code__in=selected_types)
@@ -26,18 +26,17 @@ def place_list(request):
     place_types = PlaceType.objects.all()
 
     context = {
-        'places': places,
-        'categories': categories,
-        'place_types': place_types,
-        'selected_types': selected_types,
-        'selected_cuisines': selected_cuisines,
+        "places": places,
+        "categories": categories,
+        "place_types": place_types,
+        "selected_types": selected_types,
+        "selected_cuisines": selected_cuisines,
     }
 
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return render(request, 'places/place_list_items.html', context)
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return render(request, "places/place_list_items.html", context)
     else:
-        return render(request, 'places/place_list.html', context)
-
+        return render(request, "places/place_list.html", context)
 
 
 def place_detail(request, pk):
@@ -46,31 +45,45 @@ def place_detail(request, pk):
     categories_with_items = []
     for category in categories:
         items = Product.objects.filter(place=place, category=category)
-        categories_with_items.append({
-            'category': category,
-            'items': items,
-        })
+        categories_with_items.append(
+            {
+                "category": category,
+                "items": items,
+            }
+        )
     cart, _ = Cart.objects.get_or_create(user=request.user)
 
-    return render(request, 'places/place_detail.html', {
-        'place': place,
-        'categories': categories_with_items,
-        'cart': cart,
-    })
+    return render(
+        request,
+        "places/place_detail.html",
+        {
+            "place": place,
+            "categories": categories_with_items,
+            "cart": cart,
+        },
+    )
 
 
 def product_modal_data(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     options = product.options.all()
-    options_data = [{'id': opt.id, 'name': opt.name, 'additional_price': float(
-        opt.additional_price)} for opt in options]
+    options_data = [
+        {
+            "id": opt.id,
+            "name": opt.name,
+            "additional_price": float(opt.additional_price),
+        }
+        for opt in options
+    ]
 
-    return JsonResponse({
-        'id': product.id,
-        'name': product.name,
-        'price': float(product.price),
-        'image_url': product.image.url if product.image else '',
-        'description': product.description,
-        'options': options_data,
-        'add_url': reverse('cart_add_ajax', args=[product.id]),
-    })
+    return JsonResponse(
+        {
+            "id": product.id,
+            "name": product.name,
+            "price": float(product.price),
+            "image_url": product.image.url if product.image else "",
+            "description": product.description,
+            "options": options_data,
+            "add_url": reverse("cart_add_ajax", args=[product.id]),
+        }
+    )

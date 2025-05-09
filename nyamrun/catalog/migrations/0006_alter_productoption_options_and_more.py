@@ -4,23 +4,30 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0005_remove_product_place'),
+        ("catalog", "0005_remove_product_place"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='productoption',
-            options={'verbose_name': 'Опция товара', 'verbose_name_plural': 'Опции к товарам'},
+            name="productoption",
+            options={
+                "verbose_name": "Опция товара",
+                "verbose_name_plural": "Опции к товарам",
+            },
         ),
         migrations.RemoveField(
-            model_name='productoption',
-            name='product',
+            model_name="productoption",
+            name="product",
         ),
         migrations.AddField(
-            model_name='product',
-            name='options',
-            field=models.ManyToManyField(blank=True, related_name='products', to='catalog.productoption', verbose_name='Опции к товару'),
+            model_name="product",
+            name="options",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="products",
+                to="catalog.productoption",
+                verbose_name="Опции к товару",
+            ),
         ),
     ]

@@ -3,23 +3,27 @@
     <h3>Корзина</h3>
     <button class="clear-cart">Очистить</button>
   </div>
-
   <div class="cart-items">
     {% if cart.items.all %}
       {% for item in cart.items.all %}
         <div class="cart-item">
           <div class="cart-item-info">
-            <strong><p>{{ item.product.name }}</p></strong>
+            <strong>
+              <p>{{ item.product.name }}</p>
+            </strong>
             {% if item.options.all %}
-            <small>
-              (Опции:
-              {% for option in item.options.all %}
-                {{ option.name }}{% if not forloop.last %}, {% endif %}
-              {% endfor %}
-              )
-            </small>
+              <small>
+                (Опции:
+                {% for option in item.options.all %}
+                  {{ option.name }}
+                  {% if not forloop.last %},{% endif %}
+                {% endfor %}
+                )
+              </small>
             {% endif %}
-            <strong><p>x{{ item.quantity }}</p></strong>
+            <strong>
+              <p>x{{ item.quantity }}</p>
+            </strong>
           </div>
           <p class="cart-item-price">{{ item.get_total_price }}₽</p>
         </div>

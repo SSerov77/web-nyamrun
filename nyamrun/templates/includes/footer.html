@@ -1,62 +1,73 @@
 {% load static %}
 <footer class="footer">
-    <div class="footer__top container">
-      <div class="footer__brand">
-        <a href="{% url 'home' %}" class="logo">
-            <img src="{% static 'imgs/logo/logo-light.svg' %}" alt="НямРан" class="footer__logo">
-        </a>
-        <p class="footer__desc">
-          НямРан работает только с проверенными заведениями.<br>
-          Вместе с ними мы хотим сделать ваш день чуточку лучше!
-        </p>
+  <div class="footer__top container">
+    <div class="footer__brand">
+      <a href="{% url 'home' %}" class="logo">
+        <img src="{% static 'imgs/logo/logo-light.svg' %}"
+             alt="НямРан"
+             class="footer__logo">
+      </a>
+      <p class="footer__desc">
+        НямРан работает только с проверенными заведениями.
+        <br>
+        Вместе с ними мы хотим сделать ваш день чуточку лучше!
+      </p>
+    </div>
+    <div class="footer__nav">
+      <div class="footer__column">
+        <h3 class="footer__title">Страницы</h3>
+        <ul class="footer__list">
+          <li>
+            <a href="{% url 'home' %}">Главная</a>
+          </li>
+          <li>
+            <a href="{% url 'order_create' %}">Ваша корзина</a>
+          </li>
+          <li>
+            <a href="{% url 'place_list' %}">Наши заведения</a>
+          </li>
+        </ul>
       </div>
-  
-      <div class="footer__nav">
-        <div class="footer__column">
-          <h3 class="footer__title">Страницы</h3>
-          <ul class="footer__list">
-            <li><a href="{% url 'home' %}">Главная</a></li>
-            <li><a href="{% url 'order_create' %}">Ваша корзина</a></li>
-            <li><a href="{% url 'place_list' %}">Наши заведения</a></li>
-          </ul>
-        </div>
-        <div class="footer__column">
-          <h3 class="footer__title">Поддержка</h3>
-          <ul class="footer__list">
-            <li><a href="{% url 'home' %}">Помощь</a></li>
-            <li><a href="{% url 'home' %}">Связаться с нами</a></li>
-            <li><a href="{% url 'home' %}">Политика файлов cookie</a></li>
-          </ul>
-        </div>
-      </div>
-  
-      <div class="footer__social">
-        <div class="footer__icons">
-          <!-- замените # на реальные ссылки -->
-          <a href="#" aria-label="Наш Вконтакте" class="icon">
-            <img src="{% static 'imgs/icons/vkontakte.svg' %}" alt="Вконтакте">
-          </a>
-          <a href="#" aria-label="Наш Телеграм" class="icon">
-            <img src="{% static 'imgs/icons/telegram.svg' %}" alt="Телеграм">
-          </a>
-          <a href="#" aria-label="Наш Тикток" class="icon">
-            <img src="{% static 'imgs/icons/tiktok.svg' %}" alt="Тикток">
-          </a>
-        </div>
-        <a href="#" class="footer__newsletter">
-          Подписаться
-          <span class="footer__arrow">→</span>
-        </a>
+      <div class="footer__column">
+        <h3 class="footer__title">Поддержка</h3>
+        <ul class="footer__list">
+          <li>
+            <a href="{% url 'home' %}">Помощь</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}">Связаться с нами</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}">Политика файлов cookie</a>
+          </li>
+        </ul>
       </div>
     </div>
-  
-    <div class="footer__bottom container">
-      <p class="footer__copy">© 2025 НямРан – Все права защищены</p>
-      <nav class="footer__legal">
-        <a href="#">Условия использования</a>
-        <span class="footer__sep">|</span>
-        <a href="#">Политика конфиденциальности</a>
-      </nav>
+    <div class="footer__social">
+      <div class="footer__icons">
+        <!-- замените # на реальные ссылки -->
+        <a href="#" aria-label="Наш Вконтакте" class="icon">
+          <img src="{% static 'imgs/icons/vkontakte.svg' %}" alt="Вконтакте">
+        </a>
+        <a href="#" aria-label="Наш Телеграм" class="icon">
+          <img src="{% static 'imgs/icons/telegram.svg' %}" alt="Телеграм">
+        </a>
+        <a href="#" aria-label="Наш Тикток" class="icon">
+          <img src="{% static 'imgs/icons/tiktok.svg' %}" alt="Тикток">
+        </a>
+      </div>
+      <a href="#" class="footer__newsletter">
+        Подписаться
+        <span class="footer__arrow">→</span>
+      </a>
     </div>
+  </div>
+  <div class="footer__bottom container">
+    <p class="footer__copy">© 2025 НямРан – Все права защищены</p>
+    <nav class="footer__legal">
+      <a href="#">Условия использования</a>
+      <span class="footer__sep">|</span>
+      <a href="#">Политика конфиденциальности</a>
+    </nav>
+  </div>
 </footer>
-  

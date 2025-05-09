@@ -1,24 +1,28 @@
 {% load static %}
 <header class="header">
-    <div class="header-content">
-        <a href="{% url 'home' %}" class="logo">
-            <img src="{% static 'imgs/logo/logo.svg' %}" alt="logotype" class="logo">
+  <div class="header-content">
+    <a href="{% url 'home' %}" class="logo">
+      <img src="{% static 'imgs/logo/logo.svg' %}" alt="logotype" class="logo">
+    </a>
+    {% include 'includes/navbar.html' %}
+    {% if user.is_authenticated %}
+      <div class="user-info">
+        <a href="{% url 'order_create' %}">
+          <img src="{% static 'imgs/icons/basket.svg' %}"
+               alt="basket"
+               class="header__icons">
         </a>
-        {% include 'includes/navbar.html' %}
-        {% if user.is_authenticated %}
-        <div class="user-info">
-            <a href="{% url 'order_create' %}">
-                <img src="{% static 'imgs/icons/basket.svg' %}" alt="basket" class="header__icons">
-            </a>
-            <a href="{% url 'profile' %}">
-                <div class="user-profile">
-                    <img src="{% static 'imgs/icons/user.svg' %}" alt="user-logo" class="header__icons">
-                    <p class="username">{{ user.username }}</p>
-                </div>
-            </a>
-        </div>
-        {% else %}
-            <a href="{% url 'login' %}" class="login">Войти</a>
-        {% endif %}
-    </div>
+        <a href="{% url 'profile' %}">
+          <div class="user-profile">
+            <img src="{% static 'imgs/icons/user.svg' %}"
+                 alt="user-logo"
+                 class="header__icons">
+            <p class="username">{{ user.username }}</p>
+          </div>
+        </a>
+      </div>
+    {% else %}
+      <a href="{% url 'login' %}" class="login">Войти</a>
+    {% endif %}
+  </div>
 </header>

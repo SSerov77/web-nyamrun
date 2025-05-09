@@ -5,27 +5,48 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('places', '0008_address_manager'),
+        ("places", "0008_address_manager"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='PlaceType',
+            name="PlaceType",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code', models.SlugField(unique=True, verbose_name='Код типа (напр. cafe)')),
-                ('name', models.CharField(max_length=100, verbose_name='Название (напр. Кафе)')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "code",
+                    models.SlugField(unique=True, verbose_name="Код типа (напр. cafe)"),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        max_length=100, verbose_name="Название (напр. Кафе)"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Тип заведения',
-                'verbose_name_plural': 'Типы заведений',
+                "verbose_name": "Тип заведения",
+                "verbose_name_plural": "Типы заведений",
             },
         ),
         migrations.AlterField(
-            model_name='place',
-            name='type',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='places.placetype', verbose_name='Тип заведения'),
+            model_name="place",
+            name="type",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="places.placetype",
+                verbose_name="Тип заведения",
+            ),
         ),
     ]

@@ -5,81 +5,227 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='Название категории')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=100, verbose_name="Название категории"),
+                ),
             ],
             options={
-                'verbose_name': 'Категория',
-                'verbose_name_plural': 'Категории',
+                "verbose_name": "Категория",
+                "verbose_name_plural": "Категории",
             },
         ),
         migrations.CreateModel(
-            name='Place',
+            name="Place",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.CharField(choices=[('cafe', 'Кафе'), ('bakery', 'Пекарня'), ('coffee_shop', 'Кофейня')], default='cafe', max_length=20, verbose_name='Тип заведения')),
-                ('name', models.CharField(max_length=255, verbose_name='Название')),
-                ('image', models.ImageField(upload_to='place_images/', verbose_name='Изображение')),
-                ('working_hours', models.CharField(max_length=255, verbose_name='Время работы')),
-                ('categories', models.ManyToManyField(related_name='places', to='places.category', verbose_name='Категории товаров')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("cafe", "Кафе"),
+                            ("bakery", "Пекарня"),
+                            ("coffee_shop", "Кофейня"),
+                        ],
+                        default="cafe",
+                        max_length=20,
+                        verbose_name="Тип заведения",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, verbose_name="Название")),
+                (
+                    "image",
+                    models.ImageField(
+                        upload_to="place_images/", verbose_name="Изображение"
+                    ),
+                ),
+                (
+                    "working_hours",
+                    models.CharField(max_length=255, verbose_name="Время работы"),
+                ),
+                (
+                    "categories",
+                    models.ManyToManyField(
+                        related_name="places",
+                        to="places.category",
+                        verbose_name="Категории товаров",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Заведение',
-                'verbose_name_plural': 'Заведения',
+                "verbose_name": "Заведение",
+                "verbose_name_plural": "Заведения",
             },
         ),
         migrations.CreateModel(
-            name='Address',
+            name="Address",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('country', models.CharField(default='Россия', max_length=255, verbose_name='Страна')),
-                ('city', models.CharField(default='Не указан', max_length=255, verbose_name='Город')),
-                ('street', models.CharField(default='Не указан', max_length=255, verbose_name='Улица')),
-                ('house_number', models.CharField(default='Не указан', max_length=50, verbose_name='Дом')),
-                ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='addresses', to='places.place', verbose_name='Заведение')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "country",
+                    models.CharField(
+                        default="Россия", max_length=255, verbose_name="Страна"
+                    ),
+                ),
+                (
+                    "city",
+                    models.CharField(
+                        default="Не указан", max_length=255, verbose_name="Город"
+                    ),
+                ),
+                (
+                    "street",
+                    models.CharField(
+                        default="Не указан", max_length=255, verbose_name="Улица"
+                    ),
+                ),
+                (
+                    "house_number",
+                    models.CharField(
+                        default="Не указан", max_length=50, verbose_name="Дом"
+                    ),
+                ),
+                (
+                    "place",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="addresses",
+                        to="places.place",
+                        verbose_name="Заведение",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Адрес',
-                'verbose_name_plural': 'Адреса',
+                "verbose_name": "Адрес",
+                "verbose_name_plural": "Адреса",
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='Название товара')),
-                ('description', models.TextField(blank=True, verbose_name='Описание')),
-                ('price', models.DecimalField(decimal_places=2, max_digits=8, verbose_name='Цена')),
-                ('image', models.ImageField(upload_to='product_images/', verbose_name='Изображение')),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='products', to='places.category', verbose_name='Категория')),
-                ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='places.place', verbose_name='Заведение')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=255, verbose_name="Название товара"),
+                ),
+                ("description", models.TextField(blank=True, verbose_name="Описание")),
+                (
+                    "price",
+                    models.DecimalField(
+                        decimal_places=2, max_digits=8, verbose_name="Цена"
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(
+                        upload_to="product_images/", verbose_name="Изображение"
+                    ),
+                ),
+                (
+                    "category",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="products",
+                        to="places.category",
+                        verbose_name="Категория",
+                    ),
+                ),
+                (
+                    "place",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="products",
+                        to="places.place",
+                        verbose_name="Заведение",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Товар',
-                'verbose_name_plural': 'Товары',
+                "verbose_name": "Товар",
+                "verbose_name_plural": "Товары",
             },
         ),
         migrations.CreateModel(
-            name='ProductOption',
+            name="ProductOption",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='Название опции')),
-                ('additional_price', models.DecimalField(decimal_places=2, default=0, max_digits=6, verbose_name='Доплата')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='options', to='places.product', verbose_name='Товар')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=100, verbose_name="Название опции"),
+                ),
+                (
+                    "additional_price",
+                    models.DecimalField(
+                        decimal_places=2,
+                        default=0,
+                        max_digits=6,
+                        verbose_name="Доплата",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="options",
+                        to="places.product",
+                        verbose_name="Товар",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Опция товара',
-                'verbose_name_plural': 'Опции товаров',
+                "verbose_name": "Опция товара",
+                "verbose_name_plural": "Опции товаров",
             },
         ),
     ]

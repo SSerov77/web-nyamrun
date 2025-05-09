@@ -4,41 +4,40 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0002_alter_address_options_alter_category_options_and_more'),
+        ("catalog", "0002_alter_address_options_alter_category_options_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='product',
-            name='category',
+            model_name="product",
+            name="category",
         ),
         migrations.RemoveField(
-            model_name='place',
-            name='categories',
+            model_name="place",
+            name="categories",
         ),
         migrations.RemoveField(
-            model_name='product',
-            name='place',
+            model_name="product",
+            name="place",
         ),
         migrations.RemoveField(
-            model_name='productoption',
-            name='product',
+            model_name="productoption",
+            name="product",
         ),
         migrations.DeleteModel(
-            name='Address',
+            name="Address",
         ),
         migrations.DeleteModel(
-            name='Category',
+            name="Category",
         ),
         migrations.DeleteModel(
-            name='Place',
+            name="Place",
         ),
         migrations.DeleteModel(
-            name='Product',
+            name="Product",
         ),
         migrations.DeleteModel(
-            name='ProductOption',
+            name="ProductOption",
         ),
     ]

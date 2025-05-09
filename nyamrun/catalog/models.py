@@ -1,10 +1,10 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.text import slugify
-from django.core.validators import MinValueValidator
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Название категории')
+    name = models.CharField(max_length=100, verbose_name="Название категории")
     slug = models.SlugField(max_length=120, unique=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -16,70 +16,62 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
 
 
 class ProductOption(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Название опции')
+    name = models.CharField(max_length=100, verbose_name="Название опции")
     additional_price = models.DecimalField(
         max_digits=6,
         decimal_places=2,
         default=0,
-        verbose_name='Доплата',
-        validators=[MinValueValidator(0)]
+        verbose_name="Доплата",
+        validators=[MinValueValidator(0)],
     )
 
     def __str__(self):
-        return f'{self.name} (+{self.additional_price}₽)'
+        return f"{self.name} (+{self.additional_price}₽)"
 
     class Meta:
-        verbose_name = 'Опция товара'
-        verbose_name_plural = 'Опции к товарам'
+        verbose_name = "Опция товара"
+        verbose_name_plural = "Опции к товарам"
 
 
 class Product(models.Model):
     place = models.ForeignKey(
-        'places.Place',
+        "places.Place",
         on_delete=models.CASCADE,
-        related_name='products',
-        verbose_name='Заведение'
+        related_name="products",
+        verbose_name="Заведение",
     )
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
-        null=True, blank=True,
-        related_name='products',
-        verbose_name='Категория'
-    )
-    name = models.CharField(
-        max_length=255,
-        verbose_name='Название товара'
-    )
-    description = models.TextField(
+        null=True,
         blank=True,
-        verbose_name='Описание'
+        related_name="products",
+        verbose_name="Категория",
     )
+    name = models.CharField(max_length=255, verbose_name="Название товара")
+    description = models.TextField(blank=True, verbose_name="Описание")
     price = models.DecimalField(
         max_digits=8,
         decimal_places=2,
-        verbose_name='Цена',
-        validators=[MinValueValidator(0)]
+        verbose_name="Цена",
+        validators=[MinValueValidator(0)],
     )
-    image = models.ImageField(
-        upload_to='product_images/',
-        verbose_name='Изображение'
-    )
+    image = models.ImageField(upload_to="product_images/", verbose_name="Изображение")
     options = models.ManyToManyField(
         ProductOption,
         blank=True,
-        related_name='products',
-        verbose_name='Опции к товару'
+        related_name="products",
+        verbose_name="Опции к товару",
     )
 
     def __str__(self):
-        return f'{self.name} ({self.place.name})'
+        return f"{self.name} ({self.place.name})"
 
     class Meta:
-        verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
+        verbose_name = "Товар"
+        verbose_name_plural = "Товары"

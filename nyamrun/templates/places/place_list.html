@@ -1,48 +1,46 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Заведения{% endblock %}
-
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'css/places/place_list.css' %}">
+  <link rel="stylesheet" href="{% static 'css/places/place_list.css' %}">
 {% endblock %}
-
 {% block content %}
-<main class="container">
-  <form method="get" id="filter-form" action="{% url 'place_list' %}">
-    <div class="filters">
+  <main class="container">
+    <form method="get" id="filter-form" action="{% url 'place_list' %}">
+      <div class="filters">
         <div class="filter-group">
-            <h3>Заведения</h3>
-            <div class="filter-options filter-pills">
-                {% for place_type in place_types %}
-                <label class="pill">
-                    <input type="checkbox" name="type" value="{{ place_type.code }}"
-                        {% if place_type.code in selected_types %}checked{% endif %}>
-                    <span>{{ place_type.name }}</span>
-                </label>
-                {% endfor %}
-            </div>
-        </div>
-        
-        <div class="filter-group">
-            <h3>Категории товаров</h3>
-            <div class="filter-options filter-pills">
-            {% for category in categories %}
-            <label class="pill">
-                <input type="checkbox" name="cuisine" value="{{ category.id }}" {% if category.id|stringformat:"s" in selected_cuisines %}checked{% endif %}>
-                <span>{{ category.name }}</span>
-            </label>
+          <h3>Заведения</h3>
+          <div class="filter-options filter-pills">
+            {% for place_type in place_types %}
+              <label class="pill">
+                <input type="checkbox"
+                       name="type"
+                       value="{{ place_type.code }}"
+                       {% if place_type.code in selected_types %}checked{% endif %}>
+                <span>{{ place_type.name }}</span>
+              </label>
             {% endfor %}
-            </div>
+          </div>
         </div>
-    </div>
-    
-  </form>
-
-  <section class="category" id="places-container">
-    {% include 'places/place_list_items.html' %}
-  </section>
-</main>
-
-<script src="{% static 'js/places/filters.js' %}"></script>
+        <div class="filter-group">
+          <h3>Категории товаров</h3>
+          <div class="filter-options filter-pills">
+            {% for category in categories %}
+              <label class="pill">
+                <input type="checkbox"
+                       name="cuisine"
+                       value="{{ category.id }}"
+                       {% if category.id|stringformat:"s" in selected_cuisines %}checked{% endif %}>
+                <span>{{ category.name }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </form>
+    <section class="category" id="places-container">
+      {% include 'places/place_list_items.html' %}
+    </section>
+  </main>
+  <script src="{% static 'js/places/filters.js' %}"></script>
 {% endblock %}

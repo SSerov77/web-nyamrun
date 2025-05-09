@@ -1,4 +1,7 @@
-from datetime import datetime, timedelta, time as dt_time
+from datetime import datetime
+from datetime import time as dt_time
+from datetime import timedelta
+
 
 def get_time_choices(place=None):
     now = datetime.now()
@@ -24,7 +27,7 @@ def get_time_choices(place=None):
         slots = []
         cur = min_time
         while cur <= open_to:
-            slots.append((cur.strftime('%H:%M'), cur.strftime('%H:%M')))
+            slots.append((cur.strftime("%H:%M"), cur.strftime("%H:%M")))
             cur += timedelta(minutes=5)
         return slots
     else:
@@ -37,21 +40,23 @@ def get_time_choices(place=None):
         slots = []
         cur = min_time
         while cur <= open_to:
-            slots.append((cur.strftime('%H:%M'), cur.strftime('%H:%M')))
+            slots.append((cur.strftime("%H:%M"), cur.strftime("%H:%M")))
             cur += timedelta(minutes=5)
         return slots
 
 
 def parse_working_hours(working_hours):
     try:
-        start_str, end_str = working_hours.split('-')
+        start_str, end_str = working_hours.split("-")
         from datetime import time
-        start_h, start_m = map(int, start_str.strip().split(':'))
-        end_h, end_m = map(int, end_str.strip().split(':'))
+
+        start_h, start_m = map(int, start_str.strip().split(":"))
+        end_h, end_m = map(int, end_str.strip().split(":"))
         start_time = time(start_h, start_m)
         end_time = time(end_h, end_m)
-        is_overnight = (end_time <= start_time)
+        is_overnight = end_time <= start_time
         return start_time, end_time, is_overnight
     except Exception:
         from datetime import time
+
         return time(8, 0), time(22, 0), False

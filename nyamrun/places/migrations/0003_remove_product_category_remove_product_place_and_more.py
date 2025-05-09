@@ -4,38 +4,41 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('cart', '0003_alter_cartitem_options_alter_cartitem_product'),
-        ('catalog', '0004_initial'),
-        ('places', '0002_category_slug'),
+        ("cart", "0003_alter_cartitem_options_alter_cartitem_product"),
+        ("catalog", "0004_initial"),
+        ("places", "0002_category_slug"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='product',
-            name='category',
+            model_name="product",
+            name="category",
         ),
         migrations.RemoveField(
-            model_name='product',
-            name='place',
+            model_name="product",
+            name="place",
         ),
         migrations.RemoveField(
-            model_name='productoption',
-            name='product',
+            model_name="productoption",
+            name="product",
         ),
         migrations.AlterField(
-            model_name='place',
-            name='categories',
-            field=models.ManyToManyField(related_name='places', to='catalog.category', verbose_name='Категории товаров'),
+            model_name="place",
+            name="categories",
+            field=models.ManyToManyField(
+                related_name="places",
+                to="catalog.category",
+                verbose_name="Категории товаров",
+            ),
         ),
         migrations.DeleteModel(
-            name='Category',
+            name="Category",
         ),
         migrations.DeleteModel(
-            name='Product',
+            name="Product",
         ),
         migrations.DeleteModel(
-            name='ProductOption',
+            name="ProductOption",
         ),
     ]

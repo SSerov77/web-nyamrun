@@ -4,18 +4,23 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('cart', '0004_cart_place'),
+        ("cart", "0004_cart_place"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='cart',
-            options={'verbose_name': 'Корзина пользователя', 'verbose_name_plural': 'Корзины пользователей'},
+            name="cart",
+            options={
+                "verbose_name": "Корзина пользователя",
+                "verbose_name_plural": "Корзины пользователей",
+            },
         ),
         migrations.AlterModelOptions(
-            name='cartitem',
-            options={'verbose_name': 'Элемент корзины пользователя', 'verbose_name_plural': 'Элементы корзины пользователей'},
+            name="cartitem",
+            options={
+                "verbose_name": "Элемент корзины пользователя",
+                "verbose_name_plural": "Элементы корзины пользователей",
+            },
         ),
     ]

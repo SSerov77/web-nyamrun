@@ -5,21 +5,26 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('cart', '0002_remove_cartitem_unique_product_in_cart'),
-        ('catalog', '0004_initial'),
+        ("cart", "0002_remove_cartitem_unique_product_in_cart"),
+        ("catalog", "0004_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cartitem',
-            name='options',
-            field=models.ManyToManyField(blank=True, to='catalog.productoption', verbose_name='Опции'),
+            model_name="cartitem",
+            name="options",
+            field=models.ManyToManyField(
+                blank=True, to="catalog.productoption", verbose_name="Опции"
+            ),
         ),
         migrations.AlterField(
-            model_name='cartitem',
-            name='product',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.product', verbose_name='Товар'),
+            model_name="cartitem",
+            name="product",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="catalog.product",
+                verbose_name="Товар",
+            ),
         ),
     ]

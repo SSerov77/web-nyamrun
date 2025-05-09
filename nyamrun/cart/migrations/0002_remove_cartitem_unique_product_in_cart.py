@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('cart', '0001_initial'),
+        ("cart", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveConstraint(
-            model_name='cartitem',
-            name='unique_product_in_cart',
+            model_name="cartitem",
+            name="unique_product_in_cart",
         ),
     ]

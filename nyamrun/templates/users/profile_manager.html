@@ -1,125 +1,123 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Личный кабинет менеджера{% endblock %}
-
 {% block extra_head %}
   <link rel="stylesheet" href="{% static 'css/users/profile_manager.css' %}">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
-
 {% block content %}
-<div class="manager-dashboard">
-  <h2>Личный кабинет менеджера</h2>
-
-  {% if error %}
-    <div class="error-msg">{{ error }}</div>
-  {% else %}
-    <div class="address-card">
-      <strong>Ваш адрес:</strong> {{ address }}
-    </div>
-
-    <div class="stats-grid">
-      <div class="stat-box"><h4>Сегодня заказов</h4><div class="stat-value">{{ orders_today }}</div></div>
-      <div class="stat-box"><h4>Готовы</h4><div class="stat-value">{{ orders_ready }}</div></div>
-      <div class="stat-box"><h4>Созданы</h4><div class="stat-value">{{ orders_created }}</div></div>
-      <div class="stat-box"><h4>Отменены</h4><div class="stat-value">{{ orders_canceled }}</div></div>
-      <div class="stat-box">
-        <h4>Выдано заказов</h4>
-        <div class="stat-value">
-          {{ total_issued_orders }}
+  <div class="manager-dashboard">
+    <h2>Личный кабинет менеджера</h2>
+    {% if error %}
+      <div class="error-msg">{{ error }}</div>
+    {% else %}
+      <div class="address-card">
+        <strong>Ваш адрес:</strong> {{ address }}
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <h4>Сегодня заказов</h4>
+          <div class="stat-value">{{ orders_today }}</div>
+        </div>
+        <div class="stat-box">
+          <h4>Готовы</h4>
+          <div class="stat-value">{{ orders_ready }}</div>
+        </div>
+        <div class="stat-box">
+          <h4>Созданы</h4>
+          <div class="stat-value">{{ orders_created }}</div>
+        </div>
+        <div class="stat-box">
+          <h4>Отменены</h4>
+          <div class="stat-value">{{ orders_canceled }}</div>
+        </div>
+        <div class="stat-box">
+          <h4>Выдано заказов</h4>
+          <div class="stat-value">{{ total_issued_orders }}</div>
         </div>
       </div>
-      
-    </div>
-
-    <div class="chart-section">
-      <h3>График загрузки (сегодня)</h3>
-      {% if orders_chart %}
-        <div class="chart-wrapper"><canvas id="ordersChart"></canvas></div>
-      {% else %}
-        <div class="empty-chart">Нет заказов за сегодня</div>
-      {% endif %}
-    </div>
-
-    <h3 style="margin-top:2rem;">Заказы</h3>
-    {% if orders %}
-      {% for order in orders %}
-        <div class="order-card">
-          <div class="order-header">
-            <div><strong>#{{ order.id }}</strong> — {{ order.get_status_display }}</div>
-            <div>{{ order.created_at|date:'d.m.Y H:i' }}</div>
+      <div class="chart-section">
+        <h3>График загрузки (сегодня)</h3>
+        {% if orders_chart %}
+          <div class="chart-wrapper">
+            <canvas id="ordersChart"></canvas>
           </div>
-          <div class="order-meta">
-            Клиент: <strong>{{ order.user.username }}</strong> |
-            Сумма: <strong>{{ order.total_price }} ₽</strong>
-          </div>
-
-          <table class="order-items">
-            <thead>
-              <tr><th>Товар</th><th>Кол-во</th><th>Цена</th><th>Сумма</th></tr>
-            </thead>
-            <tbody>
-              {% for item in order.items.all %}
-              <tr>
-                <td>
-                  {{ item.product.name }}
-                  {% if item.options.all %}
-                    <ul class="item-options">
-                      {% for opt in item.options.all %}
-                        <li>{{ opt.option_group.name }}: {{ opt.name }} (+{{ opt.additional_price }} ₽)</li>
-                      {% endfor %}
-                    </ul>
-                  {% endif %}
-                </td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.price }} ₽</td>
-                <td>{{ item.total_price }} ₽</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-
-          <form method="post" action="{% url 'manager-order-update-status' order.id %}">
-            {% csrf_token %}
-            <label>Статус:
-              <select name="status">
-                {% for value, name in order_status_choices %}
-                  <option value="{{ value }}" {% if order.status == value %}selected{% endif %}>{{ name }}</option>
+        {% else %}
+          <div class="empty-chart">Нет заказов за сегодня</div>
+        {% endif %}
+      </div>
+      <h3 style="margin-top:2rem;">Заказы</h3>
+      {% if orders %}
+        {% for order in orders %}
+          <div class="order-card">
+            <div class="order-header">
+              <div>
+                <strong>#{{ order.id }}</strong> — {{ order.get_status_display }}
+              </div>
+              <div>{{ order.created_at|date:'d.m.Y H:i' }}</div>
+            </div>
+            <div class="order-meta">
+              Клиент: <strong>{{ order.user.username }}</strong> |
+              Сумма: <strong>{{ order.total_price }} ₽</strong>
+            </div>
+            <table class="order-items">
+              <thead>
+                <tr>
+                  <th>Товар</th>
+                  <th>Кол-во</th>
+                  <th>Цена</th>
+                  <th>Сумма</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in order.items.all %}
+                  <tr>
+                    <td>
+                      {{ item.product.name }}
+                      {% if item.options.all %}
+                        <ul class="item-options">
+                          {% for opt in item.options.all %}
+                            <li>{{ opt.option_group.name }}: {{ opt.name }} (+{{ opt.additional_price }} ₽)</li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }} ₽</td>
+                    <td>{{ item.total_price }} ₽</td>
+                  </tr>
                 {% endfor %}
-              </select>
-            </label>
-            <button type="submit">Обновить</button>
-          </form>
-        </div>
-      {% endfor %}
-    {% else %}
-      <div class="empty-chart">Нет заказов</div>
+              </tbody>
+            </table>
+            <form method="post"
+                  action="{% url 'manager-order-update-status' order.id %}">
+              {% csrf_token %}
+              <label>
+                Статус:
+                <select name="status">
+                  {% for value, name in order_status_choices %}
+                    <option value="{{ value }}" {% if order.status == value %}selected{% endif %}>{{ name }}</option>
+                  {% endfor %}
+                </select>
+              </label>
+              <button type="submit">Обновить</button>
+            </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty-chart">Нет заказов</div>
+      {% endif %}
     {% endif %}
-  {% endif %}
-</div>
+  </div>
 
-{% if orders_chart %}
-<script>
-  const ctx = document.getElementById('ordersChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: [{% for point in orders_chart %}"{{ point.label }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
-      datasets: [{
-        label: 'Заказы',
-        data: [{% for point in orders_chart %}{{ point.value }}{% if not forloop.last %}, {% endif %}{% endfor %}],
-        borderWidth: 1,
-        backgroundColor: 'rgba(255, 122, 0, 0.6)',
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: { beginAtZero: true, stepSize: 1 }
+  {% if orders_chart %}
+    {# Данные для графика #}
+    <script id="chartData" type="application/json">
+      {
+        "labels": [{% for point in orders_chart %}"{{ point.label }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+        "values": [{% for point in orders_chart %}{{ point.value }}{% if not forloop.last %}, {% endif %}{% endfor %}]
       }
-    }
-  });
-</script>
-{% endif %}
+    </script>
+    <script src="{% static 'js/users/profile_manager.js' %}"></script>
+  {% endif %}
 {% endblock %}

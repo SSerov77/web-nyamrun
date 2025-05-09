@@ -1,72 +1,65 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Оформление заказа{% endblock %}
-
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'css/orders/order_create.css' %}">
+  <link rel="stylesheet" href="{% static 'css/orders/order_create.css' %}">
 {% endblock %}
-
 {% block content %}
-<main class="order-page">
+  <main class="order-page">
     <form method="post" class="order-container">
-        {% csrf_token %}
-        <div class="order-form">
-            <h2>Условия заказа</h2>
-            <label for="{{ form.address.id_for_label }}">
-                <img src="{% static 'imgs/icons/home-icon.svg' %}" alt="" class="icon">
-                Адрес заведения
-            </label>
-            {{ form.address }}
-
-            <label for="{{ form.time.id_for_label }}">
-                <img src="{% static 'imgs/icons/clock-icon.svg' %}" alt="" class="icon">
-                Время приготовления
-            </label>
-            {{ form.time }}
-
-            <label for="{{ form.comment.id_for_label }}">Комментарий к заказу</label>
-            {{ form.comment }}
-
-            <div class="order-footer">
-                <button class="checkout" type="submit">Оплатить</button>
-                <div class="total-price">{{ total_price|default:"0" }}₽</div>
-            </div>
+      {% csrf_token %}
+      <div class="order-form">
+        <h2>Условия заказа</h2>
+        <label for="{{ form.address.id_for_label }}">
+          <img src="{% static 'imgs/icons/home-icon.svg' %}" alt="" class="icon">
+          Адрес заведения
+        </label>
+        {{ form.address }}
+        <label for="{{ form.time.id_for_label }}">
+          <img src="{% static 'imgs/icons/clock-icon.svg' %}" alt="" class="icon">
+          Время приготовления
+        </label>
+        {{ form.time }}
+        <label for="{{ form.comment.id_for_label }}">Комментарий к заказу</label>
+        {{ form.comment }}
+        <div class="order-footer">
+          <button class="checkout" type="submit">Оплатить</button>
+          <div class="total-price">{{ total_price|default:"0" }}₽</div>
         </div>
-
-        <div class="order-summary">
-            <h2>Ваш заказ</h2>
-            {% if items %}
-                <ul class="order-items">
-                    {% for item in items %}
-                    <li>
-                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
-                        <div class="item-info">
-                            <span>{{ item.product.name }}</span>
-                            {% if item.options.all %}
-                            <small>
-                                (Опции:
-                                {% for option in item.options.all %}
-                                    {{ option.name }}{% if not forloop.last %}, {% endif %}
-                                {% endfor %}
-                                )
-                            </small>
-                            {% endif %}
-                            <span>x{{ item.quantity }}</span>
-                            <span class="item-price">{{ item.total_price }}₽</span>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <div class="empty-cart">
-                    <img src="{% static 'imgs/empty-cart.png' %}" alt="Ваша корзина пуста">
-                    <p>Ваша корзина пуста!</p>
-                    <a href="{% url 'place_list' %}" class="btn">Перейти в каталог →</a>
+      </div>
+      <div class="order-summary">
+        <h2>Ваш заказ</h2>
+        {% if items %}
+          <ul class="order-items">
+            {% for item in items %}
+              <li>
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                <div class="item-info">
+                  <span>{{ item.product.name }}</span>
+                  {% if item.options.all %}
+                    <small>
+                      (Опции:
+                      {% for option in item.options.all %}
+                        {{ option.name }}
+                        {% if not forloop.last %},{% endif %}
+                      {% endfor %}
+                      )
+                    </small>
+                  {% endif %}
+                  <span>x{{ item.quantity }}</span>
+                  <span class="item-price">{{ item.total_price }}₽</span>
                 </div>
-            {% endif %}
-
-        </div>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="empty-cart">
+            <img src="{% static 'imgs/empty-cart.png' %}" alt="Ваша корзина пуста">
+            <p>Ваша корзина пуста!</p>
+            <a href="{% url 'place_list' %}" class="btn">Перейти в каталог →</a>
+          </div>
+        {% endif %}
+      </div>
     </form>
-</main>
+  </main>
 {% endblock %}
