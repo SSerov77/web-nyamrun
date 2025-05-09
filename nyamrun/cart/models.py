@@ -31,6 +31,8 @@ class Cart(models.Model):
         verbose_name_plural = 'Корзины пользователей'
 
 
+# models.py
+
 class CartItem(models.Model):
     cart = models.ForeignKey(
         Cart,
@@ -60,10 +62,21 @@ class CartItem(models.Model):
         return sum(option.additional_price for option in self.options.all())
 
     def get_price(self):
+        # старый метод — но мы добавим свойство ниже
         return self.product.price + self.get_options_price()
 
     def get_total_price(self):
         return self.get_price() * self.quantity
+
+    @property
+    def price(self):
+        """Цена за единицу с опциями"""
+        return self.product.price + self.get_options_price()
+
+    @property
+    def total_price(self):
+        """Цена за все количество"""
+        return self.price * self.quantity
 
     class Meta:
         verbose_name = 'Элемент корзины пользователя'

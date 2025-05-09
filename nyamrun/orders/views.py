@@ -21,30 +21,30 @@ def order_create(request):
     place = cart.place
     time_choices = get_time_choices(place=place)
 
+    # итого из корзины
+    # вместо несуществующего cart.total_price()
+    total_price = cart.get_total_price()
+
     if request.method == "POST":
         form = OrderForm(request.POST, place=place, time_choices=time_choices)
 
-        if not cart.total_price():
-            total_price = "0"
-        else:
-            total_price = str(cart.total_price())
-
         if form.is_valid():
+            # сохраняем в сессию, в том числе строковое представление итога
             request.session['order_data'] = {
                 'address': form.cleaned_data['address'].pk,
                 'ready_time': form.cleaned_data['time'],
                 'comment': form.cleaned_data['comment'],
-                'total_price': total_price,
+                'total_price': f"{total_price:.2f}",
             }
-
             return redirect('order_payment')
     else:
         form = OrderForm(place=place, time_choices=time_choices)
 
     return render(request, 'orders/order_create.html', {
-        'form': form,
-        'cart': cart,
-        'items': items,
+        'form':        form,
+        'cart':        cart,
+        'items':       items,
+        'total_price': total_price,
     })
 
 
@@ -56,13 +56,14 @@ def order_payment(request):
         return redirect('order_create')
 
     cart = user.cart
-    total_price = cart.total_price()
+    total_price = cart.get_total_price()
 
     receipt_items = []
     for item in cart.items.select_related('product').prefetch_related('options'):
         desc = item.product.name
         if item.options.exists():
-            desc += " (" + ", ".join([opt.name for opt in item.options.all()]) + ")"
+            desc += " (" + \
+                ", ".join([opt.name for opt in item.options.all()]) + ")"
         receipt_items.append({
             "description": desc,
             "quantity": item.quantity,
@@ -110,6 +111,7 @@ def order_payment(request):
 def order_success(request):
     payment_id = request.session.get('payment_id')
     order_data = request.session.get('order_data')
+
     user = request.user
     cart = user.cart
 
@@ -118,22 +120,31 @@ def order_success(request):
     payment = Payment.find_one(payment_id)
 
     if payment.status == "succeeded":
+        # Если уже записали этот заказ ранее — просто показываем его
+        existing = Order.objects.filter(payment_id=payment_id).first()
+        if existing:
+            return render(request, 'orders/order_success.html', {'order': existing})
+
+        # Создаём новый заказ, т.к. ещё не было
         order = Order.objects.create(
             user=user,
             place=cart.place,
             address=Address.objects.get(pk=order_data['address']),
             comment=order_data['comment'],
-            total_price=cart.total_price(),
+            total_price=cart.get_total_price(),
             ready_time=order_data['ready_time'],
             payment_id=payment_id,
         )
         for item in cart.items.select_related('product').prefetch_related('options'):
             order_item = OrderItem.objects.create(
-                order=order, product=item.product, quantity=item.quantity
+                order=order,
+                product=item.product,
+                quantity=item.quantity
             )
             order_item.options.set(item.options.all())
         cart.items.all().delete()
 
+        # Чистим сессию, чтобы по F5 не пытаться ещё раз
         del request.session['payment_id']
         del request.session['order_data']
 

@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 from django.conf import settings
 from django.core.validators import MinValueValidator
@@ -65,6 +66,21 @@ class Order(models.Model):
 
     def __str__(self):
         return f'Заказ #{self.pk}'
+    
+    def update_total_price(self):
+        """
+        Пересчитывает и сохраняет итоговую сумму заказа,
+        пробегаясь по всем связанным OrderItem'ам.
+        """
+        # Суммируем total_price у всех элементов
+        total = sum(
+            (item.total_price for item in self.items.all()),
+            Decimal('0')
+        )
+        # Сохраняем
+        self.total_price = total
+        # Обновляем только поле total_price, чтобы не трогать остальные
+        self.save(update_fields=['total_price'])
     
     class Meta:
         verbose_name = 'Заказ'
