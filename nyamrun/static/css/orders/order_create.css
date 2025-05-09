@@ -24,6 +24,7 @@ textarea {
     box-shadow: 0 4px 8px var(--color-card-shadow);
     justify-content: space-between;
     margin-bottom: 120px;
+    padding-left: 50px;
 }
 
 .order-form {
@@ -31,7 +32,7 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 320px;
+    max-width: 600px;
 }
 
 .order-form h2 {

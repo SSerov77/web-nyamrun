@@ -163,6 +163,10 @@ def order_items_partial(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
     items = cart.items.select_related("product").prefetch_related("options")
     total_price = cart.get_total_price()
+    
+    # Check if cart is empty
+    is_empty = not items.exists()
+    
     html = render_to_string(
         "orders/_order_items.html",
         {
@@ -171,4 +175,8 @@ def order_items_partial(request):
         },
         request=request
     )
-    return JsonResponse({"html": html, "total_price": total_price})
+    return JsonResponse({
+        "html": html, 
+        "total_price": total_price,
+        "is_empty": is_empty
+    })

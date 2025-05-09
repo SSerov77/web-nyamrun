@@ -50,14 +50,32 @@
         const response = await fetch('/orders/order-items-partial/');
         if (response.ok) {
           const data = await response.json();
-          // Вставляем новый HTML блока товаров
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = data.html;
-          const newOrderItems = tempDiv.querySelector('#order-items');
-          const orderItemsBlock = document.getElementById('order-items');
-          if (newOrderItems && orderItemsBlock) {
-            orderItemsBlock.replaceWith(newOrderItems);
+          
+          const orderSummary = document.querySelector('.order-summary');
+          
+          // Check if cart is empty
+          if (data.is_empty) {
+            // Create empty cart message
+            const emptyCartHTML = `
+              <h2>Ваш заказ</h2>
+              <div class="empty-cart">
+                <img src="{% static 'imgs/empty-cart.png' %}" alt="Ваша корзина пуста">
+                <p>Ваша корзина пуста!</p>
+                <a href="{% url 'place_list' %}" class="btn">Перейти в каталог →</a>
+              </div>
+            `;
+            orderSummary.innerHTML = emptyCartHTML;
+          } else {
+            // Вставляем новый HTML блока товаров
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = data.html;
+            const newOrderItems = tempDiv.querySelector('#order-items');
+            const orderItemsBlock = document.getElementById('order-items');
+            if (newOrderItems && orderItemsBlock) {
+              orderItemsBlock.replaceWith(newOrderItems);
+            }
           }
+          
           // Обновляем итоговую сумму
           const totalPriceBlock = document.getElementById('total-price');
           if (totalPriceBlock && data.total_price !== undefined) {
