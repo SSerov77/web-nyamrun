@@ -1,0 +1,289 @@
+/* Базовые стили */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f9f9f9;
+    color: #222;
+    line-height: 1.5;
+}
+
+/* Основной контейнер */
+.owner-dashboard {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+/* Заголовки */
+.owner-dashboard h2 {
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: #222;
+    margin: 0 0 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.owner-dashboard h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #222;
+    margin: 2.5rem 0 1.5rem;
+}
+
+.owner-dashboard h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #222;
+    margin: 0 0 1.25rem;
+}
+
+/* Блок информации о заведении */
+.place-info-block {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #FF7A00;
+}
+
+.place-info-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.place-info-details {
+    flex: 1;
+}
+
+.place-info-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.place-info-cat,
+.place-info-addr,
+.place-info-type {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+/* Список заказов */
+.order-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border-left: 3px solid #FF7A00;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.order-header:hover {
+    background: #fafafa;
+}
+
+.order-main-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.order-number {
+    font-weight: 500;
+    color: #FF7A00;
+}
+
+.order-datetime {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.order-client {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.order-toggle {
+    font-size: 1.2rem;
+    color: #999;
+    transition: transform 0.2s;
+}
+
+.order-details {
+    padding: 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s, padding 0.3s;
+}
+
+.order-card.active .order-details {
+    padding: 0 1rem 1rem;
+    max-height: 1000px;
+}
+
+.order-card.active .order-toggle {
+    transform: rotate(180deg);
+}
+
+.order-items {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0 1rem;
+    font-size: 0.9rem;
+}
+
+.order-items th {
+    text-align: left;
+    padding: 0.5rem;
+    font-weight: 500;
+    color: #666;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.order-items td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.order-total {
+    text-align: right;
+    font-weight: 500;
+    padding: 0.5rem;
+}
+
+/* Статистика и графики */
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.chart-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-top: 3px solid #FF7A00;
+}
+
+.chart-card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.chart-card th {
+    text-align: left;
+    padding: 0.5rem;
+    font-weight: 500;
+    color: #666;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.chart-card td {
+    padding: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.chart-card tr:last-child td {
+    border-bottom: none;
+}
+
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+.empty-state {
+    padding: 2rem;
+    text-align: center;
+    color: #999;
+    background: #fafafa;
+    border-radius: 8px;
+}
+
+.empty-chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+/* Стили для опций товаров */
+.item-options {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.item-option {
+    display: flex;
+    gap: 0.5rem;
+    color: #666;
+    margin-bottom: 0.2rem;
+}
+
+.option-name {
+    font-weight: 500;
+}
+
+.option-value {
+    flex-grow: 1;
+}
+
+.option-price {
+    color: #FF7A00;
+    font-weight: 500;
+}
+
+/* Адаптация */
+@media (max-width: 768px) {
+    .owner-dashboard {
+        padding: 1rem;
+    }
+
+    .place-info-block {
+        flex-direction: column;
+    }
+
+    .place-info-img {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
