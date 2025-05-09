@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from yookassa import Configuration, Payment
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 
 from cart.models import Cart
 from orders.forms import OrderForm
@@ -154,3 +156,12 @@ def order_success(request):
         return render(request, "orders/order_success.html", {"order": order})
     else:
         return render(request, "orders/payment_failed.html")
+
+
+@login_required
+def order_items_partial(request):
+    cart, _ = Cart.objects.get_or_create(user=request.user)
+    items = cart.items.select_related("product").prefetch_related("options")
+    total_price = cart.get_total_price()
+    html = render_to_string("orders/_order_items.html", {"items": items, "total_price": total_price}, request=request)
+    return JsonResponse({"html": html, "total_price": total_price})
