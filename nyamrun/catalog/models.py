@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 
 
 class Category(models.Model):
@@ -54,7 +55,7 @@ class Product(models.Model):
         verbose_name="Категория",
     )
     name = models.CharField(max_length=255, verbose_name="Название товара")
-    description = models.TextField(blank=True, verbose_name="Описание")
+    description = RichTextField(blank=True, verbose_name="Описание")
     price = models.DecimalField(
         max_digits=8,
         decimal_places=2,

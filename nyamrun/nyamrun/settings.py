@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "catalog.apps.CatalogConfig",
     "cart.apps.CartConfig",
     "orders.apps.OrdersConfig",
+    "ckeditor",
 ]
 
 MIDDLEWARE = [
@@ -112,3 +113,25 @@ AUTH_USER_MODEL = "users.CustomUser"
 # Login/Logout redirect
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+# CKEditor Configuration
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+        'height': 300,
+        'width': '100%',
+        'toolbar_Full': [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+            [
+                'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 
+                'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'
+            ],
+            ['Link', 'Unlink'],
+            ['Image', 'Table', 'HorizontalRule', 'SpecialChar'],
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor'],
+            ['Maximize', 'ShowBlocks', '-', 'Source'],
+        ],
+        'extraPlugins': 'justify,liststyle,indent',
+    },
+}

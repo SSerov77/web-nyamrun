@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db import models
+from ckeditor.widgets import CKEditorWidget
 
 from catalog.models import Category, Product, ProductOption
 
@@ -17,6 +19,9 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ("place", "category")
     filter_horizontal = ("options",)
     list_per_page = 10
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorWidget()},
+    }
 
 
 @admin.register(ProductOption)

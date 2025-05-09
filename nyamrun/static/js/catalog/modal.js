@@ -33,7 +33,7 @@ export function createModal(modalContainer, itemData, onAddCallback) {
           </div>
         </div>
         <div class="modal-description">
-          <p>${itemData.description || ''}</p>
+          <div>${itemData.description || ''}</div>
         </div>
       </div>
     </div>
