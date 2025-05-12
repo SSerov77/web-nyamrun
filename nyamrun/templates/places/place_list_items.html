@@ -1,18 +1,19 @@
 {% load static %}
-
 {% if places %}
-<div class="items">
+  <div class="items">
     {% for place in places %}
-        <a href="{% url 'place_detail' place.pk %}" class="item">
-            {% if place.image %}
-                <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
-            {% else %}
-                <img src="{% static 'imgs/no-image.png' %}" alt="No image" class="item-img">
-            {% endif %}
-            <p class="item-name">{{ place.name }}</p>
-        </a>
+      <a href="{% url 'place_detail' place.pk %}" class="item">
+        {% if place.image %}
+          <img src="{{ place.image.url }}" alt="{{ place.name }}" class="item-img">
+        {% else %}
+          <img src="{% static 'imgs/no-image.png' %}"
+               alt="No image"
+               class="item-img">
+        {% endif %}
+        <p class="item-name">{{ place.name }}</p>
+      </a>
     {% endfor %}
-</div>
+  </div>
 {% else %}
-    <p class="no-places">В данный момент заведений в данной категорий нет</p>
+  <p class="no-places">В данный момент заведений в данной категорий нет</p>
 {% endif %}

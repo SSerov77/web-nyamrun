@@ -6,16 +6,22 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('places', '0007_place_owner'),
+        ("places", "0007_place_owner"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='address',
-            name='manager',
-            field=models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='managed_address', to=settings.AUTH_USER_MODEL, verbose_name='Менеджер'),
+            model_name="address",
+            name="manager",
+            field=models.OneToOneField(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="managed_address",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Менеджер",
+            ),
         ),
     ]

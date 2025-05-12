@@ -1,3 +1,4 @@
+/* Модальное окно: overlay */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -8,6 +9,7 @@
     z-index: 1000;
 }
 
+/* Модальное окно: контейнер */
 .modal-window {
     background: var(--color-white);
     max-width: 900px;
@@ -21,6 +23,7 @@
     position: relative;
 }
 
+/* Кнопка закрытия */
 .modal-close {
     position: absolute;
     top: 10px;
@@ -28,8 +31,8 @@
     background: none;
     border: none;
     font-size: 28px;
-    cursor: pointer;
     color: #999;
+    cursor: pointer;
     transition: color 0.3s;
 }
 
@@ -37,6 +40,7 @@
     color: #333;
 }
 
+/* Контент модалки */
 .modal-content {
     display: flex;
     justify-content: center;
@@ -44,6 +48,10 @@
     padding: 30px;
     gap: 30px;
     border-bottom: 1px solid #ddd;
+}
+
+.modal-left {
+    flex: 0 0 250px;
 }
 
 .modal-left img {
@@ -64,6 +72,7 @@
     font-size: 28px;
 }
 
+/* Цена и количество */
 .price-qty {
     display: flex;
     align-items: center;
@@ -78,17 +87,16 @@
 
 .quantity {
     display: flex;
+    align-items: center;
     background: #f0f0f0;
     border-radius: 6px;
     overflow: hidden;
-    align-items: center;
 }
 
 .qty-btn {
     border: none;
     background: #ddd;
     padding: 6px 12px;
-    cursor: pointer;
     font-size: 20px;
     user-select: none;
     width: 34px;
@@ -96,7 +104,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .qty-btn:hover {
@@ -119,21 +128,28 @@ input::-webkit-outer-spin-button {
     margin: 0;
 }
 
+/* Кнопка добавить */
 .add-btn {
     border-radius: 10px;
     width: 156px;
     height: 51px;
     background-color: var(--color-button-bg);
-    border: none;
     color: var(--color-button-text);
     font-weight: 400;
     font-size: 14px;
+    border: none;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .add-btn:hover {
     background-color: var(--color-button-hover);
+}
+
+/* Опции */
+.options {
+    border-top: 1px solid #d4d4d4;
+    padding-top: 20px;
 }
 
 .options h4 {
@@ -151,13 +167,110 @@ input::-webkit-outer-spin-button {
     user-select: none;
 }
 
+/* Описание */
 .modal-description {
     padding: 15px 30px 30px;
-    font-size: 12px;
+    font-size: 14px;
     color: #333;
-    line-height: 1.4;
+    line-height: 1.5;
+    max-height: 300px;
+    overflow-y: auto;
+    border-top: 1px solid #eee;
+}
+
+.modal-description::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-description::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.modal-description::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.modal-description::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
 }
 
 .modal-description p {
-    margin: 2px 0;
+    margin: 8px 0;
+}
+
+/* Стили для форматированного текста из CKEditor */
+.modal-description ul, 
+.modal-description ol {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.modal-description ul li, 
+.modal-description ol li {
+    margin-bottom: 5px;
+}
+
+.modal-description strong, 
+.modal-description b {
+    font-weight: 700;
+}
+
+.modal-description em, 
+.modal-description i {
+    font-style: italic;
+}
+
+.modal-description a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.modal-description a:hover {
+    text-decoration: none;
+}
+
+.modal-description h1, 
+.modal-description h2, 
+.modal-description h3, 
+.modal-description h4, 
+.modal-description h5, 
+.modal-description h6 {
+    margin: 15px 0 10px;
+    font-weight: 600;
+}
+
+.modal-description h1 { font-size: 22px; }
+.modal-description h2 { font-size: 20px; }
+.modal-description h3 { font-size: 18px; }
+.modal-description h4 { font-size: 16px; }
+.modal-description h5 { font-size: 14px; }
+.modal-description h6 { font-size: 14px; }
+
+/* Стили для таблиц в форматированном тексте */
+.modal-description table {
+    border-collapse: collapse;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.modal-description table th,
+.modal-description table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.modal-description table th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+}
+
+.modal-description table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.modal-description table tr:hover {
+    background-color: #f5f5f5;
 }

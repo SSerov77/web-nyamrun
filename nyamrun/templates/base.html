@@ -1,23 +1,25 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>
+      {% block title %}{% endblock %}
+    </title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/users/passStyles.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% if not MEDIA_URL %}{% get_media_prefix as MEDIA_URL %}{% endif %}
+    {% if not MEDIA_URL %}
+      {% get_media_prefix as MEDIA_URL %}
+    {% endif %}
     {% block extra_head %}{% endblock %}
-</head>
-<body>
+  </head>
+  <body>
     {% include 'includes/header.html' %}
-
     {% block content %}{% endblock %}
-
     {% include 'includes/footer.html' %}
-</body>
-<script src="{% static "js/users/showPassword.js" %}"></script>
+  </body>
+  <script src="{% static "js/users/showPassword.js" %}"></script>
 </html>

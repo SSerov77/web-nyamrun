@@ -1,0 +1,265 @@
+body {
+    background: #f9f9f9;
+    font-family: 'Inter', sans-serif;
+    color: #222;
+}
+
+.manager-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h2,
+h3,
+h4 {
+    color: var(--color-text);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    margin-top: 2rem;
+}
+
+h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Адрес */
+.address-card {
+    background: var(--color-card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+    margin-bottom: 2rem;
+    color: var(--color-text);
+}
+
+/* Статистика */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-box {
+    background: var(--color-card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+    text-align: center;
+}
+
+.stat-box h4 {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+/* График */
+.chart-section {
+    background: var(--color-card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+    margin-bottom: 2rem;
+}
+
+.chart-section h3 {
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.chart-wrapper {
+    height: 300px;
+    margin-top: 1rem;
+}
+
+.empty-chart {
+    text-align: center;
+    color: #666;
+    padding: 2rem;
+    background: var(--color-card-bg);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+}
+
+/* Таблица заказов */
+.upcoming-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.upcoming-table thead {
+    background: #f4f4f4;
+    font-weight: 500;
+}
+
+.upcoming-table th,
+.upcoming-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.upcoming-table tr:hover {
+    background: #fafafa;
+}
+
+.upcoming-section {
+    margin-bottom: 2rem;
+}
+
+/* Ошибка */
+.error-block {
+    padding: 1rem;
+    background: #ffe2e2;
+    color: #a70000;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .manager-dashboard {
+        padding: 1rem;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    form select,
+    form button {
+        width: 100%;
+    }
+}
+
+.manager-orders {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.order-card {
+    background: var(--color-card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px var(--color-card-shadow);
+    margin-bottom: 1.5rem;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+.order-meta {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.order-items {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.order-items th,
+.order-items td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.order-items th {
+    color: #666;
+    font-weight: 500;
+}
+
+.item-options {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.item-options li {
+    margin-bottom: 0.25rem;
+}
+
+form {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+form select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: var(--color-filter-bg);
+    color: var(--color-text);
+    min-width: 200px;
+}
+
+form button {
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+form button:hover {
+    background: var(--color-primary-hover);
+}
+
+.error-msg {
+    background: #ffe2e2;
+    color: #a70000;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}

@@ -6,60 +6,82 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0007_product_place'),
-        ('orders', '0002_order_status'),
+        ("catalog", "0007_product_place"),
+        ("orders", "0002_order_status"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='order',
-            options={'verbose_name': 'Заказ', 'verbose_name_plural': 'Заказы'},
+            name="order",
+            options={"verbose_name": "Заказ", "verbose_name_plural": "Заказы"},
         ),
         migrations.AlterModelOptions(
-            name='orderitem',
-            options={'verbose_name': 'Элементы заказа', 'verbose_name_plural': 'Элементы заказов'},
+            name="orderitem",
+            options={
+                "verbose_name": "Элементы заказа",
+                "verbose_name_plural": "Элементы заказов",
+            },
         ),
         migrations.AddField(
-            model_name='orderitem',
-            name='payment_id',
-            field=models.CharField(blank=True, max_length=128, null=True, verbose_name='Номер чека'),
+            model_name="orderitem",
+            name="payment_id",
+            field=models.CharField(
+                blank=True, max_length=128, null=True, verbose_name="Номер чека"
+            ),
         ),
         migrations.AlterField(
-            model_name='order',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='Дата создания'),
+            model_name="order",
+            name="created_at",
+            field=models.DateTimeField(auto_now_add=True, verbose_name="Дата создания"),
         ),
         migrations.AlterField(
-            model_name='order',
-            name='total_price',
-            field=models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Итоговая цена'),
+            model_name="order",
+            name="total_price",
+            field=models.DecimalField(
+                decimal_places=2, max_digits=10, verbose_name="Итоговая цена"
+            ),
         ),
         migrations.AlterField(
-            model_name='order',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orders', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
+            model_name="order",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="orders",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Пользователь",
+            ),
         ),
         migrations.AlterField(
-            model_name='orderitem',
-            name='options',
-            field=models.ManyToManyField(blank=True, to='catalog.productoption', verbose_name='Опции'),
+            model_name="orderitem",
+            name="options",
+            field=models.ManyToManyField(
+                blank=True, to="catalog.productoption", verbose_name="Опции"
+            ),
         ),
         migrations.AlterField(
-            model_name='orderitem',
-            name='order',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='orders.order', verbose_name='Заказ'),
+            model_name="orderitem",
+            name="order",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="items",
+                to="orders.order",
+                verbose_name="Заказ",
+            ),
         ),
         migrations.AlterField(
-            model_name='orderitem',
-            name='product',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.product', verbose_name='Товар'),
+            model_name="orderitem",
+            name="product",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="catalog.product",
+                verbose_name="Товар",
+            ),
         ),
         migrations.AlterField(
-            model_name='orderitem',
-            name='quantity',
-            field=models.PositiveIntegerField(verbose_name='Количество'),
+            model_name="orderitem",
+            name="quantity",
+            field=models.PositiveIntegerField(verbose_name="Количество"),
         ),
     ]

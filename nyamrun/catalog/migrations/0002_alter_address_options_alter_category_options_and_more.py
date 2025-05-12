@@ -5,134 +5,187 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0001_initial'),
+        ("catalog", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='address',
-            options={'verbose_name': 'Адрес', 'verbose_name_plural': 'Адреса'},
+            name="address",
+            options={"verbose_name": "Адрес", "verbose_name_plural": "Адреса"},
         ),
         migrations.AlterModelOptions(
-            name='category',
-            options={'verbose_name': 'Категория', 'verbose_name_plural': 'Категории'},
+            name="category",
+            options={"verbose_name": "Категория", "verbose_name_plural": "Категории"},
         ),
         migrations.AlterModelOptions(
-            name='place',
-            options={'verbose_name': 'Заведение', 'verbose_name_plural': 'Заведения'},
+            name="place",
+            options={"verbose_name": "Заведение", "verbose_name_plural": "Заведения"},
         ),
         migrations.AlterModelOptions(
-            name='product',
-            options={'verbose_name': 'Товар', 'verbose_name_plural': 'Товары'},
+            name="product",
+            options={"verbose_name": "Товар", "verbose_name_plural": "Товары"},
         ),
         migrations.AlterModelOptions(
-            name='productoption',
-            options={'verbose_name': 'Опция товара', 'verbose_name_plural': 'Опции товаров'},
+            name="productoption",
+            options={
+                "verbose_name": "Опция товара",
+                "verbose_name_plural": "Опции товаров",
+            },
         ),
         migrations.RemoveField(
-            model_name='address',
-            name='address',
+            model_name="address",
+            name="address",
         ),
         migrations.AddField(
-            model_name='address',
-            name='city',
-            field=models.CharField(default='Не указан', max_length=255, verbose_name='Город'),
+            model_name="address",
+            name="city",
+            field=models.CharField(
+                default="Не указан", max_length=255, verbose_name="Город"
+            ),
         ),
         migrations.AddField(
-            model_name='address',
-            name='country',
-            field=models.CharField(default='Россия', max_length=255, verbose_name='Страна'),
+            model_name="address",
+            name="country",
+            field=models.CharField(
+                default="Россия", max_length=255, verbose_name="Страна"
+            ),
         ),
         migrations.AddField(
-            model_name='address',
-            name='house_number',
-            field=models.CharField(default='Не указан', max_length=50, verbose_name='Дом'),
+            model_name="address",
+            name="house_number",
+            field=models.CharField(
+                default="Не указан", max_length=50, verbose_name="Дом"
+            ),
         ),
         migrations.AddField(
-            model_name='address',
-            name='street',
-            field=models.CharField(default='Не указан', max_length=255, verbose_name='Улица'),
+            model_name="address",
+            name="street",
+            field=models.CharField(
+                default="Не указан", max_length=255, verbose_name="Улица"
+            ),
         ),
         migrations.AlterField(
-            model_name='address',
-            name='place',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='addresses', to='catalog.place', verbose_name='Заведение'),
+            model_name="address",
+            name="place",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="addresses",
+                to="catalog.place",
+                verbose_name="Заведение",
+            ),
         ),
         migrations.AlterField(
-            model_name='category',
-            name='name',
-            field=models.CharField(max_length=100, verbose_name='Название категории'),
+            model_name="category",
+            name="name",
+            field=models.CharField(max_length=100, verbose_name="Название категории"),
         ),
         migrations.AlterField(
-            model_name='place',
-            name='categories',
-            field=models.ManyToManyField(related_name='places', to='catalog.category', verbose_name='Категории товаров'),
+            model_name="place",
+            name="categories",
+            field=models.ManyToManyField(
+                related_name="places",
+                to="catalog.category",
+                verbose_name="Категории товаров",
+            ),
         ),
         migrations.AlterField(
-            model_name='place',
-            name='image',
-            field=models.ImageField(upload_to='place_images/', verbose_name='Изображение'),
+            model_name="place",
+            name="image",
+            field=models.ImageField(
+                upload_to="place_images/", verbose_name="Изображение"
+            ),
         ),
         migrations.AlterField(
-            model_name='place',
-            name='name',
-            field=models.CharField(max_length=255, verbose_name='Название'),
+            model_name="place",
+            name="name",
+            field=models.CharField(max_length=255, verbose_name="Название"),
         ),
         migrations.AlterField(
-            model_name='place',
-            name='type',
-            field=models.CharField(choices=[('cafe', 'Кафе'), ('bakery', 'Пекарня'), ('coffee_shop', 'Кофейня')], default='cafe', max_length=20, verbose_name='Тип заведения'),
+            model_name="place",
+            name="type",
+            field=models.CharField(
+                choices=[
+                    ("cafe", "Кафе"),
+                    ("bakery", "Пекарня"),
+                    ("coffee_shop", "Кофейня"),
+                ],
+                default="cafe",
+                max_length=20,
+                verbose_name="Тип заведения",
+            ),
         ),
         migrations.AlterField(
-            model_name='place',
-            name='working_hours',
-            field=models.CharField(max_length=255, verbose_name='Время работы'),
+            model_name="place",
+            name="working_hours",
+            field=models.CharField(max_length=255, verbose_name="Время работы"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='category',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='products', to='catalog.category', verbose_name='Категория'),
+            model_name="product",
+            name="category",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="products",
+                to="catalog.category",
+                verbose_name="Категория",
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='description',
-            field=models.TextField(blank=True, verbose_name='Описание'),
+            model_name="product",
+            name="description",
+            field=models.TextField(blank=True, verbose_name="Описание"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='image',
-            field=models.ImageField(upload_to='product_images/', verbose_name='Изображение'),
+            model_name="product",
+            name="image",
+            field=models.ImageField(
+                upload_to="product_images/", verbose_name="Изображение"
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='name',
-            field=models.CharField(max_length=255, verbose_name='Название товара'),
+            model_name="product",
+            name="name",
+            field=models.CharField(max_length=255, verbose_name="Название товара"),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='place',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='products', to='catalog.place', verbose_name='Заведение'),
+            model_name="product",
+            name="place",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="products",
+                to="catalog.place",
+                verbose_name="Заведение",
+            ),
         ),
         migrations.AlterField(
-            model_name='product',
-            name='price',
-            field=models.DecimalField(decimal_places=2, max_digits=8, verbose_name='Цена'),
+            model_name="product",
+            name="price",
+            field=models.DecimalField(
+                decimal_places=2, max_digits=8, verbose_name="Цена"
+            ),
         ),
         migrations.AlterField(
-            model_name='productoption',
-            name='additional_price',
-            field=models.DecimalField(decimal_places=2, default=0, max_digits=6, verbose_name='Доплата'),
+            model_name="productoption",
+            name="additional_price",
+            field=models.DecimalField(
+                decimal_places=2, default=0, max_digits=6, verbose_name="Доплата"
+            ),
         ),
         migrations.AlterField(
-            model_name='productoption',
-            name='name',
-            field=models.CharField(max_length=100, verbose_name='Название опции'),
+            model_name="productoption",
+            name="name",
+            field=models.CharField(max_length=100, verbose_name="Название опции"),
         ),
         migrations.AlterField(
-            model_name='productoption',
-            name='product',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='options', to='catalog.product', verbose_name='Товар'),
+            model_name="productoption",
+            name="product",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="options",
+                to="catalog.product",
+                verbose_name="Товар",
+            ),
         ),
     ]
