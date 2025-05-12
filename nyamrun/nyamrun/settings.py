@@ -10,7 +10,11 @@ SECRET_KEY = 'django-insecure-!^^o6-@+g#o^bi7r917s%tt$n*uqwn4o535=pn%(wd6gb!cqln
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['nyamrun.ru', 'www.nyamrun.ru']
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://nyamrun.ru",
+]
 
 INSTALLED_APPS = [
     'users.apps.UsersConfig',

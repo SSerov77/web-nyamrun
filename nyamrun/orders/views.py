@@ -41,11 +41,6 @@ def order_create(request):
     })
 
 
-import json
-from yookassa import Payment
-from django.urls import reverse
-from django.conf import settings
-
 @login_required
 def order_payment(request):
     user = request.user
