@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "cart.apps.CartConfig",
     "orders.apps.OrdersConfig",
     "ckeditor",
+    'smart_selects',
 ]
 
 MIDDLEWARE = [
