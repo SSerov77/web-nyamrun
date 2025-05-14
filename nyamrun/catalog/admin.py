@@ -7,8 +7,8 @@ from catalog.models import Category, Product, ProductOption
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("name",)
-    search_fields = ("name",)
+    list_display = ("name", "slug",)
+    search_fields = ("name", "slug",)
     list_per_page = 10
 
 

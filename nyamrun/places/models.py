@@ -28,7 +28,11 @@ class Address(models.Model):
 
 class PlaceType(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название типа")
-    slug = models.SlugField(max_length=50, unique=True, verbose_name="Код типа")
+    slug = models.SlugField(
+        max_length=50,
+        unique=True,
+        verbose_name="Уникальный тег",
+    )
 
     def __str__(self):
         return self.name

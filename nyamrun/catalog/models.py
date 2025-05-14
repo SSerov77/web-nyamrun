@@ -6,7 +6,12 @@ from ckeditor.fields import RichTextField
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название категории")
-    slug = models.SlugField(max_length=120, unique=True, blank=True)
+    slug = models.SlugField(
+        max_length=120,
+        unique=True,
+        blank=True,
+        verbose_name="Уникальный тег",
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:
