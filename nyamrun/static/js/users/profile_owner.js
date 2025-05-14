@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const ctx = document.getElementById('ordersChart').getContext('2d');
     const chartData = JSON.parse(document.getElementById('chartData').textContent);
-    
+
     const chart = new Chart(ctx, {
         type: 'line',
         data: {

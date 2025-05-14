@@ -8,15 +8,23 @@ from places.models import Place
 class Cart(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
         on_delete=models.CASCADE,
-        verbose_name="Пользователь",
-        related_name="cart",
+        related_name='cart'
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    place = models.ForeignKey(Place, null=True, blank=True, on_delete=models.SET_NULL)
+    place = models.ForeignKey(
+        Place,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
 
     def __str__(self):
-        return f"Корзина пользователя ID {self.user_id}"
+        if self.user:
+            return f"Корзина {self.user}"
+        return f"Сессионная корзина {self.session_key}"
 
     def get_total_price(self):
         return sum(item.get_total_price() for item in self.items.all())
@@ -24,9 +32,6 @@ class Cart(models.Model):
     class Meta:
         verbose_name = "Корзина пользователя"
         verbose_name_plural = "Корзины пользователей"
-
-
-# models.py
 
 
 class CartItem(models.Model):
@@ -44,7 +49,6 @@ class CartItem(models.Model):
         return sum(option.additional_price for option in self.options.all())
 
     def get_price(self):
-        # старый метод — но мы добавим свойство ниже
         return self.product.price + self.get_options_price()
 
     def get_total_price(self):

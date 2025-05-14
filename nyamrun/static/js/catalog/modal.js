@@ -48,26 +48,26 @@ export function createModal(modalContainer, itemData, onAddCallback) {
   const qtyInput = modal.querySelector('input[type="number"]');
 
   minusBtn.addEventListener('click', () => {
-      let val = parseInt(qtyInput.value, 10);
-      if (val > 1) qtyInput.value = val - 1;
+    let val = parseInt(qtyInput.value, 10);
+    if (val > 1) qtyInput.value = val - 1;
   });
 
   plusBtn.addEventListener('click', () => {
-      let val = parseInt(qtyInput.value, 10);
-      qtyInput.value = val + 1;
+    let val = parseInt(qtyInput.value, 10);
+    qtyInput.value = val + 1;
   });
 
   // Закрытие модалки
   modal.querySelector('.modal-close').addEventListener('click', () => {
-      modalContainer.style.display = 'none';
-      modalContainer.innerHTML = '';
+    modalContainer.style.display = 'none';
+    modalContainer.innerHTML = '';
   });
 
   // Кнопка добавления
   const addBtn = modal.querySelector('.add-btn');
   addBtn.onclick = () => {
-      const quantity = qtyInput.value;
-      const checkedOptions = [...modal.querySelectorAll('input[name="option"]:checked')].map(i => i.value);
-      onAddCallback(quantity, checkedOptions);
+    const quantity = qtyInput.value;
+    const checkedOptions = [...modal.querySelectorAll('input[name="option"]:checked')].map(i => i.value);
+    onAddCallback(quantity, checkedOptions);
   };
 }

@@ -120,6 +120,7 @@ YOOKASSA_SECRET_KEY = getenv("YOOKASSA_SECRET_KEY", "YOUR_YOOKASSA_SECRET_KEY")
 AUTH_USER_MODEL = "users.CustomUser"
 
 # Login/Logout redirect
+LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
