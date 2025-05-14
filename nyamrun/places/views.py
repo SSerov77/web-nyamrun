@@ -13,7 +13,7 @@ def place_list(request):
     selected_cuisines = request.GET.getlist("cuisine")
 
     if selected_types:
-        places = places.filter(type__code__in=selected_types)
+        places = places.filter(type__slug__in=selected_types)
 
     if selected_cuisines:
         try:
