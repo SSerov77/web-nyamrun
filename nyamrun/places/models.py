@@ -56,11 +56,16 @@ class Place(models.Model):
         verbose_name="Изображение",
     )
     categories = models.ManyToManyField(
-        "catalog.Category", related_name="places", verbose_name="Категории товаров"
+        "catalog.Category",
+        related_name="places",
+        verbose_name="Категории товаров",
     )
     working_hours = models.CharField(max_length=255, verbose_name="Время работы")
     addresses = models.ManyToManyField(
-        Address, blank=True, related_name="places", verbose_name="Адреса"
+        Address,
+        blank=True,
+        related_name="places",
+        verbose_name="Адреса",
     )
     owner = models.ForeignKey(
         "users.CustomUser",
