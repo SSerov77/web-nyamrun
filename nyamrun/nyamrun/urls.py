@@ -10,6 +10,7 @@ urlpatterns = [
     path("cart/", include("cart.urls")),
     path("orders/", include("orders.urls")),
     path("users/", include("users.urls")),
+    path('chaining/', include('smart_selects.urls')),
 ]
 
 if settings.DEBUG:

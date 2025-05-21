@@ -9,15 +9,15 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse
 
 from cart.models import Cart
+from cart.utils import get_or_create_cart
 from orders.forms import OrderForm
 from orders.helper import get_time_choices
 from orders.models import Order, OrderItem
 from places.models import Address
 
 
-@login_required
 def order_create(request):
-    cart, _ = Cart.objects.get_or_create(user=request.user)
+    cart = get_or_create_cart(request)
     items = cart.items.select_related("product").prefetch_related("options")
     place = cart.place
     time_choices = get_time_choices(place=place)
@@ -57,7 +57,7 @@ def order_payment(request):
     if not order_data:
         return redirect("order_create")
 
-    cart = user.cart
+    cart = get_or_create_cart(request)
     total_price = cart.get_total_price()
 
     receipt_items = []
@@ -122,7 +122,7 @@ def order_success(request):
     order_data = request.session.get("order_data")
 
     user = request.user
-    cart = user.cart
+    cart = get_or_create_cart(request)
 
     Configuration.account_id = settings.YOOKASSA_SHOP_ID
     Configuration.secret_key = settings.YOOKASSA_SECRET_KEY
@@ -158,9 +158,8 @@ def order_success(request):
         return render(request, "orders/payment_failed.html")
 
 
-@login_required
 def order_items_partial(request):
-    cart, _ = Cart.objects.get_or_create(user=request.user)
+    cart = get_or_create_cart(request)
     items = cart.items.select_related("product").prefetch_related("options")
     total_price = cart.get_total_price()
 

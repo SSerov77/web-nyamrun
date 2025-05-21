@@ -15,8 +15,8 @@
               <label class="pill">
                 <input type="checkbox"
                        name="type"
-                       value="{{ place_type.code }}"
-                       {% if place_type.code in selected_types %}checked{% endif %}>
+                       value="{{ place_type.slug }}"
+                       {% if place_type.slug in selected_types %}checked{% endif %}>
                 <span>{{ place_type.name }}</span>
               </label>
             {% endfor %}

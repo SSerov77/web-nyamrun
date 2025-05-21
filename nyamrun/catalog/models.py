@@ -1,12 +1,18 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from smart_selects.db_fields import ChainedForeignKey
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название категории")
-    slug = models.SlugField(max_length=120, unique=True, blank=True)
+    slug = models.SlugField(
+        max_length=120,
+        unique=True,
+        blank=True,
+        verbose_name="Уникальный тег",
+    )
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -46,9 +52,12 @@ class Product(models.Model):
         related_name="products",
         verbose_name="Заведение",
     )
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.SET_NULL,
+    category = ChainedForeignKey(
+        'catalog.Category',
+        chained_field="place",
+        chained_model_field="places",
+        show_all=False,
+        auto_choose=True,
         null=True,
         blank=True,
         related_name="products",

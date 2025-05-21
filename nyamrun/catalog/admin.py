@@ -7,8 +7,8 @@ from catalog.models import Category, Product, ProductOption
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("name",)
-    search_fields = ("name",)
+    list_display = ("name", "slug",)
+    search_fields = ("name", "slug",)
     list_per_page = 10
 
 
@@ -22,6 +22,19 @@ class ProductAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.TextField: {'widget': CKEditorWidget()},
     }
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "category":
+            object_id = request.resolver_match.kwargs.get('object_id')
+            if object_id:
+                # редактирование существующего Product
+                product = Product.objects.get(pk=object_id)
+                # берем только категории, связанные с этим Place
+                kwargs["queryset"] = product.place.categories.all()
+            else:
+                # создание нового — не показываем ни одной категории
+                kwargs["queryset"] = Category.objects.none()
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
 @admin.register(ProductOption)

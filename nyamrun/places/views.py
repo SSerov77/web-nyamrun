@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
-from cart.models import Cart
+from cart.utils import get_or_create_cart
 from catalog.models import Category, Product
 from places.models import Place, PlaceType
 
@@ -13,7 +13,7 @@ def place_list(request):
     selected_cuisines = request.GET.getlist("cuisine")
 
     if selected_types:
-        places = places.filter(type__code__in=selected_types)
+        places = places.filter(type__slug__in=selected_types)
 
     if selected_cuisines:
         try:
@@ -41,27 +41,23 @@ def place_list(request):
 
 def place_detail(request, pk):
     place = get_object_or_404(Place, pk=pk)
+    # собираем товары по категориям, как было
     categories = place.categories.all()
     categories_with_items = []
     for category in categories:
         items = Product.objects.filter(place=place, category=category)
-        categories_with_items.append(
-            {
-                "category": category,
-                "items": items,
-            }
-        )
-    cart, _ = Cart.objects.get_or_create(user=request.user)
+        categories_with_items.append({
+            "category": category,
+            "items": items,
+        })
 
-    return render(
-        request,
-        "places/place_detail.html",
-        {
-            "place": place,
-            "categories": categories_with_items,
-            "cart": cart,
-        },
-    )
+    cart = get_or_create_cart(request)
+
+    return render(request, "places/place_detail.html", {
+        "place": place,
+        "categories": categories_with_items,
+        "cart": cart,
+    })
 
 
 def product_modal_data(request, product_id):

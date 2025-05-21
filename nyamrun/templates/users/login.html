@@ -19,6 +19,7 @@
           {{ form.password }}
           {{ form.password.errors }}
         </div>
+        <input type="hidden" name="next" value="{{ next }}">
         <button type="submit" class="submit-button">Войти</button>
         <a href="{% url 'signup' %}" class="link-signup">Нет аккаунта?</a>
       </form>
