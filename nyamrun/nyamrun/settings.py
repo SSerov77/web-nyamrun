@@ -11,7 +11,12 @@ SECRET_KEY = "django-insecure-!^^o6-@+g#o^bi7r917s%tt$n*uqwn4o535=pn%(wd6gb!cqln
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['nyamrun.ru', 'www.nyamrun.ru']
+ALLOWED_HOSTS = [
+    'nyamrun.ru',
+    'www.nyamrun.ru',
+    '127.0.0.1',
+    'localhost'
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://nyamrun.ru",
