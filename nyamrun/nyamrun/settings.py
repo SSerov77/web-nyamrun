@@ -14,8 +14,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'nyamrun.ru',
     'www.nyamrun.ru',
-    "localhost",
-    "127.0.0.1",
+    '127.0.0.1',
+    'localhost'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
