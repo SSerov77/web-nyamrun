@@ -25,15 +25,22 @@ class ProductAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "category":
-            object_id = request.resolver_match.kwargs.get('object_id')
-            if object_id:
-                # редактирование существующего Product
-                product = Product.objects.get(pk=object_id)
-                # берем только категории, связанные с этим Place
-                kwargs["queryset"] = product.place.categories.all()
+            # Получаем place_id из GET-параметров (при создании нового товара)
+            place_id = request.GET.get('place')
+            
+            if place_id:
+                # Если place_id передан (при создании нового товара)
+                place = Place.objects.get(pk=place_id)
+                kwargs["queryset"] = place.categories.all()
             else:
-                # создание нового — не показываем ни одной категории
-                kwargs["queryset"] = Category.objects.none()
+                # Для редактирования существующего товара
+                object_id = request.resolver_match.kwargs.get('object_id')
+                if object_id:
+                    product = Product.objects.get(pk=object_id)
+                    kwargs["queryset"] = product.place.categories.all()
+                else:
+                    # Если place_id не передан и это не редактирование - показываем все категории
+                    kwargs["queryset"] = Category.objects.all()
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
