@@ -33,36 +33,29 @@
       </label>
     </form>
     {# Блоки заведений #}
-    {% for place in places %}
-      <div class="place-info-block">
-        <img src="{{ place.image.url }}"
-             alt="{{ place.name }}"
-             class="place-info-img">
-        <div class="place-info-details">
-          <div class="place-info-title">{{ place.name }}</div>
-          <div class="place-info-cat">
-            Категории:
-            {% for cat in place.categories.all %}
-              {{ cat.name }}
-              {% if not forloop.last %},{% endif %}
-            {% empty %}
-              <span style="color:#888;">нет категорий</span>
-            {% endfor %}
-          </div>
-          <div class="place-info-addr">
-            Адреса:
-            {% for addr in place.addresses.all %}
-              {{ addr }}
-              {% if not forloop.last %};{% endif %}
-            {% empty %}
-              <span style="color:#888;">нет адреса</span>
-            {% endfor %}
-          </div>
-          <div class="place-info-type">Тип: {{ place.type }}</div>
-          <div class="place-info-type">Время работы: {{ place.working_hours }}</div>
+    {# Стало: #}
+    <div class="place-info-block">
+      <img src="{{ selected_place.image.url }}"
+           alt="{{ selected_place.name }}"
+           class="place-info-img">
+      <div class="place-info-details">
+        <div class="place-info-title">{{ selected_place.name }}</div>
+        <div class="place-info-cat">
+          Категории:
+          {% for cat in selected_place.categories.all %}
+            {{ cat.name }}{% if not forloop.last %},{% endif %}
+          {% empty %}<span style="color:#888;">нет категорий</span>{% endfor %}
         </div>
+        <div class="place-info-addr">
+          Адреса:
+          {% for addr in selected_place.addresses.all %}
+            {{ addr }}{% if not forloop.last %};{% endif %}
+          {% empty %}<span style="color:#888;">нет адреса</span>{% endfor %}
+        </div>
+        <div class="place-info-type">Тип: {{ selected_place.type }}</div>
+        <div class="place-info-type">Время работы: {{ selected_place.working_hours }}</div>
       </div>
-    {% endfor %}
+    </div>
     <h3>Общая статистика</h3>
     <div class="charts-grid">
       <div class="chart-card">
