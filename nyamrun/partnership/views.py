@@ -1,3 +1,4 @@
+import logging
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -57,6 +58,6 @@ def partnership_submit(request):
                 request,
                 "Ошибка отправки. Попробуйте позже или свяжитесь с нами напрямую.",
             )
-            print("Ошибка отправки:", e)
+            logging.error(f"Ошибка отправки: {e}")
 
         return redirect("partnership")
