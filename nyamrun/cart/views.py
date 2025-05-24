@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 
-from cart.models import Cart, CartItem
+from cart.models import CartItem
 from cart.utils import get_or_create_cart
 from catalog.models import Product, ProductOption
 
