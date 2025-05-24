@@ -1,19 +1,17 @@
 import json
 
+from cart.utils import get_or_create_cart
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
-from django.urls import reverse
-from yookassa import Configuration, Payment
-from django.template.loader import render_to_string
 from django.http import JsonResponse
-
-from cart.models import Cart
-from cart.utils import get_or_create_cart
+from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
+from django.urls import reverse
 from orders.forms import OrderForm
 from orders.helper import get_time_choices
 from orders.models import Order, OrderItem
 from places.models import Address
+from yookassa import Configuration, Payment
 
 
 def order_create(request):
@@ -168,14 +166,9 @@ def order_items_partial(request):
 
     html = render_to_string(
         "orders/_order_items.html",
-        {
-            "items": items,
-            "total_price": total_price
-        },
-        request=request
+        {"items": items, "total_price": total_price},
+        request=request,
     )
-    return JsonResponse({
-        "html": html, 
-        "total_price": total_price,
-        "is_empty": is_empty
-    })
+    return JsonResponse(
+        {"html": html, "total_price": total_price, "is_empty": is_empty}
+    )

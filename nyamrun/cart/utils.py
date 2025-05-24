@@ -1,5 +1,6 @@
-from django.db import transaction
 from cart.models import Cart
+from django.db import transaction
+
 
 def get_or_create_cart(request):
     """
@@ -10,7 +11,7 @@ def get_or_create_cart(request):
     """
     # 1) Получаем гостевую корзину из сессии (если есть)
     guest_cart = None
-    cart_id = request.session.get('cart_id')
+    cart_id = request.session.get("cart_id")
     if cart_id:
         try:
             guest_cart = Cart.objects.get(id=cart_id, user__isnull=True)
@@ -30,7 +31,7 @@ def get_or_create_cart(request):
                     # пробуем найти дубликат в user_cart
                     existing = user_cart.items.filter(
                         product=item.product,
-                        options__in=[o.id for o in item.options.all()]
+                        options__in=[o.id for o in item.options.all()],
                     ).first()
                     if existing:
                         existing.quantity += item.quantity
@@ -43,13 +44,13 @@ def get_or_create_cart(request):
                 guest_cart.delete()
 
             # чистим session
-            request.session.pop('cart_id', None)
+            request.session.pop("cart_id", None)
 
         return user_cart
 
     # 3) Анонимный: если гостевой нет — создаём
     if not guest_cart:
         guest_cart = Cart.objects.create()
-        request.session['cart_id'] = guest_cart.id
+        request.session["cart_id"] = guest_cart.id
 
     return guest_cart

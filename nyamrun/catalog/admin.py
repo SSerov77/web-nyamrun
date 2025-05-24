@@ -1,14 +1,20 @@
+from catalog.models import Category, Product, ProductOption
+from places.models import Place
+from ckeditor.widgets import CKEditorWidget
 from django.contrib import admin
 from django.db import models
-from ckeditor.widgets import CKEditorWidget
-
-from catalog.models import Category, Product, ProductOption
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("name", "slug",)
-    search_fields = ("name", "slug",)
+    list_display = (
+        "name",
+        "slug",
+    )
+    search_fields = (
+        "name",
+        "slug",
+    )
     list_per_page = 10
 
 
@@ -20,26 +26,22 @@ class ProductAdmin(admin.ModelAdmin):
     filter_horizontal = ("options",)
     list_per_page = 10
     formfield_overrides = {
-        models.TextField: {'widget': CKEditorWidget()},
+        models.TextField: {"widget": CKEditorWidget()},
     }
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "category":
-            # Получаем place_id из GET-параметров (при создании нового товара)
-            place_id = request.GET.get('place')
-            
+            place_id = request.GET.get("place")
+
             if place_id:
-                # Если place_id передан (при создании нового товара)
                 place = Place.objects.get(pk=place_id)
                 kwargs["queryset"] = place.categories.all()
             else:
-                # Для редактирования существующего товара
-                object_id = request.resolver_match.kwargs.get('object_id')
+                object_id = request.resolver_match.kwargs.get("object_id")
                 if object_id:
                     product = Product.objects.get(pk=object_id)
                     kwargs["queryset"] = product.place.categories.all()
                 else:
-                    # Если place_id не передан и это не редактирование - показываем все категории
                     kwargs["queryset"] = Category.objects.all()
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 

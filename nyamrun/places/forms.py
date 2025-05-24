@@ -1,6 +1,5 @@
 from django import forms
 from PIL import Image
-
 from places.models import Place
 
 

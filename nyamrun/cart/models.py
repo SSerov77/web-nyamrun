@@ -1,7 +1,6 @@
+from catalog.models import Product, ProductOption
 from django.conf import settings
 from django.db import models
-
-from catalog.models import Product, ProductOption
 from places.models import Place
 
 
@@ -11,15 +10,10 @@ class Cart(models.Model):
         null=True,
         blank=True,
         on_delete=models.CASCADE,
-        related_name='cart'
+        related_name="cart",
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    place = models.ForeignKey(
-        Place,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL
-    )
+    place = models.ForeignKey(Place, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         if self.user:

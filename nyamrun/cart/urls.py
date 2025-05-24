@@ -1,6 +1,5 @@
-from django.urls import path
-
 from cart import views
+from django.urls import path
 
 urlpatterns = [
     path("add-ajax/<int:product_id>/", views.cart_add_ajax, name="cart_add_ajax"),

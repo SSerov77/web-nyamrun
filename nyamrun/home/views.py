@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from places.models import Place, PlaceType
 
 

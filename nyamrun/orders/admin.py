@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from orders.models import Order, OrderItem
 
 
@@ -50,10 +49,7 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
     def view_items(self, obj: Order) -> str:
-        items = [
-            f"{item.product.name} x{item.quantity}"
-            for item in obj.items.all()
-        ]
+        items = [f"{item.product.name} x{item.quantity}" for item in obj.items.all()]
         return " | ".join(items)
 
     view_items.short_description = "Позиции заказа"

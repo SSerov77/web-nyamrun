@@ -1,7 +1,6 @@
+import users.views
 from django.contrib.auth import views
 from django.urls import path
-
-import users.views
 from users.forms import CustomAuthenticationForm, CustomPasswordChangeForm
 
 urlpatterns = [

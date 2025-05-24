@@ -4,7 +4,6 @@ from django.contrib.auth.forms import (
     PasswordChangeForm,
     UserCreationForm,
 )
-
 from users.models import CustomUser
 
 

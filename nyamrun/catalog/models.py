@@ -1,8 +1,8 @@
+from ckeditor.fields import RichTextField
 from django.core.validators import MinValueValidator
 from django.db import models
-from smart_selects.db_fields import ChainedForeignKey
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
+from smart_selects.db_fields import ChainedForeignKey
 
 
 class Category(models.Model):
@@ -53,7 +53,7 @@ class Product(models.Model):
         verbose_name="Заведение",
     )
     category = ChainedForeignKey(
-        'catalog.Category',
+        "catalog.Category",
         chained_field="place",
         chained_model_field="places",
         show_all=False,

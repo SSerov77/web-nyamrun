@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from places.forms import PlaceAdminForm
 from places.models import Address, Place, PlaceType
 

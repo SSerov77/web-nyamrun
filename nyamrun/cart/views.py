@@ -1,11 +1,10 @@
+from cart.models import CartItem
+from cart.utils import get_or_create_cart
+from catalog.models import Product, ProductOption
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
-
-from cart.models import CartItem
-from cart.utils import get_or_create_cart
-from catalog.models import Product, ProductOption
 
 
 @require_POST
@@ -23,12 +22,15 @@ def cart_add_ajax(request, product_id):
         cart.place = place
         cart.save()
     elif cart.place != place:
-        return JsonResponse({
-            "error": (
-                f"В корзине уже выбранo заведение: {cart.place.name}. "
-                "Очистите корзину для заказа из другого заведения."
-            )
-        }, status=400)
+        return JsonResponse(
+            {
+                "error": (
+                    f"В корзине уже выбранo заведение: {cart.place.name}. "
+                    "Очистите корзину для заказа из другого заведения."
+                )
+            },
+            status=400,
+        )
 
     # Объединяем одинаковые позиции
     existing_items = CartItem.objects.filter(cart=cart, product=product)

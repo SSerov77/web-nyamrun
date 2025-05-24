@@ -7,7 +7,6 @@ from django.urls import reverse_lazy
 from django.utils.timezone import now, timedelta
 from django.views import View
 from django.views.generic import TemplateView
-
 from orders.models import Order, OrderStatus
 from users.forms import CustomUserCreationForm
 

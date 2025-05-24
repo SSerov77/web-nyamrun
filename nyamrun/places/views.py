@@ -1,9 +1,8 @@
+from cart.utils import get_or_create_cart
+from catalog.models import Category, Product
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-
-from cart.utils import get_or_create_cart
-from catalog.models import Category, Product
 from places.models import Place, PlaceType
 
 
@@ -46,18 +45,24 @@ def place_detail(request, pk):
     categories_with_items = []
     for category in categories:
         items = Product.objects.filter(place=place, category=category)
-        categories_with_items.append({
-            "category": category,
-            "items": items,
-        })
+        categories_with_items.append(
+            {
+                "category": category,
+                "items": items,
+            }
+        )
 
     cart = get_or_create_cart(request)
 
-    return render(request, "places/place_detail.html", {
-        "place": place,
-        "categories": categories_with_items,
-        "cart": cart,
-    })
+    return render(
+        request,
+        "places/place_detail.html",
+        {
+            "place": place,
+            "categories": categories_with_items,
+            "cart": cart,
+        },
+    )
 
 
 def product_modal_data(request, product_id):
