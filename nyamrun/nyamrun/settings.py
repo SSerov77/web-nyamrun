@@ -12,10 +12,10 @@ SECRET_KEY = "django-insecure-!^^o6-@+g#o^bi7r917s%tt$n*uqwn4o535=pn%(wd6gb!cqln
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'nyamrun.ru',
-    'www.nyamrun.ru',
-    '127.0.0.1',
-    'localhost',
+    "nyamrun.ru",
+    "www.nyamrun.ru",
+    "127.0.0.1",
+    "localhost",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -82,16 +82,13 @@ AUTH_PASSWORD_VALIDATORS = [
         "UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation."
-        "MinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation." "MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation."
-        "CommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation." "CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation."
-        "NumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation." "NumericPasswordValidator",
     },
 ]
 
@@ -118,36 +115,60 @@ MEDIA_ROOT = BASE_DIR / "media"
 YOOKASSA_SHOP_ID = getenv("YOOKASSA_SHOP_ID", "YOUR_YOOKASSA_SHOP_ID")
 YOOKASSA_SECRET_KEY = getenv("YOOKASSA_SECRET_KEY", "YOUR_YOOKASSA_SECRET_KEY")
 
+# Settings send email
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.mail.ru"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = getenv("EMAIL_HOST_USER", "YOUR_EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = getenv("EMAIL_HOST_PASSWORD", "YOUR_EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = getenv("DEFAULT_FROM_EMAIL", "YOUR_DEFAULT_FROM_EMAIL")
+
 # Custom User Model
 AUTH_USER_MODEL = "users.CustomUser"
 
 # Login/Logout redirect
-LOGIN_URL = '/users/login/'
+LOGIN_URL = "/users/login/"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 # CKEditor Configuration
 CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Full',
-        'height': 300,
-        'width': '100%',
-        'toolbar_Full': [
+    "default": {
+        "toolbar": "Full",
+        "height": 300,
+        "width": "100%",
+        "toolbar_Full": [
             [
-                'Bold', 'Italic', 'Underline', 'Strike',
-                'Subscript', 'Superscript', '-', 'RemoveFormat',
+                "Bold",
+                "Italic",
+                "Underline",
+                "Strike",
+                "Subscript",
+                "Superscript",
+                "-",
+                "RemoveFormat",
             ],
             [
-                'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
-                'Blockquote', '-', 'JustifyLeft', 'JustifyCenter',
-                'JustifyRight', 'JustifyBlock',
+                "NumberedList",
+                "BulletedList",
+                "-",
+                "Outdent",
+                "Indent",
+                "-",
+                "Blockquote",
+                "-",
+                "JustifyLeft",
+                "JustifyCenter",
+                "JustifyRight",
+                "JustifyBlock",
             ],
-            ['Link', 'Unlink'],
-            ['Image', 'Table', 'HorizontalRule', 'SpecialChar'],
-            ['Styles', 'Format', 'Font', 'FontSize'],
-            ['TextColor', 'BGColor'],
-            ['Maximize', 'ShowBlocks', '-', 'Source'],
+            ["Link", "Unlink"],
+            ["Image", "Table", "HorizontalRule", "SpecialChar"],
+            ["Styles", "Format", "Font", "FontSize"],
+            ["TextColor", "BGColor"],
+            ["Maximize", "ShowBlocks", "-", "Source"],
         ],
-        'extraPlugins': 'justify,liststyle,indent',
+        "extraPlugins": "justify,liststyle,indent",
     },
 }
