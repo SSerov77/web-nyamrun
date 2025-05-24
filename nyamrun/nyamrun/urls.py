@@ -11,6 +11,7 @@ urlpatterns = [
     path("orders/", include("orders.urls")),
     path("users/", include("users.urls")),
     path('chaining/', include('smart_selects.urls')),
+    path('partnership/', include('partnership.urls')),
 ]
 
 if settings.DEBUG:

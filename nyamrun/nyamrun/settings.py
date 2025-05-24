@@ -15,7 +15,7 @@ ALLOWED_HOSTS = [
     'nyamrun.ru',
     'www.nyamrun.ru',
     '127.0.0.1',
-    'localhost'
+    'localhost',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -35,8 +35,9 @@ INSTALLED_APPS = [
     "catalog.apps.CatalogConfig",
     "cart.apps.CartConfig",
     "orders.apps.OrdersConfig",
+    "partnership.apps.PartnershipConfig",
     "ckeditor",
-    'smart_selects',
+    "smart_selects",
 ]
 
 MIDDLEWARE = [
@@ -132,10 +133,14 @@ CKEDITOR_CONFIGS = {
         'height': 300,
         'width': '100%',
         'toolbar_Full': [
-            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
             [
-                'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 
-                'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'
+                'Bold', 'Italic', 'Underline', 'Strike',
+                'Subscript', 'Superscript', '-', 'RemoveFormat',
+            ],
+            [
+                'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                'Blockquote', '-', 'JustifyLeft', 'JustifyCenter',
+                'JustifyRight', 'JustifyBlock',
             ],
             ['Link', 'Unlink'],
             ['Image', 'Table', 'HorizontalRule', 'SpecialChar'],
