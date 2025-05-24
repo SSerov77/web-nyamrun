@@ -19,18 +19,19 @@
   </head>
   <body>
     {% include 'includes/header.html' %}
+    {% if messages %}
+      <div class="notification-wrapper">
+        {% for message in messages %}
+          <div class="notification {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+            <span class="close-btn">&times;</span>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
     {% block content %}{% endblock %}
     {% include 'includes/footer.html' %}
   </body>
-  {% if messages %}
-    <div class="notification-wrapper">
-      {% for message in messages %}
-        <div class="notification {% if message.tags %}{{ message.tags }}{% endif %}">
-          {{ message }}
-          <span class="close-btn">&times;</span>
-        </div>
-      {% endfor %}
-    </div>
-  {% endif %}
+  <script src="{% static "js/showMessages.js" %}"></script>
   <script src="{% static "js/users/showPassword.js" %}"></script>
 </html>

@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 
@@ -12,6 +13,10 @@ def partnership_submit(request):
         phone = request.POST.get('phone')
         email = request.POST.get('email')
 
+        messages.success(
+            request,
+            'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.'
+        )
         print("New partner: ", name, contact, phone, email)
 
     return redirect('partnership')
