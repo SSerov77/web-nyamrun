@@ -6,37 +6,89 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('catalog', '0006_alter_productoption_options_and_more'),
-        ('places', '0005_remove_address_place_place_addresses'),
+        ("catalog", "0006_alter_productoption_options_and_more"),
+        ("places", "0005_remove_address_place_place_addresses"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('comment', models.TextField(blank=True, verbose_name='Комментарий')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('ready_time', models.TimeField(verbose_name='Время приготовления')),
-                ('total_price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('address', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='places.address', verbose_name='Адрес')),
-                ('place', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='places.place', verbose_name='Заведение')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orders', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("comment", models.TextField(blank=True, verbose_name="Комментарий")),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("ready_time", models.TimeField(verbose_name="Время приготовления")),
+                ("total_price", models.DecimalField(decimal_places=2, max_digits=10)),
+                (
+                    "address",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="places.address",
+                        verbose_name="Адрес",
+                    ),
+                ),
+                (
+                    "place",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="places.place",
+                        verbose_name="Заведение",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="orders",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='OrderItem',
+            name="OrderItem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.PositiveIntegerField()),
-                ('options', models.ManyToManyField(blank=True, to='catalog.productoption')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='orders.order')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='catalog.product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.PositiveIntegerField()),
+                (
+                    "options",
+                    models.ManyToManyField(blank=True, to="catalog.productoption"),
+                ),
+                (
+                    "order",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="items",
+                        to="orders.order",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="catalog.product",
+                    ),
+                ),
             ],
         ),
     ]

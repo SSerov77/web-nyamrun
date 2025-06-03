@@ -1,17 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
 :root {
     /* Основные цвета */
     --color-primary: #D75F32;
     --color-primary-hover: #c04b1f;
 
-    --color-secondary: #341f0d;
-    --color-background: #FBF2E6;
+    --color-background: #F4EDDF;
+    --color-secondary: #E9DCC7;
     --color-white: #FFFFFF;
     --color-black: #000000;
+    --color-brown: #381D05;
 
     /* Текст */
-    --color-text: var(--color-secondary);
+    --color-text: var(--color-brown);
     --color-text-light: var(--color-white);
     --color-text-dark: var(--color-black);
 
@@ -26,15 +25,21 @@
     --color-card-shadow-hover: rgba(0, 0, 0, 0.3);
 
     /* Фильтры */
-    --color-filter-bg: var(--color-primary);
-    --color-filter-text: var(--color-white);
-    --color-filter-option-bg: var(--color-white);
+    --color-filter-bg: var(--color-white);
+    --color-filter-text: var(--color-text-dark);
+    --color-filter-option-bg: #F5F4F2;
+}
+
+/* Шрифты */
+@font-face {
+    font-family: "Chocolate";
+    src: url("../fonts/ChocolateClassicalSans-Regular.ttf") format("woff2");
+    font-display: swap;
 }
 
 /* Общие утилиты */
-
 * {
-    font-family: "Roboto", sans-serif;
+    font-family: "Chocolate", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -47,10 +52,6 @@ a {
     transition: color 0.3s;
 }
 
-a:hover {
-    color: var(--color-primary);
-}
-
 ul {
     list-style: none;
 }
@@ -61,31 +62,24 @@ body {
 }
 
 /* HEADER */
-
 header {
     width: 100%;
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 30px;
 }
 
 .header-content {
-    width: calc(100% - 40px);
+    width: 100%;
     max-width: 1440px;
-    height: 100px;
+    height: 58px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-weight: 500;
     font-size: 16px;
     padding: 0 20px;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-radius: 16px;
-    margin: 20px 0;
-    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .logo {
@@ -100,6 +94,10 @@ header {
     justify-content: space-between;
 }
 
+.navbar a:hover {
+    color: var(--color-primary-hover);
+}
+
 .login {
     width: clamp(100px, 26vw, 300px);
     height: 58px;
@@ -110,9 +108,7 @@ header {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: color 0.3s, border-color 0.3s;
 }
 
 .login:hover {
@@ -120,23 +116,29 @@ header {
     border-color: var(--color-primary);
 }
 
+.header__icons {
+    width: 40px;
+    color: var(--color-button-hover);
+}
+
+.header__icons:hover {
+    filter: invert(43%) sepia(83%) saturate(349%) hue-rotate(343deg);
+}
+
+.user-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
 .user-profile {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 8px 16px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
 }
 
 .user-profile:hover {
-    background: rgba(0, 0, 0, 0.02);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.user-logo {
-    width: 30px;
-    color: var(--color-white);
+    filter: invert(43%) sepia(83%) saturate(349%) hue-rotate(343deg);
 }
 
 .username {
@@ -144,20 +146,7 @@ header {
     color: var(--color-text);
 }
 
-.logout {
-    color: #4a90e2;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s;
-}
-
-.logout:hover {
-    color: #3a7bc8;
-    text-decoration: underline;
-}
-
-/* MIAN */
-
+/* MAIN */
 main {
     min-height: 75vh;
 }
@@ -176,22 +165,186 @@ main {
 }
 
 /* FOOTER */
-
 .footer {
-    width: 100%;
-    height: 100px;
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-white);
+    background-color: #000;
+    color: #eee;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-top: 100px;
 }
 
-.footer-content {
-    width: 100%;
-    max-width: 1440px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
+
+/* Верхняя часть */
+.footer__top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer__brand {
+    flex: 1 1 250px;
+    margin-right: 40px;
+}
+
+.footer__logo {
+    display: block;
+    width: 100px;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.footer__desc {
+    max-width: 280px;
+    color: #ccc;
+}
+
+/* Навигация */
+.footer__nav {
+    display: flex;
+    flex: 2 1 400px;
+    gap: 60px;
+}
+
+.footer__column {
+    flex: 1;
+}
+
+.footer__title {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer__list li+li {
+    margin-top: 8px;
+}
+
+.footer__list a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer__list a:hover {
+    color: #fff;
+}
+
+/* Социальные и рассылка */
+.footer__social {
+    flex: 1 1 200px;
+    text-align: right;
+}
+
+.footer__icons {
+    margin-bottom: 16px;
+}
+
+.icon {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin-left: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.footer__newsletter {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.footer__arrow {
+    margin-left: 8px;
+}
+
+/* Нижняя часть */
+.footer__bottom {
+    border-top: 1px solid #222;
+    padding: 20px 20px 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer__copy {
+    margin: 0;
+    color: #666;
+}
+
+.footer__legal {
+    display: flex;
+    align-items: center;
+}
+
+.footer__legal a {
+    color: #666;
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+.footer__legal a:hover {
+    color: #aaa;
+}
+
+.footer__sep {
+    color: #444;
+}
+
+/* Стили для уведомлений */
+.notification-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 300px;
+  }
+  
+  .notification {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white;
+    position: relative;
+    animation: slideIn 0.5s forwards;
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  
+  .notification.success {
+    background-color: #4CAF50;
+  }
+  
+  .notification.error {
+    background-color: #F44336;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }

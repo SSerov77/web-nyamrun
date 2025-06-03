@@ -5,17 +5,22 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0006_alter_productoption_options_and_more'),
-        ('places', '0006_remove_place_products'),
+        ("catalog", "0006_alter_productoption_options_and_more"),
+        ("places", "0006_remove_place_products"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='product',
-            name='place',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='products', to='places.place', verbose_name='Заведение'),
+            model_name="product",
+            name="place",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="products",
+                to="places.place",
+                verbose_name="Заведение",
+            ),
             preserve_default=False,
         ),
     ]

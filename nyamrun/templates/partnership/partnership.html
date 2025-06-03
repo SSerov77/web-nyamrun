@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Партнерство{% endblock %}\
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/partnership/partnership.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>Станьте нашим партнером</h1>
+        <p>Предзаказы — это не просто удобство, это ваш стабильный доход!</p>
+        <a href="#form" class="btn">Оставить заявку</a>
+    </div>
+</section>
+
+<section class="benefits">
+    <div class="container">
+        <h2>Почему выгодно работать с нами?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <img src="{% static 'imgs/icons/increase-sales.svg' %}" alt="Рост продаж">
+                <h3>Увеличение выручки</h3>
+                <p>Предзаказы помогают снизить нагрузку в пиковые часы и увеличить средний чек.</p>
+            </div>
+            <div class="benefit-card">
+                <img src="{% static 'imgs/icons/customers.svg' %}" alt="Новые клиенты">
+                <h3>Новые клиенты</h3>
+                <p>Ваше заведение увидят тысячи пользователей нашего сервиса.</p>
+            </div>
+            <div class="benefit-card">
+                <img src="{% static 'imgs/icons/analytics.svg' %}" alt="Аналитика">
+                <h3>Подробная аналитика</h3>
+                <p>Отчеты по продажам, популярным позициям и времени заказов.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how-it-works">
+    <div class="container">
+        <h2>Как подключиться?</h2>
+        <ol class="steps">
+            <li>Оставьте заявку на партнерство.</li>
+            <li>Мы свяжемся с вами для обсуждения условий.</li>
+            <li>Подпишем договор и подключим ваше заведение.</li>
+            <li>Настроим меню и обучим сотрудников.</li>
+        </ol>
+    </div>
+</section>
+
+<section class="partnership-form" id="form">
+    <div class="container">
+        <h2>Оставить заявку</h2>
+        <form method="POST" action="{% url 'partnership_submit' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Название заведения" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="contact" name="contact" placeholder="Контактное лицо" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="phone" name="phone" placeholder="+7" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Ваш email" required>
+            </div>
+            <button type="submit" class="btn">Отправить заявку</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
