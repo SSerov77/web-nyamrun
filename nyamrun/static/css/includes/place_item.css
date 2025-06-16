@@ -39,3 +39,40 @@
     font-size: 18px;
     color: var(--color-text-dark);
 }
+
+
+.items {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .items {
+    justify-content: center;
+  }
+  .item {
+    flex: 1 1 calc(50% - 20px);
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 600px) {
+  .items {
+    gap: 10px;
+    padding: 0 5px;
+  }
+  .item {
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+.item-img {
+    aspect-ratio: 2/1;
+    border-radius: 16px;
+}
+.item-name {
+    font-size: 16px;
+}

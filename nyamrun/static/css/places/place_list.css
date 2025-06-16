@@ -85,3 +85,41 @@
 
 /* ITEMS */
 
+
+@media (max-width: 900px) {
+  .container {
+    padding: 10px;
+  }
+  .filters {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
+  }
+  .filter-options {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 5px;
+  }
+  .filters {
+    gap: 10px;
+    padding: 5px 0;
+  }
+  .filter-group h3 {
+    font-size: 16px;
+  }
+  .filter-options label {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  .pill span {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
