@@ -49,3 +49,48 @@
     height: auto;
     max-height: 544px;
 }
+
+
+@media (max-width: 900px) {
+  .main-section {
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .main-img {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+  }
+  .left-block {
+    max-width: 100%;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-img {
+    display: none;
+  }
+}
+  .main-title {
+    font-size: 28px;
+    text-align: left;
+  }
+  .main-subtitle {
+    font-size: 16px;
+    text-align: left;
+  }
+  .main-btn {
+    width: 100%;
+    min-width: 160px;
+    font-size: 16px;
+    height: 44px;
+  }
+  .main-section {
+    padding: 10px;
+  }
+  .category {
+    padding: 10px 0;
+  }
