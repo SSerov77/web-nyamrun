@@ -4,19 +4,36 @@
     <a href="{% url 'home' %}" class="logo">
       <img src="{% static 'imgs/logo/logo.svg' %}" alt="logotype" class="logo">
     </a>
-    {% include 'includes/navbar.html' %}
+    
+    <nav class="navbar">
+      <a href="{% url 'home' %}">О нас</a>
+      <a href="{% url 'place_list' %}">Заведения</a>
+      <a href="{% url 'partnership' %}">Партнерство</a>
+      
+      {% if user.is_authenticated %}
+        <div class="mobile-user-actions">
+          <a href="{% url 'order_create' %}">
+            <img src="{% static 'imgs/icons/basket.svg' %}" alt="Корзина">
+            Корзина
+          </a>
+          <a href="{% url 'profile' %}">
+            <img src="{% static 'imgs/icons/user.svg' %}" alt="Профиль">
+            Профиль
+          </a>
+        </div>
+      {% else %}
+        <a href="{% url 'login' %}" class="mobile-login">Войти</a>
+      {% endif %}
+    </nav>
+    
     {% if user.is_authenticated %}
       <div class="user-info">
         <a href="{% url 'order_create' %}">
-          <img src="{% static 'imgs/icons/basket.svg' %}"
-               alt="basket"
-               class="header__icons">
+          <img src="{% static 'imgs/icons/basket.svg' %}" alt="Корзина" class="header__icons">
         </a>
         <a href="{% url 'profile' %}">
           <div class="user-profile">
-            <img src="{% static 'imgs/icons/user.svg' %}"
-                 alt="user-logo"
-                 class="header__icons">
+            <img src="{% static 'imgs/icons/user.svg' %}" alt="Профиль" class="header__icons">
             <p class="username">{{ user.username }}</p>
           </div>
         </a>
@@ -24,5 +41,11 @@
     {% else %}
       <a href="{% url 'login' %}" class="login">Войти</a>
     {% endif %}
+    
+    <div class="menu-toggle" id="mobile-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
 </header>

@@ -17,15 +17,15 @@ class PlaceAdminForm(forms.ModelForm):
             try:
                 img = Image.open(image)
                 width, height = img.size
-                if width < 875 or height < 330:
+                if width < 100 or height < 100:
                     raise forms.ValidationError(
                         f"Загруженное изображение слишком маленькое: "
                         f"{width}x{height} пикселей. "
-                        "Минимальный размер — 880x330 пикселей. "
+                        "Минимальный размер — 300x300 пикселей. "
                         "Пожалуйста, загрузите изображение большего размера."
                     )
             except Exception:
                 raise forms.ValidationError(
-                    "Изображение должно быть не менее 880x330 пикселей."
+                    "Изображение должно быть не менее 300x300 пикселей."
                 )
         return image
