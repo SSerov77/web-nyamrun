@@ -1,43 +1,10 @@
 version: '3.8'
 
 services:
-  db:
-    image: postgres:15
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: nyamrun_db
-      POSTGRES_USER: nyamrun_user
-      POSTGRES_PASSWORD: nyamrun_pass
-    ports:
-      - "5432:5432"
-
   web:
     build: .
-    command: >
-      sh -c "
-      until pg_isready -h db -U nyamrun_user; do
-        echo 'Waiting for postgres...';
-        sleep 2;
-      done &&
-      cd nyamrun &&
-      python manage.py makemigrations &&
-      python manage.py migrate &&
-      python manage.py runserver 0.0.0.0:8080
-      "
+    command: sh -c "cd nyamrun && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8080"
     volumes:
-      - .:/app
+      - .:/app  # Монтируем текущую папку в контейнер
     ports:
-      - "8080:8080"
-    depends_on:
-      - db
-    environment:
-      DEBUG: "1"
-      DB_NAME: nyamrun_db
-      DB_USER: nyamrun_user
-      DB_PASSWORD: nyamrun_pass
-      DB_HOST: db
-      DB_PORT: 5432
-
-volumes:
-  postgres_data:
+      - "8080:8080"  # Пробрасываем порт 8080

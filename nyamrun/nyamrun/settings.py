@@ -69,14 +69,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "nyamrun.wsgi.application"
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "nyamrun",
+#         "USER": "postgres",
+#         "PASSWORD": "admin",
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': getenv('DB_NAME', 'nyamrun_db'),
-        'USER': getenv('DB_USER', 'nyamrun_user'),
-        'PASSWORD': getenv('DB_PASSWORD', 'nyamrun_pass'),
-        'HOST': getenv('DB_HOST', 'db'),
-        'PORT': getenv('DB_PORT', '5432'),
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
