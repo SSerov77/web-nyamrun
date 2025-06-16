@@ -70,13 +70,12 @@
 }
 
 @media (max-width: 600px) {
-  .main-img {
-    display: none;
-  }
-}
   .main-title {
     font-size: 28px;
     text-align: left;
+  }
+  .main-img {
+    display: none;
   }
   .main-subtitle {
     font-size: 16px;
@@ -94,3 +93,4 @@
   .category {
     padding: 10px 0;
   }
+}
