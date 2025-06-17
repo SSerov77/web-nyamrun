@@ -616,7 +616,6 @@ main {
     
     .navbar a:hover {
         color: var(--color-primary);
-        padding-left: 10px;
     }
     
     .mobile-user-actions a:hover,
