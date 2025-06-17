@@ -9,17 +9,14 @@
       <a href="{% url 'home' %}">О нас</a>
       <a href="{% url 'place_list' %}">Заведения</a>
       <a href="{% url 'partnership' %}">Партнерство</a>
-      
+      <div class="mobile-user-actions">
+        <img src="{% static 'imgs/icons/basket.svg' %}" alt="Корзина" class="header__icons">
+        <a href="{% url 'order_create' %}">Ваша корзина</a>
+      </div>
       {% if user.is_authenticated %}
         <div class="mobile-user-actions">
-          <a href="{% url 'order_create' %}">
-            <img src="{% static 'imgs/icons/basket.svg' %}" alt="Корзина">
-            Корзина
-          </a>
-          <a href="{% url 'profile' %}">
-            <img src="{% static 'imgs/icons/user.svg' %}" alt="Профиль">
-            Профиль
-          </a>
+          <img src="{% static 'imgs/icons/user.svg' %}" alt="Профиль" class="header__icons">
+          <a href="{% url 'profile' %}">Личный кабинет</a>
         </div>
       {% else %}
         <a href="{% url 'login' %}" class="mobile-login">Войти</a>
