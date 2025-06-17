@@ -292,7 +292,7 @@ input::-webkit-outer-spin-button {
     background-color: #f5f5f5;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     /* Уменьшаем окно, даём ему скролл по высоте */
     .modal-window {
       width: 90vw;
