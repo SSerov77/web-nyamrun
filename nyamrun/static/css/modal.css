@@ -291,3 +291,77 @@ input::-webkit-outer-spin-button {
 .modal-description table tr:hover {
     background-color: #f5f5f5;
 }
+
+@media (max-width: 767px) {
+    /* Уменьшаем окно, даём ему скролл по высоте */
+    .modal-window {
+      width: 90vw;
+      max-width: 90vw;
+      max-height: 95vh;
+      border-radius: 8px;
+      overflow-y: auto;
+    }
+  
+    /* Перекладываем контент в колонку */
+    .modal-content {
+      flex-direction: column;
+      padding: 20px;
+      gap: 20px;
+    }
+  
+    /* Картинка растягивается по ширине, центрируется */
+    .modal-left {
+      flex: none;
+      width: 100%;
+      text-align: center;
+    }
+    .modal-left img {
+      max-width: 80%;
+      height: auto;
+      margin: 0 auto;
+    }
+  
+    /* Правая колонка тоже 100% */
+    .modal-right {
+      width: 100%;
+    }
+  
+    /* Заголовок чуть меньше шрифт */
+    .modal-right h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+  
+    /* Цена и счётчик — тоже столбиком */
+    .price-qty {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+  
+    /* Счётчик убираем «в линию» */
+    .quantity {
+      margin-top: 0;
+    }
+  
+    /* Кнопка добавления на всю ширину */
+    .add-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  
+    /* Блок опций — под кнопкой, тоже 100% */
+    .options {
+      padding-top: 15px;
+    }
+  
+    /* Описание чуть уже, чтобы скролл не пересекал экран */
+    .modal-description {
+      padding: 15px;
+      max-height: 200px;
+    }
+  }
+  
