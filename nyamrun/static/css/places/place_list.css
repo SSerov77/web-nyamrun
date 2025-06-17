@@ -85,9 +85,6 @@
 
 /* ITEMS */
 @media (max-width: 900px) {
-  .container {
-    padding: 10px;
-  }
   .filters {
     flex-direction: column;
     gap: 15px;
@@ -101,9 +98,6 @@
 }
 
 @media (max-width: 600px) {
-  .container {
-    padding: 5px;
-  }
   .filters {
     gap: 10px;
     padding: 5px 0;
