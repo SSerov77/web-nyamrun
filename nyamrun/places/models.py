@@ -27,8 +27,9 @@ class Address(models.Model):
 
 
 class PlaceType(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Название типа")
+    name = models.CharField(max_length=100, null=False, verbose_name="Название типа")
     slug = models.SlugField(
+        null=False,
         max_length=50,
         unique=True,
         verbose_name="Уникальный тег",
@@ -45,9 +46,7 @@ class PlaceType(models.Model):
 class Place(models.Model):
     type = models.ForeignKey(
         PlaceType,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
+        on_delete=models.PROTECT,
         verbose_name="Тип заведения",
     )
     name = models.CharField(max_length=255, verbose_name="Название")

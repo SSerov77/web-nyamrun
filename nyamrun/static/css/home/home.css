@@ -74,7 +74,8 @@
 @media (max-width: 600px) {
   .main-title {
     font-size: 28px;
-    text-align: left;
+    text-align: center;
+    display: none;
   }
 
   .main-subtitle {

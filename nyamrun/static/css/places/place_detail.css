@@ -81,11 +81,13 @@
 
 .restaurant-banner-img {
     width: 100%;
-    height: 100%;
+    height: auto;
     max-height: 330px;
     max-width: 880px;
     aspect-ratio: 880px/330px;
     border-radius: 25px;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .menu-section {
@@ -163,7 +165,6 @@
 
 /* CART */
 
-/* Обновленные стили для корзины */
 .cart {
     width: 260px;
     min-height: 600px;
@@ -228,7 +229,6 @@
     align-items: center;
     gap: 8px;
     width: 64px;
-    /* Ширина изображения */
 }
 
 .cart-item-content {
@@ -297,7 +297,6 @@
     gap: 8px;
     height: 28px;
     min-width: 80px;
-    /* Фиксированная ширина для всех кнопок */
     justify-content: space-between;
     box-sizing: border-box;
 }
@@ -309,7 +308,6 @@
     font-size: 16px;
     padding: 0;
     width: 20px;
-    /* Фиксированная ширина кнопок */
     height: 20px;
     display: flex;
     align-items: center;
@@ -512,7 +510,12 @@
     }
     
     .menu-item {
-        max-width: 170px;
+        max-width: 100px;
+        border-radius: 10px;
+    }
+
+    .menu-item-name {
+        font-size: 12px;
     }
 
     .menu-item-price {
@@ -520,8 +523,11 @@
     }
 
     .menu-item button {
-        font-size: 12px;
-        width: 140px;
+        font-size: 10px;
+        width: 70px;
+        height: 30px;
+        padding: 0;
+        border-radius: 5px;
     }
 
     .restaurant-banner-container {

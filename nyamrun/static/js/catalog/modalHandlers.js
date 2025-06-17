@@ -39,7 +39,12 @@ export function setupModalButtons(modalContainer) {
 
                         if (!addResponse.ok) {
                             const text = await addResponse.text();
-                            throw new Error(`Ошибка при добавлении товара в корзину:\n${text}`);
+                            try {
+                                const json = JSON.parse(text);
+                                throw new Error(json.error || 'Нельзя добавить в корзину товары из разных заведений');
+                            } catch (parseError) {
+                                throw new Error('Нельзя добавить в корзину товары из разных заведений');
+                            }
                         }
 
                         const addData = await addResponse.json();
