@@ -473,6 +473,7 @@ main {
         display: flex;
         align-items: center;
         gap: 10px;
+        width: 200px;
     }
 
     .mobile-user-actions a,
