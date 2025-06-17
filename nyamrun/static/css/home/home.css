@@ -1,53 +1,53 @@
 .main-section {
-    display: flex;
-    gap: 5vw;
-    height: auto;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  gap: 5vw;
+  height: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .left-block {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 600px;
 }
 
 .main-title {
-    font-weight: 600;
-    font-size: clamp(32px, 5vw, 80px);
-    color: var(--color-text);
-    width: 100%;
+  font-weight: 600;
+  font-size: clamp(32px, 5vw, 80px);
+  color: var(--color-text);
+  width: 100%;
 }
 
 .main-subtitle {
-    font-weight: 500;
-    font-size: clamp(18px, 2vw, 32px);
-    color: var(--color-text);
+  font-weight: 500;
+  font-size: clamp(18px, 2vw, 32px);
+  color: var(--color-text);
 }
 
 .main-btn {
-    width: clamp(200px, 25vw, 364px);
-    height: 54px;
-    background-color: var(--color-button-bg);
-    color: var(--color-button-text);
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: .3s;
+  width: clamp(200px, 25vw, 364px);
+  height: 54px;
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: .3s;
 }
 
 .main-btn:hover {
-    background-color: var(--color-button-hover);
-    color: var(--color-button-text);
+  background-color: var(--color-button-hover);
+  color: var(--color-button-text);
 }
 
 .main-img {
-    width: clamp(300px, 50vw, 735px);
-    height: auto;
-    max-height: 544px;
+  width: clamp(300px, 50vw, 735px);
+  height: auto;
+  max-height: 544px;
 }
 
 
@@ -57,12 +57,14 @@
     gap: 30px;
     align-items: flex-start;
   }
+
   .main-img {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
     display: block;
   }
+
   .left-block {
     max-width: 100%;
     align-items: flex-start;
@@ -74,22 +76,35 @@
     font-size: 28px;
     text-align: left;
   }
+
+  .main-subtitle {
+    display: none;
+  }
+
   .main-img {
     display: none;
   }
+
+  .main-btn {
+    display: none;
+  }
+
   .main-subtitle {
     font-size: 16px;
     text-align: left;
   }
+
   .main-btn {
     width: 100%;
     min-width: 160px;
     font-size: 16px;
     height: 44px;
   }
+
   .main-section {
     padding: 10px;
   }
+
   .category {
     padding: 10px 0;
   }

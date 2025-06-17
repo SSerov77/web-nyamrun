@@ -411,26 +411,27 @@ main {
     .header-content {
         padding: 0 30px;
     }
-    
+
     .main-content {
         padding: 0 30px;
     }
-    
+
 }
 
 /* Медиа-запросы для мобильных устройств */
 @media screen and (max-width: 768px) {
+
     /* Header адаптив */
     .header-content {
         padding: 0 15px;
         position: relative;
     }
-    
+
     .logo {
         width: 120px;
         z-index: 102;
     }
-    
+
     /* Скрываем десктопное меню */
     .navbar {
         position: fixed;
@@ -449,11 +450,11 @@ main {
         max-width: none;
         gap: 0;
     }
-    
+
     .navbar.active {
         left: 0;
     }
-    
+
     .navbar a {
         font-size: 18px;
         font-weight: 500;
@@ -462,11 +463,11 @@ main {
         width: 100%;
         display: block;
     }
-    
+
     .navbar a:last-child {
         border-bottom: none;
     }
-    
+
     /* Мобильные элементы в меню */
     .mobile-user-actions {
         display: flex;
@@ -477,7 +478,7 @@ main {
         border-top: 1px solid var(--color-secondary);
         width: 100%;
     }
-    
+
     .mobile-user-actions a,
     .mobile-login {
         display: flex;
@@ -489,16 +490,16 @@ main {
         border-bottom: 1px solid var(--color-secondary);
         width: 100%;
     }
-    
+
     .mobile-user-actions a:last-child {
         border-bottom: none;
     }
-    
+
     .mobile-user-actions img {
         width: 24px;
         height: 24px;
     }
-    
+
     .mobile-login {
         background-color: var(--color-primary);
         color: var(--color-white);
@@ -509,23 +510,23 @@ main {
         justify-content: center;
         border: none;
     }
-    
+
     /* Скрываем десктопные элементы пользователя */
     .user-info {
         display: none;
     }
-    
+
     .login {
         display: none;
     }
-    
+
     /* Показываем бургер-меню */
     .menu-toggle {
         display: flex;
         position: relative;
         z-index: 102;
     }
-    
+
     /* Оверлей для закрытия меню */
     .menu-overlay {
         position: fixed;
@@ -539,16 +540,19 @@ main {
         transition: opacity 0.3s ease, visibility 0.3s ease;
         z-index: 99;
     }
-    
+
     .menu-overlay.active {
         opacity: 1;
         visibility: visible;
     }
-    
-    /* Main контент */
+
     .main-content {
         padding: 0 15px;
         margin-top: 30px;
+    }
+
+    .footer__top {
+        font-size: 12px;
     }
 
     .footer__nav {
@@ -561,7 +565,29 @@ main {
         display: flex;
         margin-top: 25px;
     }
-    
+
+    .footer__icons {
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+
+    .footer__icons img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .footer__newsletter {
+        font-size: 10px;
+        padding: 4px 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .footer__bottom {
+        font-size: 12px;
+    }
+
     .container {
         padding: 30px 15px;
     }
@@ -572,32 +598,32 @@ main {
     .header-content {
         padding: 0 10px;
     }
-    
+
     .logo {
         width: 100px;
     }
-    
+
     .navbar {
         width: 100%;
         left: -100%;
         padding: 100px 20px 30px;
     }
-    
+
     .main-content {
         padding: 0 10px;
         margin-top: 20px;
     }
-    
+
     .container {
         padding: 20px 10px;
     }
-    
+
     .icon {
         width: 28px;
         height: 28px;
         margin: 0 4px;
     }
-    
+
 }
 
 /* Фиксы для Safari и iOS */
@@ -613,11 +639,11 @@ main {
     .navbar a {
         transition: color 0.2s ease, padding-left 0.2s ease;
     }
-    
+
     .navbar a:hover {
         color: var(--color-primary);
     }
-    
+
     .mobile-user-actions a:hover,
     .mobile-login:hover {
         transform: translateX(5px);
