@@ -32,13 +32,13 @@
         <h3 class="footer__title">Поддержка</h3>
         <ul class="footer__list">
           <li>
-            <a href="{% url 'home' %}">Помощь</a>
+            <a href="mailto:support@nyamrun.ru">Помощь</a>
           </li>
           <li>
-            <a href="{% url 'home' %}">Связаться с нами</a>
+            <a href="mailto:sales@nyamrun.ru">Связаться с нами</a>
           </li>
           <li>
-            <a href="{% url 'home' %}">Политика файлов cookie</a>
+            <a href="{% url 'cookie_usage_policy' %}">Политика файлов cookie</a>
           </li>
         </ul>
       </div>
@@ -65,9 +65,9 @@
   <div class="footer__bottom container">
     <p class="footer__copy">© 2025 НямРан – Все права защищены</p>
     <nav class="footer__legal">
-      <a href="#">Условия использования</a>
+      <a href="{% url 'terms_of_use' %}">Условия использования</a>
       <span class="footer__sep">|</span>
-      <a href="#">Политика конфиденциальности</a>
+      <a href="{% url 'privacy_policy' %}">Политика конфиденциальности</a>
     </nav>
   </div>
 </footer>

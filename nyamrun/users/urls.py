@@ -40,4 +40,13 @@ urlpatterns = [
         ),
         name="password_change_done",
     ),
+    path("privacy_policy/", users.views.privacy_policy, name="privacy_policy"),
+    path(
+        "cookie_usage_policy/",
+        users.views.cookie_usage_policy,
+        name="cookie_usage_policy"
+    ),
+    path(
+        "terms_of_use/", users.views.terms_of_use, name="terms_of_use"
+    ),
 ]

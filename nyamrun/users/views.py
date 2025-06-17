@@ -243,3 +243,15 @@ class ManagerOrderStatusUpdateView(LoginRequiredMixin, View):
             order.status = new_status
             order.save(update_fields=["status"])
         return redirect("manager_profile")
+
+
+def privacy_policy(request):
+    return render(request, "users/privacy_policy.html")
+
+
+def cookie_usage_policy(request):
+    return render(request, "users/cookie_usage_policy.html")
+
+
+def terms_of_use(request):
+    return render(request, "users/terms_of_use.html")
