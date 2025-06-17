@@ -201,23 +201,23 @@ input::-webkit-outer-spin-button {
 }
 
 /* Стили для форматированного текста из CKEditor */
-.modal-description ul, 
+.modal-description ul,
 .modal-description ol {
     margin: 10px 0;
     padding-left: 20px;
 }
 
-.modal-description ul li, 
+.modal-description ul li,
 .modal-description ol li {
     margin-bottom: 5px;
 }
 
-.modal-description strong, 
+.modal-description strong,
 .modal-description b {
     font-weight: 700;
 }
 
-.modal-description em, 
+.modal-description em,
 .modal-description i {
     font-style: italic;
 }
@@ -231,22 +231,39 @@ input::-webkit-outer-spin-button {
     text-decoration: none;
 }
 
-.modal-description h1, 
-.modal-description h2, 
-.modal-description h3, 
-.modal-description h4, 
-.modal-description h5, 
+.modal-description h1,
+.modal-description h2,
+.modal-description h3,
+.modal-description h4,
+.modal-description h5,
 .modal-description h6 {
     margin: 15px 0 10px;
     font-weight: 600;
 }
 
-.modal-description h1 { font-size: 22px; }
-.modal-description h2 { font-size: 20px; }
-.modal-description h3 { font-size: 18px; }
-.modal-description h4 { font-size: 16px; }
-.modal-description h5 { font-size: 14px; }
-.modal-description h6 { font-size: 14px; }
+.modal-description h1 {
+    font-size: 22px;
+}
+
+.modal-description h2 {
+    font-size: 20px;
+}
+
+.modal-description h3 {
+    font-size: 18px;
+}
+
+.modal-description h4 {
+    font-size: 16px;
+}
+
+.modal-description h5 {
+    font-size: 14px;
+}
+
+.modal-description h6 {
+    font-size: 14px;
+}
 
 /* Стили для таблиц в форматированном тексте */
 .modal-description table {
