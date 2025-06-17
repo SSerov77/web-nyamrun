@@ -40,6 +40,12 @@ def get_or_create_cart(request):
                         # перепривязываем элемент к user_cart
                         item.cart = user_cart
                         item.save()
+
+                # ИСПРАВЛЕНИЕ: переносим адрес заведения из гостевой корзины
+                if guest_cart.place and not user_cart.place:
+                    user_cart.place = guest_cart.place
+                    user_cart.save()
+
                 # удаляем гостевую корзину
                 guest_cart.delete()
 
