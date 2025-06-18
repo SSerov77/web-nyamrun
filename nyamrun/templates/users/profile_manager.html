@@ -107,6 +107,18 @@
       {% else %}
         <div class="empty-chart">Нет заказов</div>
       {% endif %}
+      <div class="actions-card">
+        <h2>Действия</h2>
+        <a href="{% url 'password_change' %}" class="action-btn change-password">
+          <i class="fas fa-key"></i> Сменить пароль
+        </a>
+        <form action="{% url 'logout' %}" method="post" class="logout-form">
+          {% csrf_token %}
+          <button type="submit" class="action-btn">
+            <i class="fas fa-sign-out-alt"></i> Выйти
+          </button>
+        </form>
+      </div>
     {% endif %}
   </div>
 
