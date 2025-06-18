@@ -114,6 +114,18 @@
         <div class="empty-chart">Нет данных по адресам</div>
       {% endfor %}
     </div>
+    <div class="actions-card">
+      <h2>Действия</h2>
+      <a href="{% url 'password_change' %}" class="action-btn change-password">
+        <i class="fas fa-key"></i> Сменить пароль
+      </a>
+      <form action="{% url 'logout' %}" method="post" class="logout-form">
+        {% csrf_token %}
+        <button type="submit" class="action-btn">
+          <i class="fas fa-sign-out-alt"></i> Выйти
+        </button>
+      </form>
+    </div>
   </div>
   {# Данные для графика #}
   <script id="chartData" type="application/json">

@@ -180,6 +180,78 @@ body {
     cursor: pointer;
 }
 
+/* Стили для кнопок действий */
+.actions-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    text-decoration: none !important;
+    text-align: left;
+}
+
+.action-btn i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+/* Конкретные стили для кнопок */
+.change-password {
+    background-color: #f0f7ff;
+    color: #1a73e8;
+}
+
+.change-password:hover {
+    background-color: #e1f0ff;
+    text-decoration: none !important;
+}
+
+/* Стили для формы выхода */
+.logout-form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.logout-form button {
+    width: 100%;
+    background-color: #fff0f0;
+    color: #e81a1a;
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none !important;
+}
+
+.logout-form button:hover {
+    background-color: #ffe1e1;
+    text-decoration: none !important;
+}
+
+.logout-form button i {
+    margin-right: 10px;
+}
+
 /* Адаптация */
 @media (max-width: 768px) {
     .owner-dashboard {
