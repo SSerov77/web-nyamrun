@@ -58,7 +58,12 @@
             </div>
             <div class="order-meta">
               Клиент: <strong>{{ order.user.username }}</strong> |
-              Сумма: <strong>{{ order.total_price }} ₽</strong>
+              Сумма: <strong>{{ order.total_price }} ₽</strong><br>
+              {% if order.comment %}
+                Комментарий: <strong>{{ order.comment }}</strong>
+              {% else %}
+                Комментарий: <strong>None</strong>
+              {% endif %}
             </div>
             <table class="order-items">
               <thead>

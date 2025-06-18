@@ -25,19 +25,44 @@ def signup(request):
     return render(request, "users/signup.html", {"form": form})
 
 
-class ProfileView(LoginRequiredMixin, TemplateView):
-    template_name = "users/profile.html"
+class ProfileView(LoginRequiredMixin, View):
+    """Главное представление профиля с автоматическим перенаправлением"""
     login_url = reverse_lazy("login")
 
-    def get_template_names(self):
-        user = self.request.user
-        if user.places.exists():
-            return ["users/profile_owner.html"]
-        return [self.template_name]
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        
+        # Проверяем права доступа и перенаправляем соответственно
+        
+        # 1. Проверяем, является ли пользователь администратором
+        if user.is_staff or user.is_superuser:
+            return redirect('/admin/')
+        
+        # 2. Проверяем, является ли пользователь владельцем заведения
+        elif user.places.exists():
+            return redirect('owner_profile')
+        
+        # 3. Проверяем, является ли пользователь менеджером
+        elif hasattr(user, 'managed_address') and user.managed_address:
+            return redirect('manager_profile')
+        
+        # 4. Обычный пользователь
+        else:
+            return redirect('user_profile')
+
+
+class OwnerProfileView(LoginRequiredMixin, TemplateView):
+    """Личный кабинет владельца заведения"""
+    template_name = "users/profile_owner.html"
+    login_url = reverse_lazy("login")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
+
+        # Проверяем, что пользователь действительно владелец
+        if not user.places.exists():
+            return redirect('profile')
 
         # Период — день/неделя/месяц
         period = self.request.GET.get("period", "week")
@@ -50,30 +75,26 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
         context["selected_period"] = period
 
-        if user.places.exists():
-            places = user.places.all()
-            selected_place_id = self.request.GET.get("place")
-            selected_place = (
-                places.filter(id=selected_place_id).first()
-                if selected_place_id
-                else places.first()
-            )
+        places = user.places.all()
+        selected_place_id = self.request.GET.get("place")
+        selected_place = (
+            places.filter(id=selected_place_id).first()
+            if selected_place_id
+            else places.first()
+        )
 
-            orders = Order.objects.filter(
-                place=selected_place, created_at__gte=date_from
-            )
+        orders = Order.objects.filter(
+            place=selected_place, created_at__gte=date_from
+        )
 
-            context.update(
-                {
-                    "places": places,
-                    "selected_place": selected_place,
-                    "stats": self.get_statistics(orders),
-                    "address_stats": self.get_address_stats(selected_place, date_from),
-                }
-            )
-        else:
-            orders = Order.objects.filter(user=user).order_by("-created_at")[:10]
-            context["orders"] = orders
+        context.update(
+            {
+                "places": places,
+                "selected_place": selected_place,
+                "stats": self.get_statistics(orders),
+                "address_stats": self.get_address_stats(selected_place, date_from),
+            }
+        )
 
         return context
 
@@ -140,10 +161,21 @@ class ProfileView(LoginRequiredMixin, TemplateView):
             )
         return result
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return redirect(self.login_url)
-        return super().dispatch(request, *args, **kwargs)
+
+class UserProfileView(LoginRequiredMixin, TemplateView):
+    """Личный кабинет обычного пользователя"""
+    template_name = "users/profile.html"
+    login_url = reverse_lazy("login")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+
+        # Показываем последние заказы пользователя
+        orders = Order.objects.filter(user=user).order_by("-created_at")[:10]
+        context["orders"] = orders
+
+        return context
 
 
 class ManagerProfileView(LoginRequiredMixin, TemplateView):
@@ -207,28 +239,6 @@ class ManagerProfileView(LoginRequiredMixin, TemplateView):
                 "total_issued_orders": issued_orders_count,
             }
         )
-        return context
-
-
-class ManagerOrderListView(LoginRequiredMixin, TemplateView):
-    template_name = "users/manager_orders.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user = self.request.user
-        address = getattr(user, "managed_address", None)
-
-        if not address:
-            context["error"] = "Вы не привязаны к адресу"
-            return context
-
-        orders = (
-            Order.objects.filter(address=address)
-            .order_by("-created_at")
-            .prefetch_related("items__product", "items__options", "user")
-        )
-        context["orders"] = orders
-        context["address"] = address
         return context
 
 

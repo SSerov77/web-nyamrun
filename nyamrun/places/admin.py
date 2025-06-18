@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from places.forms import PlaceAdminForm
 from places.models import Address, Place, PlaceType
 
@@ -18,7 +19,7 @@ class PlaceAdmin(admin.ModelAdmin):
     list_display = ("name", "get_place_type", "get_categories", "owner")
     list_filter = ("type", "categories")
     search_fields = ("name", "owner__username", "owner__email")
-    filter_horizontal = ("categories", "addresses")
+    filter_horizontal = ("categories", "addresses",)
 
     def get_categories(self, obj):
         return ", ".join(cat.name for cat in obj.categories.all())

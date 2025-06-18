@@ -14,7 +14,15 @@ urlpatterns = [
         name="login",
     ),
     path("logout/", views.LogoutView.as_view(), name="logout"),
+
+    # Основной профиль (с автоматическим перенаправлением)
     path("profile/", users.views.ProfileView.as_view(), name="profile"),
+
+    # Специфичные профили для каждого типа пользователя
+    path("profile/owner/", users.views.OwnerProfileView.as_view(), name="owner_profile"),
+    path("profile/user/", users.views.UserProfileView.as_view(), name="user_profile"),
+
+    # Менеджерские маршруты (оставляем как есть)
     path(
         "manager/profile/",
         users.views.ManagerProfileView.as_view(),
@@ -25,6 +33,8 @@ urlpatterns = [
         users.views.ManagerOrderStatusUpdateView.as_view(),
         name="manager-order-update-status",
     ),
+
+    # Смена пароля
     path(
         "password_change/",
         views.PasswordChangeView.as_view(
@@ -40,6 +50,8 @@ urlpatterns = [
         ),
         name="password_change_done",
     ),
+
+    # Политики и условия
     path("privacy_policy/", users.views.privacy_policy, name="privacy_policy"),
     path(
         "cookie_usage_policy/",
