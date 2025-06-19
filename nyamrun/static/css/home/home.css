@@ -75,11 +75,11 @@
   .main-title {
     font-size: 28px;
     text-align: center;
-    display: none;
+    /* display: none; */
   }
 
   .main-subtitle {
-    display: none;
+    /* display: none; */
   }
 
   .main-img {
