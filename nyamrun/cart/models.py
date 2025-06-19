@@ -21,7 +21,7 @@ class Cart(models.Model):
         return f"Сессионная корзина {self.session_key}"
 
     def get_total_price(self):
-        return sum(item.get_total_price() for item in self.items.all())
+        return sum(item.total_price for item in self.items.all())
 
     class Meta:
         verbose_name = "Корзина пользователя"

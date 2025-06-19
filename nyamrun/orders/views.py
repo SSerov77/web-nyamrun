@@ -30,7 +30,7 @@ def order_create(request):
                 "address": form.cleaned_data["address"].pk,
                 "ready_time": form.cleaned_data["time"],
                 "comment": form.cleaned_data["comment"],
-                "total_price": f"{total_price:.2f}",
+                "total_price": f"{total_price}",
             }
             return redirect("order_payment")
     else:
@@ -68,7 +68,7 @@ def order_payment(request):
                 "description": desc,
                 "quantity": item.quantity,
                 "amount": {
-                    "value": str(item.product.price),
+                    "value": str(item.price),
                     "currency": "RUB",
                 },
                 "vat_code": 4,
@@ -136,7 +136,7 @@ def order_success(request):
             place=cart.place,
             address=Address.objects.get(pk=order_data["address"]),
             comment=order_data["comment"],
-            total_price=cart.get_total_price(),
+            total_price=0,
             ready_time=order_data["ready_time"],
             payment_id=payment_id,
         )
@@ -145,9 +145,10 @@ def order_success(request):
                 order=order, product=item.product, quantity=item.quantity
             )
             order_item.options.set(item.options.all())
-        cart.items.all().delete()
+        order.update_total_price()
 
         # Чистим сессию, чтобы по F5 не пытаться ещё раз
+        cart.items.all().delete()
         del request.session["payment_id"]
         del request.session["order_data"]
 
