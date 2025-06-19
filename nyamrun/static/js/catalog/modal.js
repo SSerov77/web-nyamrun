@@ -54,9 +54,13 @@ export function createModal(modalContainer, itemData, onAddCallback) {
 
   plusBtn.addEventListener('click', () => {
     let val = parseInt(qtyInput.value, 10);
-    qtyInput.value = val + 1;
+    if (val < 10) {
+      qtyInput.value = val + 1;
+    } else {
+      alert("Максимум 10 штук. Больше добавить нельзя.");
+    }
   });
-
+  
   // Закрытие модалки
   modal.querySelector('.modal-close').addEventListener('click', () => {
     modalContainer.style.display = 'none';

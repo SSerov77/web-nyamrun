@@ -38,10 +38,20 @@ def cart_add_ajax(request, product_id):
 
     for item in existing_items:
         if set(item.options.values_list("id", flat=True)) == opts_set:
+            if item.quantity + quantity > 10:
+                return JsonResponse(
+                    {"error": "Максимум 10 штук одного товара с одинаковыми опциями."},
+                    status=400
+                )
             item.quantity += quantity
             item.save()
             break
     else:
+        if quantity > 10:
+            return JsonResponse(
+                {"error": "Максимум 10 штук одного товара с одинаковыми опциями."},
+                status=400
+            )
         item = CartItem.objects.create(cart=cart, product=product, quantity=quantity)
         item.options.set(selected_options)
         item.save()
