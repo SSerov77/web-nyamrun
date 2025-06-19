@@ -21,7 +21,7 @@ export function createModal(modalContainer, itemData, onAddCallback) {
               <div class="price">${itemData.price}₽</div>
               <div class="quantity">
                 <button class="qty-btn" aria-label="Уменьшить">−</button>
-                <input type="number" min="1" value="1" />
+                <input type="number" min="1" value="1" readonly/>
                 <button class="qty-btn" aria-label="Увеличить">+</button>
               </div>
               <button class="add-btn">Добавить</button>
@@ -60,7 +60,7 @@ export function createModal(modalContainer, itemData, onAddCallback) {
       alert("Максимум 10 штук. Больше добавить нельзя.");
     }
   });
-  
+
   // Закрытие модалки
   modal.querySelector('.modal-close').addEventListener('click', () => {
     modalContainer.style.display = 'none';

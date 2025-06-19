@@ -43,7 +43,8 @@ export function setupModalButtons(modalContainer) {
                                 const json = JSON.parse(text);
                                 throw new Error(json.error || 'Нельзя добавить в корзину товары из разных заведений');
                             } catch (parseError) {
-                                throw new Error('Нельзя добавить в корзину товары из разных заведений');
+                                throw new Error(`Нельзя добавить в корзину товары из разных заведений`);
+                               
                             }
                         }
 
