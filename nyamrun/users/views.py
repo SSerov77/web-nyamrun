@@ -4,7 +4,8 @@ from django.db.models import Avg, Count, Sum
 from django.db.models.functions import TruncDate, TruncHour
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
-from django.utils.timezone import now, timedelta
+from django.utils.timezone import timedelta
+from django.utils.timezone import localdate, localtime
 from django.views import View
 from django.views.generic import TemplateView
 from orders.models import Order, OrderStatus
@@ -66,12 +67,13 @@ class OwnerProfileView(LoginRequiredMixin, TemplateView):
 
         # Период — день/неделя/месяц
         period = self.request.GET.get("period", "week")
+        local_now = localtime()
         if period == "day":
-            date_from = now() - timedelta(days=1)
+            date_from = local_now - timedelta(days=1)
         elif period == "month":
-            date_from = now() - timedelta(days=30)
+            date_from = local_now - timedelta(days=30)
         else:
-            date_from = now() - timedelta(days=7)
+            date_from = local_now - timedelta(days=7)
 
         context["selected_period"] = period
 
@@ -190,7 +192,7 @@ class ManagerProfileView(LoginRequiredMixin, TemplateView):
             context["error"] = "Вы не привязаны к адресу"
             return context
 
-        today = now().date()
+        today = localdate()
         tomorrow = today + timedelta(days=1)
 
         orders = Order.objects.filter(address=address).prefetch_related(
