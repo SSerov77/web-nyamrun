@@ -122,6 +122,10 @@
           let newQty = currentQty;
           
           if (btn.classList.contains('plus')) {
+            if (newQty == 10) {
+            alert(`Нельзя добавить больше 10 товара`)
+            return
+          }
             newQty = currentQty + 1;
           } else if (btn.classList.contains('minus')) {
             newQty = currentQty - 1;
