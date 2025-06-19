@@ -59,6 +59,7 @@
             <div class="order-meta">
               Клиент: <strong>{{ order.user.username }}</strong> |
               Сумма: <strong>{{ order.total_price }} ₽</strong><br>
+              Время: <strong>{{ order.ready_time|time:'H:i' }}</strong><br>
               {% if order.comment %}
                 Комментарий: <strong>{{ order.comment }}</strong>
               {% else %}
